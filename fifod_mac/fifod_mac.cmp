@@ -1,0 +1,25 @@
+	component eth4to1 is
+		port (
+			clk_clk                     : in  std_logic                     := 'X';             -- clk
+			clk_312_out_clk_clk         : out std_logic;                                        -- clk
+			eth_outstream_data          : out std_logic_vector(63 downto 0);                    -- data
+			eth_outstream_ready         : in  std_logic                     := 'X';             -- ready
+			eth_outstream_valid         : out std_logic;                                        -- valid
+			eth_outstream_endofpacket   : out std_logic;                                        -- endofpacket
+			eth_outstream_startofpacket : out std_logic;                                        -- startofpacket
+			eth_outstream_channel       : out std_logic_vector(5 downto 0);                     -- channel
+			eth_tagstream_data          : in  std_logic_vector(7 downto 0)  := (others => 'X'); -- data
+			eth_tagstream_ready         : out std_logic;                                        -- ready
+			eth_tagstream_valid         : in  std_logic                     := 'X';             -- valid
+			reset_reset_n               : in  std_logic                     := 'X';             -- reset_n
+			xgmii_rx_data_0_data        : in  std_logic_vector(71 downto 0) := (others => 'X'); -- data
+			xgmii_rx_data_1_data        : in  std_logic_vector(71 downto 0) := (others => 'X'); -- data
+			xgmii_rx_data_2_data        : in  std_logic_vector(71 downto 0) := (others => 'X'); -- data
+			xgmii_rx_data_3_data        : in  std_logic_vector(71 downto 0) := (others => 'X'); -- data
+			xgmii_tx_data_0_data        : out std_logic_vector(71 downto 0);                    -- data
+			xgmii_tx_data_1_data        : out std_logic_vector(71 downto 0);                    -- data
+			xgmii_tx_data_2_data        : out std_logic_vector(71 downto 0);                    -- data
+			xgmii_tx_data_3_data        : out std_logic_vector(71 downto 0)                     -- data
+		);
+	end component eth4to1;
+

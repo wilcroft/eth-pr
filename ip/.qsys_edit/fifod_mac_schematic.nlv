@@ -1,0 +1,98 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst subsystemA.clk_156 -pg 1 -lvl 1 -y 70
+preplace inst subsystemA.mac10g.tx_st_timing_adapter_splitter_in -pg 1
+preplace inst subsystemA.mac10g.rx_eth_crc_pad_rem -pg 1
+preplace inst subsystemA.mac10g.interface_conversion -pg 1
+preplace inst subsystemA.mac10g.tx_eth_frame_decoder -pg 1
+preplace inst subsystemA.mac10g.rx_st_timing_adapter_splitter_status_output -pg 1
+preplace inst subsystemA.mac10g.rxtx_timing_adapter_pauselen_tx -pg 1
+preplace inst subsystemA.mac10g.txrx_timing_adapter_link_fault_status_export -pg 1
+preplace inst subsystemA.mac10g.tx_st_timing_adapter_splitter_status_output -pg 1
+preplace inst subsystemA.mac10g.rxtx_timing_adapter_pauselen_rx -pg 1
+preplace inst subsystemA.mac10g.csr_clk_module -pg 1
+preplace inst subsystemA.mac10g.rx_st_status_output_delay -pg 1
+preplace inst subsystemA.mac10g.rx_st_timing_adapter_link_fault_detection -pg 1
+preplace inst subsystemA.mac10g.tx_eth_pause_ctrl_gen -pg 1
+preplace inst subsystemA.mac10g.rx_eth_frame_status_merger -pg 1
+preplace inst subsystemA.mac10g.tx_eth_pause_beat_conversion -pg 1
+preplace inst subsystemA.mac10g.tx_eth_pad_inserter -pg 1
+preplace inst subsystemA.mac10g.rx_st_status_splitter -pg 1
+preplace inst subsystemA.mac10g.rx_st_timing_adapter_interface_conversion -pg 1
+preplace inst subsystemA.mac10g.tx_eth_packet_underflow_control -pg 1
+preplace inst subsystemA.mac10g.rx_eth_default_slave -pg 1
+preplace inst subsystemA.mac10g.rx_st_error_adapter_stat -pg 1
+preplace inst subsystemA.mac10g.rxtx_timing_adapter_link_fault_status_tx -pg 1
+preplace inst subsystemA.mac10g.rx_st_status_statistics_delay -pg 1
+preplace inst subsystemA.mac10g.rx_eth_pkt_backpressure_control -pg 1
+preplace inst subsystemA.mac10g.tx_eth_address_inserter -pg 1
+preplace inst subsystemA.mac10g.tx_clk_module -pg 1
+preplace inst subsystemA.tx_st_fifo -pg 1 -lvl 3 -y 30
+preplace inst subsystemA.mac10g.rx_register_map -pg 1
+preplace inst subsystemA.mac10g.tx_bridge -pg 1
+preplace inst subsystemA.mac10g.rx_st_timing_adapter_splitter_status_statistics -pg 1
+preplace inst subsystemA.mac10g.rx_eth_packet_overflow_control -pg 1
+preplace inst subsystemA.mac10g.tx_eth_packet_formatter -pg 1
+preplace inst subsystemA.mac10g.txrx_timing_adapter_link_fault_status_rx -pg 1
+preplace inst subsystemA.rx_st_fifo -pg 1 -lvl 5 -y 60
+preplace inst subsystemA.mac10g.rxtx_dc_fifo_pauselen -pg 1
+preplace inst subsystemA.mac10g.tx_st_timing_adapter_splitter_status_statistics -pg 1
+preplace inst subsystemA.mac10g.rx_eth_lane_decoder -pg 1
+preplace inst subsystemA.mac10g.rx_eth_link_fault_detection -pg 1
+preplace inst subsystemA.mac10g.tx_eth_crc_inserter -pg 1
+preplace inst subsystemA.mac10g.rx_clk_module -pg 1
+preplace inst subsystemA.mac10g.merlin_master_translator -pg 1
+preplace inst subsystemA.mac10g.tx_st_timing_adapter_frame_decoder -pg 1
+preplace inst subsystemA.mac10g.tx_register_map -pg 1
+preplace inst subsystemA.mac10g.tx_st_status_splitter -pg 1
+preplace inst subsystemA.mac10g.tx_eth_default_slave -pg 1
+preplace inst subsystemA.mac10g.tx_eth_xgmii_termination -pg 1
+preplace inst subsystemA.clk_312 -pg 1 -lvl 2 -y 50
+preplace inst subsystemA.mac10g.rx_bridge -pg 1
+preplace inst subsystemA.mac10g.rx_st_splitter_xgmii -pg 1
+preplace inst subsystemA.mac10g.rx_timing_adapter_frame_status_out_crc_checker -pg 1
+preplace inst subsystemA.mac10g -pg 1 -lvl 4 -y 170
+preplace inst subsystemA.mac10g.tx_eth_pkt_backpressure_control -pg 1
+preplace inst subsystemA.mac10g.rx_eth_statistics_collector -pg 1
+preplace inst subsystemA.mac10g.tx_eth_link_fault_generation -pg 1
+preplace inst subsystemA.mac10g.rx_st_timing_adapter_frame_status_in -pg 1
+preplace inst subsystemA.rst -pg 1 -lvl 2 -y 90
+preplace inst subsystemA.mac10g.tx_st_splitter_1 -pg 1
+preplace inst subsystemA.mac10g.tx_st_error_adapter_stat -pg 1
+preplace inst subsystemA.mac10g.rx_st_timing_adapter_splitter_status_in -pg 1
+preplace inst subsystemA.mac10g.tx_st_status_output_delay_to_statistic -pg 1
+preplace inst subsystemA.mac10g.rx_st_frame_status_splitter -pg 1
+preplace inst subsystemA.mac10g.tx_eth_statistics_collector -pg 1
+preplace inst subsystemA.mac10g.rx_eth_crc_checker -pg 1
+preplace inst subsystemA.mac10g.tx_st_mux_flow_control_user_frame -pg 1
+preplace inst subsystemA.mac10g.tx_st_pause_ctrl_error_adapter -pg 1
+preplace inst subsystemA -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst subsystemA.mac10g.txrx_st_splitter_link_fault_status -pg 1
+preplace inst subsystemA.mac10g.tx_st_splitter_xgmii -pg 1
+preplace inst subsystemA.mac10g.rx_timing_adapter_frame_status_out_frame_decoder -pg 1
+preplace inst subsystemA.mac10g.rx_st_timing_adapter_lane_decoder -pg 1
+preplace inst subsystemA.mac10g.tx_st_pipeline_stage_rs -pg 1
+preplace inst subsystemA.mac10g.rxtx_dc_fifo_link_fault_status -pg 1
+preplace inst subsystemA.mac10g.tx_st_timing_adapter_splitter_out_0 -pg 1
+preplace inst subsystemA.mac10g.tx_st_timing_adapter_splitter_status_in -pg 1
+preplace inst subsystemA.mac10g.tx_st_channel_adapter_mux_crc -pg 1
+preplace inst subsystemA.mac10g.rx_eth_frame_decoder -pg 1
+preplace netloc EXPORT<net_container>subsystemA</net_container>(MASTER)subsystemA.mac10g_avalon_st_txstatus,(MASTER)mac10g.avalon_st_txstatus) 1 4 2 NJ 260 NJ
+preplace netloc FAN_OUT<net_container>subsystemA</net_container>(SLAVE)rst.clk,(SLAVE)mac10g.tx_clk,(MASTER)clk_156.out_clk,(SLAVE)tx_st_fifo.out_clk,(SLAVE)mac10g.rx_clk,(SLAVE)rx_st_fifo.in_clk,(SLAVE)mac10g.csr_clk) 1 1 4 320 160 500 240 710 90 NJ
+preplace netloc EXPORT<net_container>subsystemA</net_container>(SLAVE)mac10g.avalon_st_pause,(SLAVE)subsystemA.mac10g_avalon_st_pause) 1 0 4 NJ 180 NJ 180 NJ 180 NJ
+preplace netloc EXPORT<net_container>subsystemA</net_container>(SLAVE)subsystemA.mac10g_xgmii_rx,(SLAVE)mac10g.xgmii_rx) 1 0 4 NJ 360 NJ 360 NJ 360 NJ
+preplace netloc EXPORT<net_container>subsystemA</net_container>(SLAVE)clk_156.in_clk,(SLAVE)subsystemA.clk_156_in_clk) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>subsystemA</net_container>(SLAVE)tx_st_fifo.out_clk_reset,(SLAVE)rx_st_fifo.out_clk_reset,(SLAVE)mac10g.csr_reset,(SLAVE)mac10g.tx_reset,(SLAVE)tx_st_fifo.in_clk_reset,(MASTER)rst.out_reset,(SLAVE)mac10g.rx_reset,(SLAVE)rx_st_fifo.in_clk_reset) 1 2 3 480 260 730 110 1110
+preplace netloc EXPORT<net_container>subsystemA</net_container>(SLAVE)tx_st_fifo.in,(SLAVE)subsystemA.tx_st_fifo_in) 1 0 3 NJ 40 NJ 40 NJ
+preplace netloc EXPORT<net_container>subsystemA</net_container>(MASTER)subsystemA.mac10g_xgmii_tx,(MASTER)mac10g.xgmii_tx) 1 4 2 NJ 300 NJ
+preplace netloc EXPORT<net_container>subsystemA</net_container>(SLAVE)mac10g.csr,(SLAVE)subsystemA.mac10g_csr) 1 0 4 NJ 220 NJ 220 NJ 220 NJ
+preplace netloc EXPORT<net_container>subsystemA</net_container>(SLAVE)clk_312.in_clk,(SLAVE)subsystemA.clk_312_in_clk) 1 0 2 NJ 60 NJ
+preplace netloc EXPORT<net_container>subsystemA</net_container>(MASTER)mac10g.avalon_st_rxstatus,(MASTER)subsystemA.mac10g_avalon_st_rxstatus) 1 4 2 NJ 240 NJ
+preplace netloc POINT_TO_POINT<net_container>subsystemA</net_container>(SLAVE)mac10g.avalon_st_tx,(MASTER)tx_st_fifo.out) 1 3 1 690
+preplace netloc EXPORT<net_container>subsystemA</net_container>(MASTER)subsystemA.rx_st_fifo_out,(MASTER)rx_st_fifo.out) 1 5 1 NJ
+preplace netloc POINT_TO_POINT<net_container>subsystemA</net_container>(SLAVE)rx_st_fifo.in,(MASTER)mac10g.avalon_st_rx) 1 4 1 1130
+preplace netloc EXPORT<net_container>subsystemA</net_container>(MASTER)subsystemA.mac10g_link_fault_status_xgmii_rx,(MASTER)mac10g.link_fault_status_xgmii_rx) 1 4 2 NJ 280 NJ
+preplace netloc FAN_OUT<net_container>subsystemA</net_container>(SLAVE)rx_st_fifo.out_clk,(MASTER)clk_312.out_clk,(SLAVE)tx_st_fifo.in_clk) 1 2 3 520 160 NJ 130 NJ
+preplace netloc EXPORT<net_container>subsystemA</net_container>(SLAVE)subsystemA.rst_in_reset,(SLAVE)rst.in_reset) 1 0 2 NJ 120 NJ
+levelinfo -pg 1 0 150 1520
+levelinfo -hier subsystemA 160 190 350 550 870 1160 1300

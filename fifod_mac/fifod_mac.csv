@@ -1,0 +1,29 @@
+# system info eth4to1 on 2017.12.10.21:16:52
+system_info:
+name,value
+DEVICE,5SGXEA7N2F45C2
+DEVICE_FAMILY,Stratix V
+GENERATION_ID,1512958601
+#
+#
+# Files generated for eth4to1 on 2017.12.10.21:16:52
+files:
+filepath,kind,attributes,module,is_top
+simulation/eth4to1.v,VERILOG,,eth4to1,true
+simulation/submodules/eth4to1_demultiplexer_0.sv,SYSTEM_VERILOG,,eth4to1_demultiplexer_0,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+eth4to1.demultiplexer_0,eth4to1_demultiplexer_0
+eth4to1.eth,eth4to1_eth
+eth4to1.mac_0,eth4to1_mac_0
+eth4to1.mac_1,eth4to1_mac_1
+eth4to1.mac_2,eth4to1_mac_2
+eth4to1.mac_3,eth4to1_mac_3
+eth4to1.multiplexer_0,eth4to1_multiplexer_0
+eth4to1.pll_0,eth4to1_pll_0
+eth4to1.avalon_st_adapter,eth4to1_avalon_st_adapter
+eth4to1.avalon_st_adapter_001,eth4to1_avalon_st_adapter_001
+eth4to1.rst_controller,altera_reset_controller
+eth4to1.rst_controller_001,altera_reset_controller

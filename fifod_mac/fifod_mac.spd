@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="simulation/submodules/eth4to1_demultiplexer_0.sv"
+   type="SYSTEM_VERILOG"
+   library="demultiplexer_0" />
+ <file path="simulation/eth4to1.v" type="VERILOG" />
+ <topLevel name="eth4to1" />
+ <deviceFamily name="stratixv" />
+</simPackage>

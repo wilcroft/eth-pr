@@ -1,0 +1,159 @@
+D:/programming/eth-4to1v2/packettable.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/packettable.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module packettable
+
+Top level modules:
+	packettable
+
+} {} {}} D:/programming/eth-4to1v2/packetstorage.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/packetstorage.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module packetstorage
+
+Top level modules:
+	packetstorage
+
+} {} {}} D:/programming/eth-4to1v2/packetmem2.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/packetmem2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module packetmem2
+
+Top level modules:
+	packetmem2
+
+} {} {}} D:/programming/eth-4to1v2/mac10g.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/mac10g.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module mac10g
+
+Top level modules:
+	mac10g
+
+} {} {}} D:/programming/eth-4to1v2/hardmatchblock.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/hardmatchblock.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling package hardmatchblock_sv_unit
+-- Compiling module hardmatchblock
+
+Top level modules:
+	hardmatchblock
+
+} {} {}} D:/programming/eth-4to1v2/sopeopFIFO.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/sopeopFIFO.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module sopeopFIFO
+
+Top level modules:
+	sopeopFIFO
+
+} {} {}} D:/programming/eth-4to1v2/pmem_group_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/pmem_group_tb.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module pmem_group_tb
+
+Top level modules:
+	pmem_group_tb
+
+} {} {}} D:/programming/eth-4to1v2/sys_top.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/sys_top.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module sys_top
+
+Top level modules:
+	sys_top
+
+} {} {}} D:/programming/eth-4to1v2/allrules.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/allrules.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module allrules
+
+Top level modules:
+	allrules
+
+} {} {}} D:/programming/eth-4to1v2/packetstorage_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/packetstorage_tb.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module packetstorage_tb
+
+Top level modules:
+	packetstorage_tb
+
+} {} {}} D:/programming/eth-4to1v2/out_fifo_test.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/out_fifo_test.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module out_fifo_test
+
+Top level modules:
+	out_fifo_test
+
+} {} {}} D:/programming/eth-4to1v2/in_fifo_network.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/in_fifo_network.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module in_fifo_network
+
+Top level modules:
+	in_fifo_network
+
+} {} {}} D:/programming/eth-4to1v2/pmem_group_wrap.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/pmem_group_wrap.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module pmem_group_wrap
+
+Top level modules:
+	pmem_group_wrap
+
+} {} {}} D:/programming/eth-4to1v2/packetmem.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/packetmem.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module packetmem
+
+Top level modules:
+	packetmem
+
+} {} {}} D:/programming/eth-4to1v2/out_fifo_network.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/out_fifo_network.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module out_fifo_network
+
+Top level modules:
+	out_fifo_network
+
+} {} {}} D:/programming/eth-4to1v2/in_node_fifo.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/in_node_fifo.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module in_node_fifo
+
+Top level modules:
+	in_node_fifo
+
+} {} {}} D:/programming/eth-4to1v2/out_node_fifo.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/out_node_fifo.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module out_node_fifo
+
+Top level modules:
+	out_node_fifo
+
+} {} {}} D:/programming/eth-4to1v2/headercap.sv {2 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/headercap.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+** Warning: D:\programming\eth-4to1v2\headercap_def.vh(21): (vlog-13233) Design unit "headercap_sv_unit" already exists and will be overwritten. Overwriting SystemVerilog $unit with different source files.
+-- Compiling package headercap_sv_unit
+-- Compiling module header_capture
+
+Top level modules:
+	header_capture
+
+} {} {}} D:/programming/eth-4to1v2/in_fifo_test.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/in_fifo_test.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module in_fifo_test
+
+Top level modules:
+	in_fifo_test
+
+} {} {}} D:/programming/eth-4to1v2/output_cmdq.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/output_cmdq.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module output_cmdq
+
+Top level modules:
+	output_cmdq
+
+} {} {}} D:/programming/eth-4to1v2/headercap_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/headercap_tb.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling package headercap_tb_sv_unit
+-- Compiling module header_capture
+
+Top level modules:
+	header_capture
+
+} {} {}} D:/programming/eth-4to1v2/pmem_group.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/pmem_group.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module pmem_group
+
+Top level modules:
+	pmem_group
+
+} {} {}}

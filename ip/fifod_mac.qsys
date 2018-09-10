@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element clk_156
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element clk_312
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element mac10g
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element rst
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element rx_st_fifo
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element tx_st_fifo
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="device" value="5SGXEA7N2F45C2" />
+ <parameter name="deviceFamily" value="Stratix V" />
+ <parameter name="deviceSpeedGrade" value="2_H2" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="hideFromIPCatalog" value="false" />
+ <parameter name="lockedInterfaceDefinition" value="" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="0" />
+ <parameter name="testBenchDutName" value="" />
+ <parameter name="timeStamp" value="0" />
+ <parameter name="useTestBenchNamingPattern" value="false" />
+ <instanceScript></instanceScript>
+ <interface
+   name="clk_156_in_clk"
+   internal="clk_156.in_clk"
+   type="clock"
+   dir="end" />
+ <interface
+   name="clk_312_in_clk"
+   internal="clk_312.in_clk"
+   type="clock"
+   dir="end" />
+ <interface
+   name="mac10g_avalon_st_pause"
+   internal="mac10g.avalon_st_pause"
+   type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="mac10g_avalon_st_rxstatus"
+   internal="mac10g.avalon_st_rxstatus"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="mac10g_avalon_st_txstatus"
+   internal="mac10g.avalon_st_txstatus"
+   type="avalon_streaming"
+   dir="start" />
+ <interface name="mac10g_csr" internal="mac10g.csr" type="avalon" dir="end" />
+ <interface
+   name="mac10g_link_fault_status_xgmii_rx"
+   internal="mac10g.link_fault_status_xgmii_rx"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="mac10g_xgmii_rx"
+   internal="mac10g.xgmii_rx"
+   type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="mac10g_xgmii_tx"
+   internal="mac10g.xgmii_tx"
+   type="avalon_streaming"
+   dir="start" />
+ <interface name="rst_in_reset" internal="rst.in_reset" type="reset" dir="end" />
+ <interface
+   name="rx_st_fifo_out"
+   internal="rx_st_fifo.out"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="tx_st_fifo_in"
+   internal="tx_st_fifo.in"
+   type="avalon_streaming"
+   dir="end" />
+ <module name="clk_156" kind="altera_clock_bridge" version="16.1" enabled="1">
+  <parameter name="DERIVED_CLOCK_RATE" value="0" />
+  <parameter name="EXPLICIT_CLOCK_RATE" value="156250000" />
+  <parameter name="NUM_CLOCK_OUTPUTS" value="1" />
+ </module>
+ <module name="clk_312" kind="altera_clock_bridge" version="16.1" enabled="1">
+  <parameter name="DERIVED_CLOCK_RATE" value="0" />
+  <parameter name="EXPLICIT_CLOCK_RATE" value="312500000" />
+  <parameter name="NUM_CLOCK_OUTPUTS" value="1" />
+ </module>
+ <module name="mac10g" kind="altera_eth_10g_mac" version="16.1" enabled="1">
+  <parameter name="AUTO_DEVICE" value="5SGXEA7N2F45C2" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2_H2" />
+  <parameter name="DATAPATH_OPTION" value="3" />
+  <parameter name="DEVICE_FAMILY" value="Stratix V" />
+  <parameter name="ENABLE_1G10G_MAC" value="0" />
+  <parameter name="ENABLE_PFC" value="0" />
+  <parameter name="ENABLE_PTP_1STEP" value="0" />
+  <parameter name="ENABLE_SUPP_ADDR" value="1" />
+  <parameter name="ENABLE_TIMESTAMPING" value="0" />
+  <parameter name="ENABLE_UNIDIRECTIONAL" value="0" />
+  <parameter name="INSTANTIATE_STATISTICS" value="1" />
+  <parameter name="INSTANTIATE_TX_CRC" value="1" />
+  <parameter name="PFC_PRIORITY_NUM" value="8" />
+  <parameter name="PREAMBLE_PASSTHROUGH" value="0" />
+  <parameter name="REGISTER_BASED_STATISTICS" value="0" />
+  <parameter name="TSTAMP_FP_WIDTH" value="4" />
+ </module>
+ <module name="rst" kind="altera_reset_bridge" version="16.1" enabled="1">
+  <parameter name="ACTIVE_LOW_RESET" value="0" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="156250000" />
+  <parameter name="NUM_RESET_OUTPUTS" value="1" />
+  <parameter name="SYNCHRONOUS_EDGES" value="deassert" />
+  <parameter name="USE_RESET_REQUEST" value="0" />
+ </module>
+ <module
+   name="rx_st_fifo"
+   kind="altera_avalon_dc_fifo"
+   version="16.1"
+   enabled="1">
+  <parameter name="BITS_PER_SYMBOL" value="8" />
+  <parameter name="CHANNEL_WIDTH" value="0" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <parameter name="ERROR_WIDTH" value="6" />
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="FIFO_DEPTH" value="16" />
+  <parameter name="RD_SYNC_DEPTH" value="3" />
+  <parameter name="SYMBOLS_PER_BEAT" value="8" />
+  <parameter name="USE_IN_FILL_LEVEL" value="0" />
+  <parameter name="USE_OUT_FILL_LEVEL" value="0" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="WR_SYNC_DEPTH" value="3" />
+ </module>
+ <module
+   name="tx_st_fifo"
+   kind="altera_avalon_dc_fifo"
+   version="16.1"
+   enabled="1">
+  <parameter name="BITS_PER_SYMBOL" value="8" />
+  <parameter name="CHANNEL_WIDTH" value="0" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <parameter name="ERROR_WIDTH" value="1" />
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="FIFO_DEPTH" value="16" />
+  <parameter name="RD_SYNC_DEPTH" value="3" />
+  <parameter name="SYMBOLS_PER_BEAT" value="8" />
+  <parameter name="USE_IN_FILL_LEVEL" value="0" />
+  <parameter name="USE_OUT_FILL_LEVEL" value="0" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="WR_SYNC_DEPTH" value="3" />
+ </module>
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="mac10g.avalon_st_rx"
+   end="rx_st_fifo.in" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="tx_st_fifo.out"
+   end="mac10g.avalon_st_tx" />
+ <connection kind="clock" version="16.1" start="clk_156.out_clk" end="rst.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_156.out_clk"
+   end="mac10g.csr_clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_156.out_clk"
+   end="rx_st_fifo.in_clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_312.out_clk"
+   end="tx_st_fifo.in_clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_312.out_clk"
+   end="rx_st_fifo.out_clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_156.out_clk"
+   end="tx_st_fifo.out_clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_156.out_clk"
+   end="mac10g.rx_clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_156.out_clk"
+   end="mac10g.tx_clk" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="rst.out_reset"
+   end="mac10g.csr_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="rst.out_reset"
+   end="rx_st_fifo.in_clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="rst.out_reset"
+   end="tx_st_fifo.in_clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="rst.out_reset"
+   end="rx_st_fifo.out_clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="rst.out_reset"
+   end="tx_st_fifo.out_clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="rst.out_reset"
+   end="mac10g.rx_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="rst.out_reset"
+   end="mac10g.tx_reset" />
+ <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
+ <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
+</system>

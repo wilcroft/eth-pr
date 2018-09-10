@@ -1,0 +1,13 @@
+*.rpt
+*.bak
+*.summary
+output_files/*
+*.qar
+*.qarlog
+db/*
+incremental_db/*
+greybox_tmp/*
+manypr/*
+*.tcl~
+*.BAK.qsys
+simulation/*
