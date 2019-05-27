@@ -1,0 +1,18 @@
+# system info memout_fifo on 2018.09.17.23:23:42
+system_info:
+name,value
+DEVICE,5SGXEA7N2F45C2
+DEVICE_FAMILY,Stratix V
+GENERATION_ID,1537241021
+#
+#
+# Files generated for memout_fifo on 2018.09.17.23:23:42
+files:
+filepath,kind,attributes,module,is_top
+simulation/memout_fifo.v,VERILOG,,memout_fifo,true
+simulation/submodules/altera_avalon_sc_fifo.v,VERILOG,,altera_avalon_sc_fifo,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+memout_fifo.memout_fifo,altera_avalon_sc_fifo

@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2019.04.10.16:26:37"
+ outputDirectory="D:/programming/eth-4to1v2/streammerge/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="Stratix V"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="5SGXEA7N2F45C2"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="2_H2"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_RATE"
+     type="Long"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_RESET_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="clk" kind="clock" start="0">
+   <property name="clockRate" value="50000000" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="clk_clk" direction="input" role="clk" width="1" />
+  </interface>
+  <interface name="merged" kind="avalon_streaming" start="1">
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="8" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="3" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="8" />
+   <port name="merged_data" direction="output" role="data" width="64" />
+   <port name="merged_valid" direction="output" role="valid" width="1" />
+   <port name="merged_ready" direction="input" role="ready" width="1" />
+   <port
+       name="merged_startofpacket"
+       direction="output"
+       role="startofpacket"
+       width="1" />
+   <port
+       name="merged_endofpacket"
+       direction="output"
+       role="endofpacket"
+       width="1" />
+   <port name="merged_empty" direction="output" role="empty" width="3" />
+   <port name="merged_channel" direction="output" role="channel" width="2" />
+  </interface>
+  <interface name="port0_almost_full" kind="avalon_streaming" start="1">
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="1" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="0" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="1" />
+   <port
+       name="port0_almost_full_data"
+       direction="output"
+       role="data"
+       width="1" />
+  </interface>
+  <interface name="port0_in" kind="avalon_streaming" start="0">
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="8" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="0" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="8" />
+   <port name="port0_in_data" direction="input" role="data" width="64" />
+   <port name="port0_in_valid" direction="input" role="valid" width="1" />
+   <port name="port0_in_ready" direction="output" role="ready" width="1" />
+   <port
+       name="port0_in_startofpacket"
+       direction="input"
+       role="startofpacket"
+       width="1" />
+   <port
+       name="port0_in_endofpacket"
+       direction="input"
+       role="endofpacket"
+       width="1" />
+   <port name="port0_in_empty" direction="input" role="empty" width="3" />
+  </interface>
+  <interface name="port1_almost_full" kind="avalon_streaming" start="1">
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="1" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="0" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="1" />
+   <port
+       name="port1_almost_full_data"
+       direction="output"
+       role="data"
+       width="1" />
+  </interface>
+  <interface name="port1_in" kind="avalon_streaming" start="0">
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="8" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="0" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="8" />
+   <port name="port1_in_data" direction="input" role="data" width="64" />
+   <port name="port1_in_valid" direction="input" role="valid" width="1" />
+   <port name="port1_in_ready" direction="output" role="ready" width="1" />
+   <port
+       name="port1_in_startofpacket"
+       direction="input"
+       role="startofpacket"
+       width="1" />
+   <port
+       name="port1_in_endofpacket"
+       direction="input"
+       role="endofpacket"
+       width="1" />
+   <port name="port1_in_empty" direction="input" role="empty" width="3" />
+  </interface>
+  <interface name="port2_almost_full" kind="avalon_streaming" start="1">
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="1" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="0" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="1" />
+   <port
+       name="port2_almost_full_data"
+       direction="output"
+       role="data"
+       width="1" />
+  </interface>
+  <interface name="port2_in" kind="avalon_streaming" start="0">
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="8" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="0" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="8" />
+   <port name="port2_in_data" direction="input" role="data" width="64" />
+   <port name="port2_in_valid" direction="input" role="valid" width="1" />
+   <port name="port2_in_ready" direction="output" role="ready" width="1" />
+   <port
+       name="port2_in_startofpacket"
+       direction="input"
+       role="startofpacket"
+       width="1" />
+   <port
+       name="port2_in_endofpacket"
+       direction="input"
+       role="endofpacket"
+       width="1" />
+   <port name="port2_in_empty" direction="input" role="empty" width="3" />
+  </interface>
+  <interface name="port3_almost_full" kind="avalon_streaming" start="1">
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="1" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="0" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="1" />
+   <port
+       name="port3_almost_full_data"
+       direction="output"
+       role="data"
+       width="1" />
+  </interface>
+  <interface name="port3_in" kind="avalon_streaming" start="0">
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="beatsPerCycle" value="1" />
+   <property name="dataBitsPerSymbol" value="8" />
+   <property name="emptyWithinPacket" value="false" />
+   <property name="errorDescriptor" value="" />
+   <property name="firstSymbolInHighOrderBits" value="true" />
+   <property name="highOrderSymbolAtMSB" value="false" />
+   <property name="maxChannel" value="0" />
+   <property name="packetDescription" value="" />
+   <property name="readyLatency" value="0" />
+   <property name="symbolsPerBeat" value="8" />
+   <port name="port3_in_data" direction="input" role="data" width="64" />
+   <port name="port3_in_valid" direction="input" role="valid" width="1" />
+   <port name="port3_in_ready" direction="output" role="ready" width="1" />
+   <port
+       name="port3_in_startofpacket"
+       direction="input"
+       role="startofpacket"
+       width="1" />
+   <port
+       name="port3_in_endofpacket"
+       direction="input"
+       role="endofpacket"
+       width="1" />
+   <port name="port3_in_empty" direction="input" role="empty" width="3" />
+  </interface>
+  <interface name="reset" kind="reset" start="0">
+   <property name="associatedClock" value="" />
+   <property name="synchronousEdges" value="NONE" />
+   <port name="reset_reset_n" direction="input" role="reset_n" width="1" />
+  </interface>
+ </perimeter>
+ <entity
+   path=""
+   parameterizationKey="streammerge:1.0:AUTO_CLK_CLOCK_DOMAIN=-1,AUTO_CLK_CLOCK_RATE=-1,AUTO_CLK_RESET_DOMAIN=-1,AUTO_DEVICE=5SGXEA7N2F45C2,AUTO_DEVICE_FAMILY=Stratix V,AUTO_DEVICE_SPEEDGRADE=2_H2,AUTO_GENERATION_ID=1554927996,AUTO_UNIQUE_ID=(clock_source:16.1:clockFrequency=50000000,clockFrequencyKnown=true,inputClockFrequency=0,resetSynchronousEdges=NONE)(multiplexer:16.1:bitsPerSymbol=8,errorWidth=0,inErrorWidth=0,inUseEmpty=false,inUseEmptyPort=AUTO,inUsePackets=true,numInputInterfaces=4,outChannelWidth=2,packetScheduling=true,schedulingSize=2,symbolsPerBeat=8,useHighBitsOfChannel=true,usePackets=true)(altera_avalon_sc_fifo:16.1:BITS_PER_SYMBOL=8,CHANNEL_WIDTH=0,EMPTY_LATENCY=3,ENABLE_EXPLICIT_MAXCHANNEL=false,ERROR_WIDTH=0,EXPLICIT_MAXCHANNEL=0,FIFO_DEPTH=16,SYMBOLS_PER_BEAT=8,USE_ALMOST_EMPTY_IF=0,USE_ALMOST_FULL_IF=1,USE_FILL_LEVEL=1,USE_MEMORY_BLOCKS=1,USE_PACKETS=1,USE_STORE_FORWARD=0)(altera_avalon_sc_fifo:16.1:BITS_PER_SYMBOL=8,CHANNEL_WIDTH=0,EMPTY_LATENCY=3,ENABLE_EXPLICIT_MAXCHANNEL=false,ERROR_WIDTH=0,EXPLICIT_MAXCHANNEL=0,FIFO_DEPTH=16,SYMBOLS_PER_BEAT=8,USE_ALMOST_EMPTY_IF=0,USE_ALMOST_FULL_IF=1,USE_FILL_LEVEL=1,USE_MEMORY_BLOCKS=1,USE_PACKETS=1,USE_STORE_FORWARD=0)(altera_avalon_sc_fifo:16.1:BITS_PER_SYMBOL=8,CHANNEL_WIDTH=0,EMPTY_LATENCY=3,ENABLE_EXPLICIT_MAXCHANNEL=false,ERROR_WIDTH=0,EXPLICIT_MAXCHANNEL=0,FIFO_DEPTH=16,SYMBOLS_PER_BEAT=8,USE_ALMOST_EMPTY_IF=0,USE_ALMOST_FULL_IF=1,USE_FILL_LEVEL=1,USE_MEMORY_BLOCKS=1,USE_PACKETS=1,USE_STORE_FORWARD=0)(altera_avalon_sc_fifo:16.1:BITS_PER_SYMBOL=8,CHANNEL_WIDTH=0,EMPTY_LATENCY=3,ENABLE_EXPLICIT_MAXCHANNEL=false,ERROR_WIDTH=0,EXPLICIT_MAXCHANNEL=0,FIFO_DEPTH=16,SYMBOLS_PER_BEAT=8,USE_ALMOST_EMPTY_IF=0,USE_ALMOST_FULL_IF=1,USE_FILL_LEVEL=1,USE_MEMORY_BLOCKS=1,USE_PACKETS=1,USE_STORE_FORWARD=0)(avalon_streaming:16.1:)(avalon_streaming:16.1:)(avalon_streaming:16.1:)(avalon_streaming:16.1:)(clock:16.1:)(clock:16.1:)(clock:16.1:)(clock:16.1:)(clock:16.1:)(reset:16.1:)(reset:16.1:)(reset:16.1:)(reset:16.1:)(reset:16.1:)"
+   instancePathKey="streammerge"
+   kind="streammerge"
+   version="1.0"
+   name="streammerge">
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
+  <parameter name="AUTO_GENERATION_ID" value="1554927996" />
+  <parameter name="AUTO_DEVICE" value="5SGXEA7N2F45C2" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Stratix V" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="-1" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="-1" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2_H2" />
+  <generatedFiles>
+   <file
+       path="D:/programming/eth-4to1v2/streammerge/synthesis/streammerge.v"
+       type="VERILOG" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="D:/programming/eth-4to1v2/streammerge/synthesis/submodules/streammerge_merged.sv"
+       type="SYSTEM_VERILOG"
+       attributes="" />
+   <file
+       path="D:/programming/eth-4to1v2/streammerge/synthesis/submodules/altera_avalon_sc_fifo.v"
+       type="VERILOG"
+       attributes="" />
+   <file
+       path="D:/programming/eth-4to1v2/streammerge/synthesis/submodules/altera_reset_controller.v"
+       type="VERILOG"
+       attributes="" />
+   <file
+       path="D:/programming/eth-4to1v2/streammerge/synthesis/submodules/altera_reset_synchronizer.v"
+       type="VERILOG"
+       attributes="" />
+   <file
+       path="D:/programming/eth-4to1v2/streammerge/synthesis/submodules/altera_reset_controller.sdc"
+       type="SDC"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file path="D:/programming/eth-4to1v2/streammerge.qsys" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="D:/intelfpga/16.1/ip/altera/avalon_st/altera_avalon_st_multiplexer/avalon-st_multiplexer_hw.tcl" />
+   <file
+       path="D:/intelfpga/16.1/ip/altera/sopc_builder_ip/altera_avalon_sc_fifo/altera_avalon_sc_fifo_hw.tcl" />
+   <file
+       path="D:/intelfpga/16.1/ip/altera/sopc_builder_ip/altera_avalon_sc_fifo/altera_avalon_sc_fifo.v" />
+   <file
+       path="D:/intelfpga/16.1/ip/altera/merlin/altera_reset_controller/altera_reset_controller_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Debug" culprit="streammerge">queue size: 0 starting:streammerge "streammerge"</message>
+   <message level="Progress" culprit="min"></message>
+   <message level="Progress" culprit="max"></message>
+   <message level="Progress" culprit="current"></message>
+   <message level="Progress" culprit="current"></message>
+   <message level="Debug">Transform: CustomInstructionTransform</message>
+   <message level="Debug">No custom instruction connections, skipping transform </message>
+   <message level="Debug" culprit="merlin_custom_instruction_transform"><![CDATA[After transform: <b>6</b> modules, <b>14</b> connections]]></message>
+   <message level="Debug">Transform: MMTransform</message>
+   <message level="Debug">Transform: InterruptMapperTransform</message>
+   <message level="Debug">Transform: InterruptSyncTransform</message>
+   <message level="Debug">Transform: InterruptFanoutTransform</message>
+   <message level="Debug">Transform: AvalonStreamingTransform</message>
+   <message level="Debug">Transform: ResetAdaptation</message>
+   <message level="Progress" culprit="min"></message>
+   <message level="Progress" culprit="max"></message>
+   <message level="Progress" culprit="current"></message>
+   <message level="Progress" culprit="current"></message>
+   <message level="Debug" culprit="reset_adaptation_transform"><![CDATA[After transform: <b>7</b> modules, <b>16</b> connections]]></message>
+   <message level="Debug" culprit="streammerge"><![CDATA["<b>streammerge</b>" reuses <b>multiplexer</b> "<b>submodules/streammerge_merged</b>"]]></message>
+   <message level="Debug" culprit="streammerge"><![CDATA["<b>streammerge</b>" reuses <b>altera_avalon_sc_fifo</b> "<b>submodules/altera_avalon_sc_fifo</b>"]]></message>
+   <message level="Debug" culprit="streammerge"><![CDATA["<b>streammerge</b>" reuses <b>altera_avalon_sc_fifo</b> "<b>submodules/altera_avalon_sc_fifo</b>"]]></message>
+   <message level="Debug" culprit="streammerge"><![CDATA["<b>streammerge</b>" reuses <b>altera_avalon_sc_fifo</b> "<b>submodules/altera_avalon_sc_fifo</b>"]]></message>
+   <message level="Debug" culprit="streammerge"><![CDATA["<b>streammerge</b>" reuses <b>altera_avalon_sc_fifo</b> "<b>submodules/altera_avalon_sc_fifo</b>"]]></message>
+   <message level="Debug" culprit="streammerge"><![CDATA["<b>streammerge</b>" reuses <b>altera_reset_controller</b> "<b>submodules/altera_reset_controller</b>"]]></message>
+   <message level="Debug" culprit="streammerge">queue size: 5 starting:multiplexer "submodules/streammerge_merged"</message>
+   <message level="Info" culprit="merged"><![CDATA["<b>streammerge</b>" instantiated <b>multiplexer</b> "<b>merged</b>"]]></message>
+   <message level="Debug" culprit="streammerge">queue size: 4 starting:altera_avalon_sc_fifo "submodules/altera_avalon_sc_fifo"</message>
+   <message level="Info" culprit="port0"><![CDATA["<b>streammerge</b>" instantiated <b>altera_avalon_sc_fifo</b> "<b>port0</b>"]]></message>
+   <message level="Debug" culprit="streammerge">queue size: 0 starting:altera_reset_controller "submodules/altera_reset_controller"</message>
+   <message level="Info" culprit="rst_controller"><![CDATA["<b>streammerge</b>" instantiated <b>altera_reset_controller</b> "<b>rst_controller</b>"]]></message>
+  </messages>
+ </entity>
+ <entity
+   path="submodules/"
+   parameterizationKey="multiplexer:16.1:bitsPerSymbol=8,errorWidth=0,inErrorWidth=0,inUseEmpty=false,inUseEmptyPort=AUTO,inUsePackets=true,numInputInterfaces=4,outChannelWidth=2,packetScheduling=true,schedulingSize=2,symbolsPerBeat=8,useHighBitsOfChannel=true,usePackets=true"
+   instancePathKey="streammerge:.:merged"
+   kind="multiplexer"
+   version="16.1"
+   name="streammerge_merged">
+  <parameter name="inErrorWidth" value="0" />
+  <parameter name="usePackets" value="true" />
+  <parameter name="numInputInterfaces" value="4" />
+  <parameter name="schedulingSize" value="2" />
+  <parameter name="bitsPerSymbol" value="8" />
+  <parameter name="packetScheduling" value="true" />
+  <parameter name="errorWidth" value="0" />
+  <parameter name="outChannelWidth" value="2" />
+  <parameter name="inUseEmptyPort" value="AUTO" />
+  <parameter name="useHighBitsOfChannel" value="true" />
+  <parameter name="symbolsPerBeat" value="8" />
+  <parameter name="inUseEmpty" value="false" />
+  <parameter name="inUsePackets" value="true" />
+  <generatedFiles>
+   <file
+       path="D:/programming/eth-4to1v2/streammerge/synthesis/submodules/streammerge_merged.sv"
+       type="SYSTEM_VERILOG"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles/>
+  <sourceFiles>
+   <file
+       path="D:/intelfpga/16.1/ip/altera/avalon_st/altera_avalon_st_multiplexer/avalon-st_multiplexer_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="streammerge" as="merged" />
+  <messages>
+   <message level="Debug" culprit="streammerge">queue size: 5 starting:multiplexer "submodules/streammerge_merged"</message>
+   <message level="Info" culprit="merged"><![CDATA["<b>streammerge</b>" instantiated <b>multiplexer</b> "<b>merged</b>"]]></message>
+  </messages>
+ </entity>
+ <entity
+   path="submodules/"
+   parameterizationKey="altera_avalon_sc_fifo:16.1:BITS_PER_SYMBOL=8,CHANNEL_WIDTH=0,EMPTY_LATENCY=3,ENABLE_EXPLICIT_MAXCHANNEL=false,ERROR_WIDTH=0,EXPLICIT_MAXCHANNEL=0,FIFO_DEPTH=16,SYMBOLS_PER_BEAT=8,USE_ALMOST_EMPTY_IF=0,USE_ALMOST_FULL_IF=1,USE_FILL_LEVEL=1,USE_MEMORY_BLOCKS=1,USE_PACKETS=1,USE_STORE_FORWARD=0"
+   instancePathKey="streammerge:.:port0"
+   kind="altera_avalon_sc_fifo"
+   version="16.1"
+   name="altera_avalon_sc_fifo">
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <generatedFiles>
+   <file
+       path="D:/programming/eth-4to1v2/streammerge/synthesis/submodules/altera_avalon_sc_fifo.v"
+       type="VERILOG"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles/>
+  <sourceFiles>
+   <file
+       path="D:/intelfpga/16.1/ip/altera/sopc_builder_ip/altera_avalon_sc_fifo/altera_avalon_sc_fifo_hw.tcl" />
+   <file
+       path="D:/intelfpga/16.1/ip/altera/sopc_builder_ip/altera_avalon_sc_fifo/altera_avalon_sc_fifo.v" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="streammerge" as="port0,port1,port2,port3" />
+  <messages>
+   <message level="Debug" culprit="streammerge">queue size: 4 starting:altera_avalon_sc_fifo "submodules/altera_avalon_sc_fifo"</message>
+   <message level="Info" culprit="port0"><![CDATA["<b>streammerge</b>" instantiated <b>altera_avalon_sc_fifo</b> "<b>port0</b>"]]></message>
+  </messages>
+ </entity>
+ <entity
+   path="submodules/"
+   parameterizationKey="altera_reset_controller:16.1:ADAPT_RESET_REQUEST=0,MIN_RST_ASSERTION_TIME=3,NUM_RESET_INPUTS=1,OUTPUT_RESET_SYNC_EDGES=deassert,RESET_REQUEST_PRESENT=0,RESET_REQ_EARLY_DSRT_TIME=1,RESET_REQ_WAIT_TIME=1,SYNC_DEPTH=2,USE_RESET_REQUEST_IN0=0,USE_RESET_REQUEST_IN1=0,USE_RESET_REQUEST_IN10=0,USE_RESET_REQUEST_IN11=0,USE_RESET_REQUEST_IN12=0,USE_RESET_REQUEST_IN13=0,USE_RESET_REQUEST_IN14=0,USE_RESET_REQUEST_IN15=0,USE_RESET_REQUEST_IN2=0,USE_RESET_REQUEST_IN3=0,USE_RESET_REQUEST_IN4=0,USE_RESET_REQUEST_IN5=0,USE_RESET_REQUEST_IN6=0,USE_RESET_REQUEST_IN7=0,USE_RESET_REQUEST_IN8=0,USE_RESET_REQUEST_IN9=0,USE_RESET_REQUEST_INPUT=0"
+   instancePathKey="streammerge:.:rst_controller"
+   kind="altera_reset_controller"
+   version="16.1"
+   name="altera_reset_controller">
+  <generatedFiles>
+   <file
+       path="D:/programming/eth-4to1v2/streammerge/synthesis/submodules/altera_reset_controller.v"
+       type="VERILOG"
+       attributes="" />
+   <file
+       path="D:/programming/eth-4to1v2/streammerge/synthesis/submodules/altera_reset_synchronizer.v"
+       type="VERILOG"
+       attributes="" />
+   <file
+       path="D:/programming/eth-4to1v2/streammerge/synthesis/submodules/altera_reset_controller.sdc"
+       type="SDC"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles/>
+  <sourceFiles>
+   <file
+       path="D:/intelfpga/16.1/ip/altera/merlin/altera_reset_controller/altera_reset_controller_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="streammerge" as="rst_controller" />
+  <messages>
+   <message level="Debug" culprit="streammerge">queue size: 0 starting:altera_reset_controller "submodules/altera_reset_controller"</message>
+   <message level="Info" culprit="rst_controller"><![CDATA["<b>streammerge</b>" instantiated <b>altera_reset_controller</b> "<b>rst_controller</b>"]]></message>
+  </messages>
+ </entity>
+</deploy>

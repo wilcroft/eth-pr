@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="simulation/submodules/altera_avalon_sc_fifo.v"
+   type="VERILOG"
+   library="memout_fifo" />
+ <file path="simulation/memout_fifo.v" type="VERILOG" />
+ <topLevel name="memout_fifo" />
+ <deviceFamily name="stratixv" />
+</simPackage>

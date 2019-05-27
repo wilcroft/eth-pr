@@ -1,1 +1,0 @@
-set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) eth4to1/eth4to1.qip]

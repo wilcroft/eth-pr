@@ -1,0 +1,27 @@
+# system info streammerge on 2019.04.10.16:26:34
+system_info:
+name,value
+DEVICE,5SGXEA7N2F45C2
+DEVICE_FAMILY,Stratix V
+GENERATION_ID,1554927993
+#
+#
+# Files generated for streammerge on 2019.04.10.16:26:34
+files:
+filepath,kind,attributes,module,is_top
+simulation/streammerge.v,VERILOG,,streammerge,true
+simulation/submodules/streammerge_merged.sv,SYSTEM_VERILOG,,streammerge_merged,false
+simulation/submodules/altera_avalon_sc_fifo.v,VERILOG,,altera_avalon_sc_fifo,false
+simulation/submodules/altera_reset_controller.v,VERILOG,,altera_reset_controller,false
+simulation/submodules/altera_reset_synchronizer.v,VERILOG,,altera_reset_controller,false
+simulation/submodules/altera_reset_controller.sdc,SDC,,altera_reset_controller,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+streammerge.merged,streammerge_merged
+streammerge.port0,altera_avalon_sc_fifo
+streammerge.port1,altera_avalon_sc_fifo
+streammerge.port2,altera_avalon_sc_fifo
+streammerge.port3,altera_avalon_sc_fifo
+streammerge.rst_controller,altera_reset_controller
