@@ -16,3 +16,13 @@ eth4to1/synthesis/*
 dse*
 eth-4to1-sim/*
 .qsys_edit/*
+*.html
+*_bb.v
+*_inst.v
+*_inst.vhd
+*.debuginfo
+*simulation*
+*.bsf
+*.cmp
+*.dse
+eth_rcfg_sim/*
