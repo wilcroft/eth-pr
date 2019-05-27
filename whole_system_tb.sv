@@ -289,7 +289,7 @@ module whole_system_tb();
 				pnodeout_check <= pnodeout_check + 1;
 				
 	always@(posedge clock)
-		if (pnode_valid[0]&&pnode_ready[0]&&pnode_data[0][128]) 
+		if (pnode_valid[0]/*&&pnode_ready[0]*/&&pnode_data[0][128]) 
 			if (pnode_data[0][135:130] != pnodein_check)
 				$stop;
 			else 

@@ -81,7 +81,7 @@ module in_node_fifo (
 		scfifo_component.add_ram_output_register = "ON",
 		scfifo_component.intended_device_family = "Stratix V",
 		scfifo_component.lpm_numwords = 512,
-		scfifo_component.lpm_showahead = "ON", // "OFF",
+		scfifo_component.lpm_showahead = "OFF",
 		scfifo_component.lpm_type = "scfifo",
 		scfifo_component.lpm_width = 144,
 		scfifo_component.lpm_widthu = 9,

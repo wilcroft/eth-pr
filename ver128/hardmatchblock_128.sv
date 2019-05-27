@@ -18,10 +18,13 @@ module hardmatchblock_128 #(parameter CHOUT=0)(
 	wire [CONCAT_WIDTH-1:0] concat;
 	wire [CONCAT_WIDTH-1+8:0] concat_out;
 	wire concat_valid, concat_ready, concat_rdreq;
-	wire concat_full, concat_empty;
+	wire concat_full, concat_empty, concat_almost;
 	
 	wire z0_out, z0_valid;
 	wire match_flush;
+
+	reg [7:0] tag_capture;
+	
 
 	reg [7:0] tag_in;
 	reg [7:0] tag_out;
@@ -31,17 +34,20 @@ module hardmatchblock_128 #(parameter CHOUT=0)(
 //	assign data_valid = z0_valid &&z0_out;
 	assign data_valid = !fifo_empty;
 	
-	assign concat_ready = !concat_full;
+	assign concat_ready = !concat_almost;
 	
 	//assign data_out = tag_out;
 	
 	/// TEMPORARY CHANGE UNTIL DESIRED DEST ADDED TO BPF RULE
 	//assign data_out = {tag_out[7:6],tag_out};
 	/// END TEMP CHANGE
-	assign pnode_ready = cap_ready;
+	//assign pnode_ready = cap_ready;
+	assign pnode_ready = !concat_almost;
 	assign cap_valid = pnode_valid;
 	
 	always@(posedge clock) begin
+		if (cap_valid && cap_eop)
+			tag_capture <= pnode_data [137-:8];
 		if (concat_rdreq&&!concat_empty)
 			tag_in <= concat_out [CONCAT_WIDTH +: 8];
 		if ((!fifo_full)||~z0_valid)
@@ -64,17 +70,19 @@ module hardmatchblock_128 #(parameter CHOUT=0)(
 	
 	scfifo concatfifo (
 		.clock(clock),
-		.data({pnode_data [137-:8],concat}),
+		.data({tag_capture,concat}),
 		.rdreq(concat_rdreq&&!concat_empty),
-		.wrreq(concat_valid&&concat_ready),
+		.wrreq(concat_valid&&!concat_full),
 		.empty(concat_empty),
 		.full(concat_full),
+		.almost_full(concat_almost),
 		.q(concat_out)
 	);
 	defparam concatfifo.add_ram_output_register = "OFF",
 		concatfifo.lpm_width = CONCAT_WIDTH+8,
 		concatfifo.lpm_widthu = 4,
 		concatfifo.lpm_numwords = 16,
+		concatfifo.almost_full_value = 14,
 		concatfifo.lpm_showahead = "ON";
 	
 	allrules match (

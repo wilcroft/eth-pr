@@ -7,7 +7,8 @@ module header_capture_128(
 	input [2:0] avalon_st_rx_empty,
 	input avalon_st_rx_error,                 
 	input avalon_st_rx_eop,
-	output avalon_st_rx_ready,
+	//output avalon_st_rx_ready,
+	input avalon_st_rx_ready,
 	output reg [CONCAT_WIDTH-1:0] concat,
 	output reg concat_valid,
 	input concat_ready
@@ -15,7 +16,7 @@ module header_capture_128(
 	
 	reg [2:0] state, nextState;
 	
-	assign avalon_st_rx_ready =  concat_ready || !concat_valid || !(avalon_st_rx_eop && avalon_st_rx_valid);
+	//assign avalon_st_rx_ready =  concat_ready || !concat_valid || !(avalon_st_rx_eop && avalon_st_rx_valid);
 
 	parameter s0 = 0, s1=1, s2=2, s3=3, s4=4, s5=5, s6=6;
 	

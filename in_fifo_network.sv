@@ -28,7 +28,7 @@ always@* for (x=0; x<ncount; x=x+1)
 	pnode_data[x] = q[x][137:0];
 
 //assign pnode_data = q[137:0][ncount-1:0];
-assign pnode_valid = rdreq;//rdtowrbuf;
+assign pnode_valid = rdtowrbuf;//rdreq;//
 
 generate 
 	for (i=0; i<ncount; i=i+1) begin : genloop
@@ -47,7 +47,7 @@ always@* begin
 	st_ready = wrreq[0];
 	data[0] = {st_channel, st_sop, st_eop, st_data};
 	for (x = 1; x < ncount; x = x + 1) begin
-		wrreq[x] = rdreq[x-1];//rdtowrbuf[x-1];
+		wrreq[x] = rdtowrbuf[x-1]; // rdreq[x-1];//
 		data[x] = q[x-1];
 	end
 end	

@@ -68,6 +68,13 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	mac10g
 
+} {} {}} D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_avalon_sc_fifo.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_avalon_sc_fifo.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module altera_avalon_sc_fifo
+
+Top level modules:
+	altera_avalon_sc_fifo
+
 } {} {}} D:/programming/eth-4to1v2/hardmatchblock.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/hardmatchblock.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling package hardmatchblock_sv_unit
@@ -83,21 +90,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	sopeopFIFO
 
-} {} {}} D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_avalon_sc_fifo.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_avalon_sc_fifo.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module altera_avalon_sc_fifo
-
-Top level modules:
-	altera_avalon_sc_fifo
-
-} {} {}} D:/programming/eth-4to1v2/ver128/hardmatchblock_128.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/ver128/hardmatchblock_128.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling package hardmatchblock_128_sv_unit
--- Compiling module hardmatchblock_128
-
-Top level modules:
-	hardmatchblock_128
-
 } {} {}} D:/programming/eth-4to1v2/whole_system_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/whole_system_tb.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module whole_system_tb
@@ -112,13 +104,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	pmem_group_tb
 
-} {} {}} D:/programming/eth-4to1v2/allrules.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/allrules.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module allrules
-
-Top level modules:
-	allrules
-
 } {} {}} D:/programming/eth-4to1v2/sys_top.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/sys_top.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module sys_top
@@ -126,26 +111,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	sys_top
 
-} {} {}} D:/programming/eth-4to1v2/packetmem_empty.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/packetmem_empty.v
+} {} {}} D:/programming/eth-4to1v2/allrules.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/allrules.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module packetmem_empty
+-- Compiling module allrules
 
 Top level modules:
-	packetmem_empty
-
-} {} {}} D:/programming/eth-4to1v2/out_fifo_test.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/out_fifo_test.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module out_fifo_test
-
-Top level modules:
-	out_fifo_test
-
-} {} {}} D:/programming/eth-4to1v2/packetstorage_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/packetstorage_tb.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module packetstorage_tb
-
-Top level modules:
-	packetstorage_tb
+	allrules
 
 } {} {}} D:/programming/eth-4to1v2/pmem_group_v2.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/pmem_group_v2.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -154,19 +125,26 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	pmem_group_v2
 
-} {} {}} D:/programming/eth-4to1v2/empty_test_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/empty_test_tb.sv
+} {} {}} D:/programming/eth-4to1v2/packetstorage_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/packetstorage_tb.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module empty_test_tb
+-- Compiling module packetstorage_tb
 
 Top level modules:
-	empty_test_tb
+	packetstorage_tb
 
-} {} {}} D:/programming/eth-4to1v2/in_fifo_network.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/in_fifo_network.sv
+} {} {}} D:/programming/eth-4to1v2/out_fifo_test.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/out_fifo_test.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module in_fifo_network
+-- Compiling module out_fifo_test
 
 Top level modules:
-	in_fifo_network
+	out_fifo_test
+
+} {} {}} D:/programming/eth-4to1v2/packetmem_empty.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/packetmem_empty.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module packetmem_empty
+
+Top level modules:
+	packetmem_empty
 
 } {} {}} D:/programming/eth-4to1v2/hardblockfifo.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/hardblockfifo.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -175,19 +153,26 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	hardblockfifo
 
-} {} {}} D:/programming/eth-4to1v2/pmem_group_wrap.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/pmem_group_wrap.sv
+} {} {}} D:/programming/eth-4to1v2/in_fifo_network.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/in_fifo_network.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module pmem_group_wrap
+-- Compiling module in_fifo_network
 
 Top level modules:
-	pmem_group_wrap
+	in_fifo_network
 
-} {} {}} D:/programming/eth-4to1v2/packetmem.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/packetmem.v
+} {} {}} D:/programming/eth-4to1v2/empty_test_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/empty_test_tb.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module packetmem
+-- Compiling module empty_test_tb
 
 Top level modules:
-	packetmem
+	empty_test_tb
+
+} {} {}} D:/programming/eth-4to1v2/out_fifo_network.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/out_fifo_network.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module out_fifo_network
+
+Top level modules:
+	out_fifo_network
 
 } {} {}} D:/programming/eth-4to1v2/in_node_fifo.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/in_node_fifo.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -196,12 +181,26 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	in_node_fifo
 
-} {} {}} D:/programming/eth-4to1v2/out_fifo_network.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/out_fifo_network.sv
+} {} {}} D:/programming/eth-4to1v2/packetmem.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/packetmem.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module out_fifo_network
+-- Compiling module packetmem
 
 Top level modules:
-	out_fifo_network
+	packetmem
+
+} {} {}} D:/programming/eth-4to1v2/pmem_group_wrap.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/pmem_group_wrap.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module pmem_group_wrap
+
+Top level modules:
+	pmem_group_wrap
+
+} {} {}} D:/programming/eth-4to1v2/out_node_fifo.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/out_node_fifo.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module out_node_fifo
+
+Top level modules:
+	out_node_fifo
 
 } {} {}} D:/programming/eth-4to1v2/headercap.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/headercap.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -211,12 +210,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	header_capture
 
-} {} {}} D:/programming/eth-4to1v2/out_node_fifo.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/out_node_fifo.v
+} {} {}} D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_reset_synchronizer.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_reset_synchronizer.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module out_node_fifo
+-- Compiling module altera_reset_synchronizer
 
 Top level modules:
-	out_node_fifo
+	altera_reset_synchronizer
 
 } {} {}} D:/programming/eth-4to1v2/eth4to1/synthesis/submodules/eth4to1_doublewidth0_data_ram.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/eth4to1/synthesis/submodules/eth4to1_doublewidth0_data_ram.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -224,13 +223,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 
 Top level modules:
 	eth4to1_doublewidth0_data_ram
-
-} {} {}} D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_reset_synchronizer.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_reset_synchronizer.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module altera_reset_synchronizer
-
-Top level modules:
-	altera_reset_synchronizer
 
 } {} {}} D:/programming/eth-4to1v2/headercap_128.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/headercap_128.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -255,13 +247,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	streammerge_merged
 
-} {} {}} D:/programming/eth-4to1v2/in_fifo_test.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/in_fifo_test.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module in_fifo_test
-
-Top level modules:
-	in_fifo_test
-
 } {} {}} D:/programming/eth-4to1v2/memout_fifo/synthesis/memout_fifo.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/memout_fifo/synthesis/memout_fifo.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module memout_fifo
@@ -269,20 +254,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	memout_fifo
 
-} {} {}} D:/programming/eth-4to1v2/output_cmdq.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/output_cmdq.v
+} {} {}} D:/programming/eth-4to1v2/in_fifo_test.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/in_fifo_test.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module output_cmdq
+-- Compiling module in_fifo_test
 
 Top level modules:
-	output_cmdq
-
-} {} {}} D:/programming/eth-4to1v2/headercap_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/headercap_tb.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling package headercap_tb_sv_unit
--- Compiling module header_capture
-
-Top level modules:
-	header_capture
+	in_fifo_test
 
 } {} {}} D:/programming/eth-4to1v2/ver128/memorymatchblock_128.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/ver128/memorymatchblock_128.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -292,20 +269,20 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	memorymatchblock_128
 
-} {} {}} D:/programming/eth-4to1v2/eth4to1/synthesis/submodules/eth4to1_eth_in_mux.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/eth4to1/synthesis/submodules/eth4to1_eth_in_mux.sv
+} {} {}} D:/programming/eth-4to1v2/headercap_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/headercap_tb.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module eth4to1_eth_in_mux
--- Compiling module eth4to1_eth_in_mux_1stage_pipeline
+-- Compiling package headercap_tb_sv_unit
+-- Compiling module header_capture
 
 Top level modules:
-	eth4to1_eth_in_mux
+	header_capture
 
-} {} {}} D:/programming/eth-4to1v2/match_network_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/match_network_tb.sv
+} {} {}} D:/programming/eth-4to1v2/output_cmdq.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/output_cmdq.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module match_network_tb
+-- Compiling module output_cmdq
 
 Top level modules:
-	match_network_tb
+	output_cmdq
 
 } {} {}} D:/programming/eth-4to1v2/pmem_group.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/pmem_group.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -314,12 +291,20 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	pmem_group
 
-} {} {}} D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_reset_controller.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_reset_controller.v
+} {} {}} D:/programming/eth-4to1v2/match_network_tb.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/match_network_tb.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module altera_reset_controller
+-- Compiling module match_network_tb
 
 Top level modules:
-	altera_reset_controller
+	match_network_tb
+
+} {} {}} D:/programming/eth-4to1v2/eth4to1/synthesis/submodules/eth4to1_eth_in_mux.sv {1 {vlog -work work -sv -stats=none D:/programming/eth-4to1v2/eth4to1/synthesis/submodules/eth4to1_eth_in_mux.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module eth4to1_eth_in_mux
+-- Compiling module eth4to1_eth_in_mux_1stage_pipeline
+
+Top level modules:
+	eth4to1_eth_in_mux
 
 } {} {}} D:/programming/eth-4to1v2/pmem_group_v2_tb.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/pmem_group_v2_tb.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -327,5 +312,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 
 Top level modules:
 	pmem_group_v2_tb
+
+} {} {}} D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_reset_controller.v {1 {vlog -work work -stats=none D:/programming/eth-4to1v2/streammerge/simulation/submodules/altera_reset_controller.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module altera_reset_controller
+
+Top level modules:
+	altera_reset_controller
 
 } {} {}}
