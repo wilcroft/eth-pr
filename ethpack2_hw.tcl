@@ -20,7 +20,7 @@ package require -exact qsys 16.1
 # 
 set_module_property DESCRIPTION ""
 set_module_property NAME ethpack2
-set_module_property VERSION 1.0
+set_module_property VERSION 1.1
 set_module_property INTERNAL false
 set_module_property OPAQUE_ADDRESS_MAP true
 set_module_property AUTHOR "G. Elliott"
@@ -112,6 +112,8 @@ add_interface_port packetin0 packetin_0_sop startofpacket Input 1
 add_interface_port packetin0 packetin_0_eop endofpacket Input 1
 add_interface_port packetin0 packetin_0_valid valid Input 1
 add_interface_port packetin0 packetin_0_ready ready Output 1
+add_interface_port packetin1 packetin_0_empty empty Input 3
+
 # 
 # connection point packetin1
 # 
@@ -135,6 +137,7 @@ add_interface_port packetin1 packetin_1_sop startofpacket Input 1
 add_interface_port packetin1 packetin_1_eop endofpacket Input 1
 add_interface_port packetin1 packetin_1_valid valid Input 1
 add_interface_port packetin1 packetin_1_ready ready Output 1
+add_interface_port packetin1 packetin_1_empty empty Input 3
 
 # 
 # connection point packetin2
@@ -159,6 +162,7 @@ add_interface_port packetin2 packetin_2_sop startofpacket Input 1
 add_interface_port packetin2 packetin_2_eop endofpacket Input 1
 add_interface_port packetin2 packetin_2_valid valid Input 1
 add_interface_port packetin2 packetin_2_ready ready Output 1
+add_interface_port packetin1 packetin_2_empty empty Input 3
 
 # 
 # connection point packetin3
@@ -183,6 +187,7 @@ add_interface_port packetin3 packetin_3_sop startofpacket Input 1
 add_interface_port packetin3 packetin_3_eop endofpacket Input 1
 add_interface_port packetin3 packetin_3_valid valid Input 1
 add_interface_port packetin3 packetin_3_ready ready Output 1
+add_interface_port packetin1 packetin_3_empty empty Input 3
 
 
 
@@ -335,6 +340,7 @@ add_interface_port transmitout0 transmitout_0_valid valid Output 1
 add_interface_port transmitout0 transmitout_0_ready ready Input 1
 add_interface_port transmitout0 transmitout_0_sop startofpacket Output 1
 add_interface_port transmitout0 transmitout_0_eop endofpacket Output 1
+add_interface_port transmitout0 transmitout_0_empty empty Output 3
 
 # 
 # connection point transmitout1
@@ -359,6 +365,7 @@ add_interface_port transmitout1 transmitout_1_valid valid Output 1
 add_interface_port transmitout1 transmitout_1_ready ready Input 1
 add_interface_port transmitout1 transmitout_1_sop startofpacket Output 1
 add_interface_port transmitout1 transmitout_1_eop endofpacket Output 1
+add_interface_port transmitout0 transmitout_1_empty empty Output 3
 
 # 
 # connection point transmitout2
@@ -383,6 +390,7 @@ add_interface_port transmitout2 transmitout_2_valid valid Output 1
 add_interface_port transmitout2 transmitout_2_ready ready Input 1
 add_interface_port transmitout2 transmitout_2_sop startofpacket Output 1
 add_interface_port transmitout2 transmitout_2_eop endofpacket Output 1
+add_interface_port transmitout0 transmitout_2_empty empty Output 3
 
 # 
 # connection point transmitout3
@@ -407,3 +415,4 @@ add_interface_port transmitout3 transmitout_3_valid valid Output 1
 add_interface_port transmitout3 transmitout_3_ready ready Input 1
 add_interface_port transmitout3 transmitout_3_sop startofpacket Output 1
 add_interface_port transmitout3 transmitout_3_eop endofpacket Output 1
+add_interface_port transmitout0 transmitout_3_empty empty Output 3

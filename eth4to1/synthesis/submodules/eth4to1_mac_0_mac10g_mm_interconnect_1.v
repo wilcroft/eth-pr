@@ -3106,7 +3106,7 @@ module eth4to1_mac_0_mac10g_mm_interconnect_1 (
 		.sink8_endofpacket   (rsp_demux_008_src0_endofpacket)               //          .endofpacket
 	);
 
-	eth4to1_mac_0_mac10g_mm_interconnect_0_avalon_st_adapter #(
+	eth4to1_mm_interconnect_0_avalon_st_adapter #(
 		.inBitsPerSymbol (34),
 		.inUsePackets    (0),
 		.inDataWidth     (34),
@@ -3135,7 +3135,7 @@ module eth4to1_mac_0_mac10g_mm_interconnect_1 (
 		.out_0_error    (avalon_st_adapter_out_0_error)                        //         .error
 	);
 
-	eth4to1_mac_0_mac10g_mm_interconnect_0_avalon_st_adapter #(
+	eth4to1_mm_interconnect_0_avalon_st_adapter #(
 		.inBitsPerSymbol (34),
 		.inUsePackets    (0),
 		.inDataWidth     (34),
@@ -3164,7 +3164,7 @@ module eth4to1_mac_0_mac10g_mm_interconnect_1 (
 		.out_0_error    (avalon_st_adapter_001_out_0_error)                               //         .error
 	);
 
-	eth4to1_mac_0_mac10g_mm_interconnect_0_avalon_st_adapter #(
+	eth4to1_mm_interconnect_0_avalon_st_adapter #(
 		.inBitsPerSymbol (34),
 		.inUsePackets    (0),
 		.inDataWidth     (34),
@@ -3193,7 +3193,7 @@ module eth4to1_mac_0_mac10g_mm_interconnect_1 (
 		.out_0_error    (avalon_st_adapter_002_out_0_error)                   //         .error
 	);
 
-	eth4to1_mac_0_mac10g_mm_interconnect_0_avalon_st_adapter #(
+	eth4to1_mm_interconnect_0_avalon_st_adapter #(
 		.inBitsPerSymbol (34),
 		.inUsePackets    (0),
 		.inDataWidth     (34),
@@ -3222,7 +3222,7 @@ module eth4to1_mac_0_mac10g_mm_interconnect_1 (
 		.out_0_error    (avalon_st_adapter_003_out_0_error)                     //         .error
 	);
 
-	eth4to1_mac_0_mac10g_mm_interconnect_0_avalon_st_adapter #(
+	eth4to1_mm_interconnect_0_avalon_st_adapter #(
 		.inBitsPerSymbol (34),
 		.inUsePackets    (0),
 		.inDataWidth     (34),
@@ -3251,7 +3251,7 @@ module eth4to1_mac_0_mac10g_mm_interconnect_1 (
 		.out_0_error    (avalon_st_adapter_004_out_0_error)                       //         .error
 	);
 
-	eth4to1_mac_0_mac10g_mm_interconnect_0_avalon_st_adapter #(
+	eth4to1_mm_interconnect_0_avalon_st_adapter #(
 		.inBitsPerSymbol (34),
 		.inUsePackets    (0),
 		.inDataWidth     (34),
@@ -3280,7 +3280,7 @@ module eth4to1_mac_0_mac10g_mm_interconnect_1 (
 		.out_0_error    (avalon_st_adapter_005_out_0_error)                                          //         .error
 	);
 
-	eth4to1_mac_0_mac10g_mm_interconnect_0_avalon_st_adapter #(
+	eth4to1_mm_interconnect_0_avalon_st_adapter #(
 		.inBitsPerSymbol (34),
 		.inUsePackets    (0),
 		.inDataWidth     (34),
@@ -3309,7 +3309,7 @@ module eth4to1_mac_0_mac10g_mm_interconnect_1 (
 		.out_0_error    (avalon_st_adapter_006_out_0_error)                              //         .error
 	);
 
-	eth4to1_mac_0_mac10g_mm_interconnect_0_avalon_st_adapter #(
+	eth4to1_mm_interconnect_0_avalon_st_adapter #(
 		.inBitsPerSymbol (34),
 		.inUsePackets    (0),
 		.inDataWidth     (34),
@@ -3338,7 +3338,7 @@ module eth4to1_mac_0_mac10g_mm_interconnect_1 (
 		.out_0_error    (avalon_st_adapter_007_out_0_error)                           //         .error
 	);
 
-	eth4to1_mac_0_mac10g_mm_interconnect_0_avalon_st_adapter #(
+	eth4to1_mm_interconnect_0_avalon_st_adapter #(
 		.inBitsPerSymbol (34),
 		.inUsePackets    (0),
 		.inDataWidth     (34),

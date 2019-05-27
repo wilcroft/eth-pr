@@ -220,23 +220,23 @@
  <connection
    kind="clock"
    version="16.1"
-   start="clk_156.out_clk"
-   end="rx_st_fifo.in_clk" />
- <connection
-   kind="clock"
-   version="16.1"
    start="clk_312.out_clk"
    end="tx_st_fifo.in_clk" />
  <connection
    kind="clock"
    version="16.1"
-   start="clk_312.out_clk"
-   end="rx_st_fifo.out_clk" />
+   start="clk_156.out_clk"
+   end="rx_st_fifo.in_clk" />
  <connection
    kind="clock"
    version="16.1"
    start="clk_156.out_clk"
    end="tx_st_fifo.out_clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_312.out_clk"
+   end="rx_st_fifo.out_clk" />
  <connection
    kind="clock"
    version="16.1"
@@ -256,22 +256,22 @@
    kind="reset"
    version="16.1"
    start="rst.out_reset"
-   end="rx_st_fifo.in_clk_reset" />
- <connection
-   kind="reset"
-   version="16.1"
-   start="rst.out_reset"
    end="tx_st_fifo.in_clk_reset" />
  <connection
    kind="reset"
    version="16.1"
    start="rst.out_reset"
-   end="rx_st_fifo.out_clk_reset" />
+   end="rx_st_fifo.in_clk_reset" />
  <connection
    kind="reset"
    version="16.1"
    start="rst.out_reset"
    end="tx_st_fifo.out_clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="rst.out_reset"
+   end="rx_st_fifo.out_clk_reset" />
  <connection
    kind="reset"
    version="16.1"

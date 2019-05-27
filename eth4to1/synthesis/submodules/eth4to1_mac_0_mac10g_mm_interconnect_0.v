@@ -1180,7 +1180,7 @@ module eth4to1_mac_0_mac10g_mm_interconnect_0 (
 		.out_error         ()                                                            //   (terminated)
 	);
 
-	eth4to1_mac_0_mac10g_mm_interconnect_0_avalon_st_adapter #(
+	eth4to1_mm_interconnect_0_avalon_st_adapter #(
 		.inBitsPerSymbol (34),
 		.inUsePackets    (0),
 		.inDataWidth     (34),
@@ -1209,7 +1209,7 @@ module eth4to1_mac_0_mac10g_mm_interconnect_0 (
 		.out_0_error    (avalon_st_adapter_out_0_error)                //         .error
 	);
 
-	eth4to1_mac_0_mac10g_mm_interconnect_0_avalon_st_adapter #(
+	eth4to1_mm_interconnect_0_avalon_st_adapter #(
 		.inBitsPerSymbol (34),
 		.inUsePackets    (0),
 		.inDataWidth     (34),

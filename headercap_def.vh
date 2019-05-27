@@ -18,8 +18,8 @@
 `define IPPROTO_LEN 8
 `define IP4_LEN 32
 
-`define MAC_MASK MAC_LEN
-`define IP4_MASK IP4_LEN
+`define MAC_MASK `MAC_LEN
+`define IP4_MASK `IP4_LEN
 
 parameter CONCAT_WIDTH=0 
 `ifdef USE_SMAC 
@@ -65,3 +65,5 @@ parameter MASK_WIDTH=0
 	+ `IP4_MASK 
 `endif
 ;
+
+`endif

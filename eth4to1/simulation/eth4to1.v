@@ -4,218 +4,406 @@
 
 `timescale 1 ps / 1 ps
 module eth4to1 (
-		input  wire        clk_clk,                      //             clk.clk
-		output wire        clk_312_out_clk_clk,          // clk_312_out_clk.clk
-		output wire [63:0] eth_in_mux_out_data,          //  eth_in_mux_out.data
-		output wire        eth_in_mux_out_valid,         //                .valid
-		input  wire        eth_in_mux_out_ready,         //                .ready
-		output wire        eth_in_mux_out_startofpacket, //                .startofpacket
-		output wire        eth_in_mux_out_endofpacket,   //                .endofpacket
-		output wire [2:0]  eth_in_mux_out_empty,         //                .empty
-		output wire [7:0]  eth_in_mux_out_channel,       //                .channel
-		input  wire [9:0]  ethpack_tagin_data,           //   ethpack_tagin.data
-		input  wire        ethpack_tagin_valid,          //                .valid
-		output wire        ethpack_tagin_ready,          //                .ready
-		input  wire        reset_reset_n,                //           reset.reset_n
-		input  wire [71:0] xgmii_rx_data_0_data,         // xgmii_rx_data_0.data
-		input  wire [71:0] xgmii_rx_data_1_data,         // xgmii_rx_data_1.data
-		input  wire [71:0] xgmii_rx_data_2_data,         // xgmii_rx_data_2.data
-		input  wire [71:0] xgmii_rx_data_3_data,         // xgmii_rx_data_3.data
-		output wire [71:0] xgmii_tx_data_0_data,         // xgmii_tx_data_0.data
-		output wire [71:0] xgmii_tx_data_1_data,         // xgmii_tx_data_1.data
-		output wire [71:0] xgmii_tx_data_2_data,         // xgmii_tx_data_2.data
-		output wire [71:0] xgmii_tx_data_3_data          // xgmii_tx_data_3.data
+		input  wire         clk_clk,                              //                           clk.clk
+		input  wire         clk_100_clk,                          //                       clk_100.clk
+		output wire         clk_312_out_clk_clk,                  //               clk_312_out_clk.clk
+		output wire [127:0] eth_in_mux_out_data,                  //                eth_in_mux_out.data
+		output wire         eth_in_mux_out_valid,                 //                              .valid
+		input  wire         eth_in_mux_out_ready,                 //                              .ready
+		output wire         eth_in_mux_out_startofpacket,         //                              .startofpacket
+		output wire         eth_in_mux_out_endofpacket,           //                              .endofpacket
+		output wire [3:0]   eth_in_mux_out_empty,                 //                              .empty
+		output wire [7:0]   eth_in_mux_out_channel,               //                              .channel
+		output wire [7:0]   ethpack_control_region_enable_export, // ethpack_control_region_enable.export
+		output wire [7:0]   ethpack_control_region_freeze_export, // ethpack_control_region_freeze.export
+		input  wire [9:0]   ethpack_tagin_data,                   //                 ethpack_tagin.data
+		input  wire         ethpack_tagin_valid,                  //                              .valid
+		output wire         ethpack_tagin_ready,                  //                              .ready
+		input  wire         pcie_clk_in_clk_clk,                  //               pcie_clk_in_clk.clk
+		input  wire         pcie_hip_serial_rx_in0,               //               pcie_hip_serial.rx_in0
+		input  wire         pcie_hip_serial_rx_in1,               //                              .rx_in1
+		input  wire         pcie_hip_serial_rx_in2,               //                              .rx_in2
+		input  wire         pcie_hip_serial_rx_in3,               //                              .rx_in3
+		input  wire         pcie_hip_serial_rx_in4,               //                              .rx_in4
+		input  wire         pcie_hip_serial_rx_in5,               //                              .rx_in5
+		input  wire         pcie_hip_serial_rx_in6,               //                              .rx_in6
+		input  wire         pcie_hip_serial_rx_in7,               //                              .rx_in7
+		output wire         pcie_hip_serial_tx_out0,              //                              .tx_out0
+		output wire         pcie_hip_serial_tx_out1,              //                              .tx_out1
+		output wire         pcie_hip_serial_tx_out2,              //                              .tx_out2
+		output wire         pcie_hip_serial_tx_out3,              //                              .tx_out3
+		output wire         pcie_hip_serial_tx_out4,              //                              .tx_out4
+		output wire         pcie_hip_serial_tx_out5,              //                              .tx_out5
+		output wire         pcie_hip_serial_tx_out6,              //                              .tx_out6
+		output wire         pcie_hip_serial_tx_out7,              //                              .tx_out7
+		input  wire         pcie_npor_npor,                       //                     pcie_npor.npor
+		input  wire         pcie_npor_pin_perst,                  //                              .pin_perst
+		output wire         pr_freeze_freeze,                     //                     pr_freeze.freeze
+		input  wire         reset_reset_n,                        //                         reset.reset_n
+		input  wire         reset_0_reset_n,                      //                       reset_0.reset_n
+		input  wire [71:0]  xgmii_rx_data_0_data,                 //               xgmii_rx_data_0.data
+		input  wire [71:0]  xgmii_rx_data_1_data,                 //               xgmii_rx_data_1.data
+		input  wire [71:0]  xgmii_rx_data_2_data,                 //               xgmii_rx_data_2.data
+		input  wire [71:0]  xgmii_rx_data_3_data,                 //               xgmii_rx_data_3.data
+		output wire [71:0]  xgmii_tx_data_0_data,                 //               xgmii_tx_data_0.data
+		output wire [71:0]  xgmii_tx_data_1_data,                 //               xgmii_tx_data_1.data
+		output wire [71:0]  xgmii_tx_data_2_data,                 //               xgmii_tx_data_2.data
+		output wire [71:0]  xgmii_tx_data_3_data                  //               xgmii_tx_data_3.data
 	);
 
-	wire         ethpack_packetout0_valid;                  // ethpack:packetout_0_valid -> avalon_st_adapter:in_0_valid
-	wire  [63:0] ethpack_packetout0_data;                   // ethpack:packetout_0_data -> avalon_st_adapter:in_0_data
-	wire         ethpack_packetout0_ready;                  // avalon_st_adapter:in_0_ready -> ethpack:packetout_0_ready
-	wire   [5:0] ethpack_packetout0_channel;                // ethpack:packetout_0_channel -> avalon_st_adapter:in_0_channel
-	wire         ethpack_packetout0_startofpacket;          // ethpack:packetout_0_sop -> avalon_st_adapter:in_0_startofpacket
-	wire         ethpack_packetout0_endofpacket;            // ethpack:packetout_0_eop -> avalon_st_adapter:in_0_endofpacket
-	wire         avalon_st_adapter_out_0_valid;             // avalon_st_adapter:out_0_valid -> eth_in_mux:in0_valid
-	wire  [63:0] avalon_st_adapter_out_0_data;              // avalon_st_adapter:out_0_data -> eth_in_mux:in0_data
-	wire         avalon_st_adapter_out_0_ready;             // eth_in_mux:in0_ready -> avalon_st_adapter:out_0_ready
-	wire   [5:0] avalon_st_adapter_out_0_channel;           // avalon_st_adapter:out_0_channel -> eth_in_mux:in0_channel
-	wire         avalon_st_adapter_out_0_startofpacket;     // avalon_st_adapter:out_0_startofpacket -> eth_in_mux:in0_startofpacket
-	wire         avalon_st_adapter_out_0_endofpacket;       // avalon_st_adapter:out_0_endofpacket -> eth_in_mux:in0_endofpacket
-	wire   [2:0] avalon_st_adapter_out_0_empty;             // avalon_st_adapter:out_0_empty -> eth_in_mux:in0_empty
-	wire         ethpack_packetout1_valid;                  // ethpack:packetout_1_valid -> avalon_st_adapter_001:in_0_valid
-	wire  [63:0] ethpack_packetout1_data;                   // ethpack:packetout_1_data -> avalon_st_adapter_001:in_0_data
-	wire         ethpack_packetout1_ready;                  // avalon_st_adapter_001:in_0_ready -> ethpack:packetout_1_ready
-	wire   [5:0] ethpack_packetout1_channel;                // ethpack:packetout_1_channel -> avalon_st_adapter_001:in_0_channel
-	wire         ethpack_packetout1_startofpacket;          // ethpack:packetout_1_sop -> avalon_st_adapter_001:in_0_startofpacket
-	wire         ethpack_packetout1_endofpacket;            // ethpack:packetout_1_eop -> avalon_st_adapter_001:in_0_endofpacket
-	wire         avalon_st_adapter_001_out_0_valid;         // avalon_st_adapter_001:out_0_valid -> eth_in_mux:in1_valid
-	wire  [63:0] avalon_st_adapter_001_out_0_data;          // avalon_st_adapter_001:out_0_data -> eth_in_mux:in1_data
-	wire         avalon_st_adapter_001_out_0_ready;         // eth_in_mux:in1_ready -> avalon_st_adapter_001:out_0_ready
-	wire   [5:0] avalon_st_adapter_001_out_0_channel;       // avalon_st_adapter_001:out_0_channel -> eth_in_mux:in1_channel
-	wire         avalon_st_adapter_001_out_0_startofpacket; // avalon_st_adapter_001:out_0_startofpacket -> eth_in_mux:in1_startofpacket
-	wire         avalon_st_adapter_001_out_0_endofpacket;   // avalon_st_adapter_001:out_0_endofpacket -> eth_in_mux:in1_endofpacket
-	wire   [2:0] avalon_st_adapter_001_out_0_empty;         // avalon_st_adapter_001:out_0_empty -> eth_in_mux:in1_empty
-	wire         ethpack_packetout2_valid;                  // ethpack:packetout_2_valid -> avalon_st_adapter_002:in_0_valid
-	wire  [63:0] ethpack_packetout2_data;                   // ethpack:packetout_2_data -> avalon_st_adapter_002:in_0_data
-	wire         ethpack_packetout2_ready;                  // avalon_st_adapter_002:in_0_ready -> ethpack:packetout_2_ready
-	wire   [5:0] ethpack_packetout2_channel;                // ethpack:packetout_2_channel -> avalon_st_adapter_002:in_0_channel
-	wire         ethpack_packetout2_startofpacket;          // ethpack:packetout_2_sop -> avalon_st_adapter_002:in_0_startofpacket
-	wire         ethpack_packetout2_endofpacket;            // ethpack:packetout_2_eop -> avalon_st_adapter_002:in_0_endofpacket
-	wire         avalon_st_adapter_002_out_0_valid;         // avalon_st_adapter_002:out_0_valid -> eth_in_mux:in2_valid
-	wire  [63:0] avalon_st_adapter_002_out_0_data;          // avalon_st_adapter_002:out_0_data -> eth_in_mux:in2_data
-	wire         avalon_st_adapter_002_out_0_ready;         // eth_in_mux:in2_ready -> avalon_st_adapter_002:out_0_ready
-	wire   [5:0] avalon_st_adapter_002_out_0_channel;       // avalon_st_adapter_002:out_0_channel -> eth_in_mux:in2_channel
-	wire         avalon_st_adapter_002_out_0_startofpacket; // avalon_st_adapter_002:out_0_startofpacket -> eth_in_mux:in2_startofpacket
-	wire         avalon_st_adapter_002_out_0_endofpacket;   // avalon_st_adapter_002:out_0_endofpacket -> eth_in_mux:in2_endofpacket
-	wire   [2:0] avalon_st_adapter_002_out_0_empty;         // avalon_st_adapter_002:out_0_empty -> eth_in_mux:in2_empty
-	wire         ethpack_packetout3_valid;                  // ethpack:packetout_3_valid -> avalon_st_adapter_003:in_0_valid
-	wire  [63:0] ethpack_packetout3_data;                   // ethpack:packetout_3_data -> avalon_st_adapter_003:in_0_data
-	wire         ethpack_packetout3_ready;                  // avalon_st_adapter_003:in_0_ready -> ethpack:packetout_3_ready
-	wire   [5:0] ethpack_packetout3_channel;                // ethpack:packetout_3_channel -> avalon_st_adapter_003:in_0_channel
-	wire         ethpack_packetout3_startofpacket;          // ethpack:packetout_3_sop -> avalon_st_adapter_003:in_0_startofpacket
-	wire         ethpack_packetout3_endofpacket;            // ethpack:packetout_3_eop -> avalon_st_adapter_003:in_0_endofpacket
-	wire         avalon_st_adapter_003_out_0_valid;         // avalon_st_adapter_003:out_0_valid -> eth_in_mux:in3_valid
-	wire  [63:0] avalon_st_adapter_003_out_0_data;          // avalon_st_adapter_003:out_0_data -> eth_in_mux:in3_data
-	wire         avalon_st_adapter_003_out_0_ready;         // eth_in_mux:in3_ready -> avalon_st_adapter_003:out_0_ready
-	wire   [5:0] avalon_st_adapter_003_out_0_channel;       // avalon_st_adapter_003:out_0_channel -> eth_in_mux:in3_channel
-	wire         avalon_st_adapter_003_out_0_startofpacket; // avalon_st_adapter_003:out_0_startofpacket -> eth_in_mux:in3_startofpacket
-	wire         avalon_st_adapter_003_out_0_endofpacket;   // avalon_st_adapter_003:out_0_endofpacket -> eth_in_mux:in3_endofpacket
-	wire   [2:0] avalon_st_adapter_003_out_0_empty;         // avalon_st_adapter_003:out_0_empty -> eth_in_mux:in3_empty
-	wire         mac_0_rx_st_fifo_out_valid;                // mac_0:rx_st_fifo_out_valid -> avalon_st_adapter_004:in_0_valid
-	wire  [63:0] mac_0_rx_st_fifo_out_data;                 // mac_0:rx_st_fifo_out_data -> avalon_st_adapter_004:in_0_data
-	wire         mac_0_rx_st_fifo_out_ready;                // avalon_st_adapter_004:in_0_ready -> mac_0:rx_st_fifo_out_ready
-	wire         mac_0_rx_st_fifo_out_startofpacket;        // mac_0:rx_st_fifo_out_startofpacket -> avalon_st_adapter_004:in_0_startofpacket
-	wire         mac_0_rx_st_fifo_out_endofpacket;          // mac_0:rx_st_fifo_out_endofpacket -> avalon_st_adapter_004:in_0_endofpacket
-	wire   [5:0] mac_0_rx_st_fifo_out_error;                // mac_0:rx_st_fifo_out_error -> avalon_st_adapter_004:in_0_error
-	wire   [2:0] mac_0_rx_st_fifo_out_empty;                // mac_0:rx_st_fifo_out_empty -> avalon_st_adapter_004:in_0_empty
-	wire         avalon_st_adapter_004_out_0_valid;         // avalon_st_adapter_004:out_0_valid -> ethpack:packetin_0_valid
-	wire  [63:0] avalon_st_adapter_004_out_0_data;          // avalon_st_adapter_004:out_0_data -> ethpack:packetin_0_data
-	wire         avalon_st_adapter_004_out_0_ready;         // ethpack:packetin_0_ready -> avalon_st_adapter_004:out_0_ready
-	wire         avalon_st_adapter_004_out_0_startofpacket; // avalon_st_adapter_004:out_0_startofpacket -> ethpack:packetin_0_sop
-	wire         avalon_st_adapter_004_out_0_endofpacket;   // avalon_st_adapter_004:out_0_endofpacket -> ethpack:packetin_0_eop
-	wire         mac_1_rx_st_fifo_out_valid;                // mac_1:rx_st_fifo_out_valid -> avalon_st_adapter_005:in_0_valid
-	wire  [63:0] mac_1_rx_st_fifo_out_data;                 // mac_1:rx_st_fifo_out_data -> avalon_st_adapter_005:in_0_data
-	wire         mac_1_rx_st_fifo_out_ready;                // avalon_st_adapter_005:in_0_ready -> mac_1:rx_st_fifo_out_ready
-	wire         mac_1_rx_st_fifo_out_startofpacket;        // mac_1:rx_st_fifo_out_startofpacket -> avalon_st_adapter_005:in_0_startofpacket
-	wire         mac_1_rx_st_fifo_out_endofpacket;          // mac_1:rx_st_fifo_out_endofpacket -> avalon_st_adapter_005:in_0_endofpacket
-	wire   [5:0] mac_1_rx_st_fifo_out_error;                // mac_1:rx_st_fifo_out_error -> avalon_st_adapter_005:in_0_error
-	wire   [2:0] mac_1_rx_st_fifo_out_empty;                // mac_1:rx_st_fifo_out_empty -> avalon_st_adapter_005:in_0_empty
-	wire         avalon_st_adapter_005_out_0_valid;         // avalon_st_adapter_005:out_0_valid -> ethpack:packetin_1_valid
-	wire  [63:0] avalon_st_adapter_005_out_0_data;          // avalon_st_adapter_005:out_0_data -> ethpack:packetin_1_data
-	wire         avalon_st_adapter_005_out_0_ready;         // ethpack:packetin_1_ready -> avalon_st_adapter_005:out_0_ready
-	wire         avalon_st_adapter_005_out_0_startofpacket; // avalon_st_adapter_005:out_0_startofpacket -> ethpack:packetin_1_sop
-	wire         avalon_st_adapter_005_out_0_endofpacket;   // avalon_st_adapter_005:out_0_endofpacket -> ethpack:packetin_1_eop
-	wire         mac_2_rx_st_fifo_out_valid;                // mac_2:rx_st_fifo_out_valid -> avalon_st_adapter_006:in_0_valid
-	wire  [63:0] mac_2_rx_st_fifo_out_data;                 // mac_2:rx_st_fifo_out_data -> avalon_st_adapter_006:in_0_data
-	wire         mac_2_rx_st_fifo_out_ready;                // avalon_st_adapter_006:in_0_ready -> mac_2:rx_st_fifo_out_ready
-	wire         mac_2_rx_st_fifo_out_startofpacket;        // mac_2:rx_st_fifo_out_startofpacket -> avalon_st_adapter_006:in_0_startofpacket
-	wire         mac_2_rx_st_fifo_out_endofpacket;          // mac_2:rx_st_fifo_out_endofpacket -> avalon_st_adapter_006:in_0_endofpacket
-	wire   [5:0] mac_2_rx_st_fifo_out_error;                // mac_2:rx_st_fifo_out_error -> avalon_st_adapter_006:in_0_error
-	wire   [2:0] mac_2_rx_st_fifo_out_empty;                // mac_2:rx_st_fifo_out_empty -> avalon_st_adapter_006:in_0_empty
-	wire         avalon_st_adapter_006_out_0_valid;         // avalon_st_adapter_006:out_0_valid -> ethpack:packetin_2_valid
-	wire  [63:0] avalon_st_adapter_006_out_0_data;          // avalon_st_adapter_006:out_0_data -> ethpack:packetin_2_data
-	wire         avalon_st_adapter_006_out_0_ready;         // ethpack:packetin_2_ready -> avalon_st_adapter_006:out_0_ready
-	wire         avalon_st_adapter_006_out_0_startofpacket; // avalon_st_adapter_006:out_0_startofpacket -> ethpack:packetin_2_sop
-	wire         avalon_st_adapter_006_out_0_endofpacket;   // avalon_st_adapter_006:out_0_endofpacket -> ethpack:packetin_2_eop
-	wire         mac_3_rx_st_fifo_out_valid;                // mac_3:rx_st_fifo_out_valid -> avalon_st_adapter_007:in_0_valid
-	wire  [63:0] mac_3_rx_st_fifo_out_data;                 // mac_3:rx_st_fifo_out_data -> avalon_st_adapter_007:in_0_data
-	wire         mac_3_rx_st_fifo_out_ready;                // avalon_st_adapter_007:in_0_ready -> mac_3:rx_st_fifo_out_ready
-	wire         mac_3_rx_st_fifo_out_startofpacket;        // mac_3:rx_st_fifo_out_startofpacket -> avalon_st_adapter_007:in_0_startofpacket
-	wire         mac_3_rx_st_fifo_out_endofpacket;          // mac_3:rx_st_fifo_out_endofpacket -> avalon_st_adapter_007:in_0_endofpacket
-	wire   [5:0] mac_3_rx_st_fifo_out_error;                // mac_3:rx_st_fifo_out_error -> avalon_st_adapter_007:in_0_error
-	wire   [2:0] mac_3_rx_st_fifo_out_empty;                // mac_3:rx_st_fifo_out_empty -> avalon_st_adapter_007:in_0_empty
-	wire         avalon_st_adapter_007_out_0_valid;         // avalon_st_adapter_007:out_0_valid -> ethpack:packetin_3_valid
-	wire  [63:0] avalon_st_adapter_007_out_0_data;          // avalon_st_adapter_007:out_0_data -> ethpack:packetin_3_data
-	wire         avalon_st_adapter_007_out_0_ready;         // ethpack:packetin_3_ready -> avalon_st_adapter_007:out_0_ready
-	wire         avalon_st_adapter_007_out_0_startofpacket; // avalon_st_adapter_007:out_0_startofpacket -> ethpack:packetin_3_sop
-	wire         avalon_st_adapter_007_out_0_endofpacket;   // avalon_st_adapter_007:out_0_endofpacket -> ethpack:packetin_3_eop
-	wire         ethpack_transmitout0_valid;                // ethpack:transmitout_0_valid -> avalon_st_adapter_008:in_0_valid
-	wire  [63:0] ethpack_transmitout0_data;                 // ethpack:transmitout_0_data -> avalon_st_adapter_008:in_0_data
-	wire         ethpack_transmitout0_ready;                // avalon_st_adapter_008:in_0_ready -> ethpack:transmitout_0_ready
-	wire         ethpack_transmitout0_startofpacket;        // ethpack:transmitout_0_sop -> avalon_st_adapter_008:in_0_startofpacket
-	wire         ethpack_transmitout0_endofpacket;          // ethpack:transmitout_0_eop -> avalon_st_adapter_008:in_0_endofpacket
-	wire         avalon_st_adapter_008_out_0_valid;         // avalon_st_adapter_008:out_0_valid -> mac_0:tx_st_fifo_in_valid
-	wire  [63:0] avalon_st_adapter_008_out_0_data;          // avalon_st_adapter_008:out_0_data -> mac_0:tx_st_fifo_in_data
-	wire         avalon_st_adapter_008_out_0_ready;         // mac_0:tx_st_fifo_in_ready -> avalon_st_adapter_008:out_0_ready
-	wire         avalon_st_adapter_008_out_0_startofpacket; // avalon_st_adapter_008:out_0_startofpacket -> mac_0:tx_st_fifo_in_startofpacket
-	wire         avalon_st_adapter_008_out_0_endofpacket;   // avalon_st_adapter_008:out_0_endofpacket -> mac_0:tx_st_fifo_in_endofpacket
-	wire   [0:0] avalon_st_adapter_008_out_0_error;         // avalon_st_adapter_008:out_0_error -> mac_0:tx_st_fifo_in_error
-	wire   [2:0] avalon_st_adapter_008_out_0_empty;         // avalon_st_adapter_008:out_0_empty -> mac_0:tx_st_fifo_in_empty
-	wire         ethpack_transmitout1_valid;                // ethpack:transmitout_1_valid -> avalon_st_adapter_009:in_0_valid
-	wire  [63:0] ethpack_transmitout1_data;                 // ethpack:transmitout_1_data -> avalon_st_adapter_009:in_0_data
-	wire         ethpack_transmitout1_ready;                // avalon_st_adapter_009:in_0_ready -> ethpack:transmitout_1_ready
-	wire         ethpack_transmitout1_startofpacket;        // ethpack:transmitout_1_sop -> avalon_st_adapter_009:in_0_startofpacket
-	wire         ethpack_transmitout1_endofpacket;          // ethpack:transmitout_1_eop -> avalon_st_adapter_009:in_0_endofpacket
-	wire         avalon_st_adapter_009_out_0_valid;         // avalon_st_adapter_009:out_0_valid -> mac_1:tx_st_fifo_in_valid
-	wire  [63:0] avalon_st_adapter_009_out_0_data;          // avalon_st_adapter_009:out_0_data -> mac_1:tx_st_fifo_in_data
-	wire         avalon_st_adapter_009_out_0_ready;         // mac_1:tx_st_fifo_in_ready -> avalon_st_adapter_009:out_0_ready
-	wire         avalon_st_adapter_009_out_0_startofpacket; // avalon_st_adapter_009:out_0_startofpacket -> mac_1:tx_st_fifo_in_startofpacket
-	wire         avalon_st_adapter_009_out_0_endofpacket;   // avalon_st_adapter_009:out_0_endofpacket -> mac_1:tx_st_fifo_in_endofpacket
-	wire   [0:0] avalon_st_adapter_009_out_0_error;         // avalon_st_adapter_009:out_0_error -> mac_1:tx_st_fifo_in_error
-	wire   [2:0] avalon_st_adapter_009_out_0_empty;         // avalon_st_adapter_009:out_0_empty -> mac_1:tx_st_fifo_in_empty
-	wire         ethpack_transmitout2_valid;                // ethpack:transmitout_2_valid -> avalon_st_adapter_010:in_0_valid
-	wire  [63:0] ethpack_transmitout2_data;                 // ethpack:transmitout_2_data -> avalon_st_adapter_010:in_0_data
-	wire         ethpack_transmitout2_ready;                // avalon_st_adapter_010:in_0_ready -> ethpack:transmitout_2_ready
-	wire         ethpack_transmitout2_startofpacket;        // ethpack:transmitout_2_sop -> avalon_st_adapter_010:in_0_startofpacket
-	wire         ethpack_transmitout2_endofpacket;          // ethpack:transmitout_2_eop -> avalon_st_adapter_010:in_0_endofpacket
-	wire         avalon_st_adapter_010_out_0_valid;         // avalon_st_adapter_010:out_0_valid -> mac_2:tx_st_fifo_in_valid
-	wire  [63:0] avalon_st_adapter_010_out_0_data;          // avalon_st_adapter_010:out_0_data -> mac_2:tx_st_fifo_in_data
-	wire         avalon_st_adapter_010_out_0_ready;         // mac_2:tx_st_fifo_in_ready -> avalon_st_adapter_010:out_0_ready
-	wire         avalon_st_adapter_010_out_0_startofpacket; // avalon_st_adapter_010:out_0_startofpacket -> mac_2:tx_st_fifo_in_startofpacket
-	wire         avalon_st_adapter_010_out_0_endofpacket;   // avalon_st_adapter_010:out_0_endofpacket -> mac_2:tx_st_fifo_in_endofpacket
-	wire   [0:0] avalon_st_adapter_010_out_0_error;         // avalon_st_adapter_010:out_0_error -> mac_2:tx_st_fifo_in_error
-	wire   [2:0] avalon_st_adapter_010_out_0_empty;         // avalon_st_adapter_010:out_0_empty -> mac_2:tx_st_fifo_in_empty
-	wire         ethpack_transmitout3_valid;                // ethpack:transmitout_3_valid -> avalon_st_adapter_011:in_0_valid
-	wire  [63:0] ethpack_transmitout3_data;                 // ethpack:transmitout_3_data -> avalon_st_adapter_011:in_0_data
-	wire         ethpack_transmitout3_ready;                // avalon_st_adapter_011:in_0_ready -> ethpack:transmitout_3_ready
-	wire         ethpack_transmitout3_startofpacket;        // ethpack:transmitout_3_sop -> avalon_st_adapter_011:in_0_startofpacket
-	wire         ethpack_transmitout3_endofpacket;          // ethpack:transmitout_3_eop -> avalon_st_adapter_011:in_0_endofpacket
-	wire         avalon_st_adapter_011_out_0_valid;         // avalon_st_adapter_011:out_0_valid -> mac_3:tx_st_fifo_in_valid
-	wire  [63:0] avalon_st_adapter_011_out_0_data;          // avalon_st_adapter_011:out_0_data -> mac_3:tx_st_fifo_in_data
-	wire         avalon_st_adapter_011_out_0_ready;         // mac_3:tx_st_fifo_in_ready -> avalon_st_adapter_011:out_0_ready
-	wire         avalon_st_adapter_011_out_0_startofpacket; // avalon_st_adapter_011:out_0_startofpacket -> mac_3:tx_st_fifo_in_startofpacket
-	wire         avalon_st_adapter_011_out_0_endofpacket;   // avalon_st_adapter_011:out_0_endofpacket -> mac_3:tx_st_fifo_in_endofpacket
-	wire   [0:0] avalon_st_adapter_011_out_0_error;         // avalon_st_adapter_011:out_0_error -> mac_3:tx_st_fifo_in_error
-	wire   [2:0] avalon_st_adapter_011_out_0_empty;         // avalon_st_adapter_011:out_0_empty -> mac_3:tx_st_fifo_in_empty
-	wire         rst_controller_reset_out_reset;            // rst_controller:reset_out -> [avalon_st_adapter:in_rst_0_reset, avalon_st_adapter_001:in_rst_0_reset, avalon_st_adapter_002:in_rst_0_reset, avalon_st_adapter_003:in_rst_0_reset, avalon_st_adapter_004:in_rst_0_reset, avalon_st_adapter_005:in_rst_0_reset, avalon_st_adapter_006:in_rst_0_reset, avalon_st_adapter_007:in_rst_0_reset, avalon_st_adapter_008:in_rst_0_reset, avalon_st_adapter_009:in_rst_0_reset, avalon_st_adapter_010:in_rst_0_reset, avalon_st_adapter_011:in_rst_0_reset, eth_in_mux:reset_n, ethpack:reset]
-	wire         rst_controller_001_reset_out_reset;        // rst_controller_001:reset_out -> [mac_0:rst_in_reset_reset, mac_1:rst_in_reset_reset, mac_2:rst_in_reset_reset, mac_3:rst_in_reset_reset]
+	wire   [31:0] pcie_reconfig_drvr_reconfig_mgmt_readdata;             // xcvr_reconfig:reconfig_mgmt_readdata -> pcie_reconfig_drvr:reconfig_mgmt_readdata
+	wire          pcie_reconfig_drvr_reconfig_mgmt_waitrequest;          // xcvr_reconfig:reconfig_mgmt_waitrequest -> pcie_reconfig_drvr:reconfig_mgmt_waitrequest
+	wire    [6:0] pcie_reconfig_drvr_reconfig_mgmt_address;              // pcie_reconfig_drvr:reconfig_mgmt_address -> xcvr_reconfig:reconfig_mgmt_address
+	wire          pcie_reconfig_drvr_reconfig_mgmt_read;                 // pcie_reconfig_drvr:reconfig_mgmt_read -> xcvr_reconfig:reconfig_mgmt_read
+	wire          pcie_reconfig_drvr_reconfig_mgmt_write;                // pcie_reconfig_drvr:reconfig_mgmt_write -> xcvr_reconfig:reconfig_mgmt_write
+	wire   [31:0] pcie_reconfig_drvr_reconfig_mgmt_writedata;            // pcie_reconfig_drvr:reconfig_mgmt_writedata -> xcvr_reconfig:reconfig_mgmt_writedata
+	wire          doublewidth0_out_valid;                                // doublewidth0:out_valid -> eth_in_mux:in0_valid
+	wire  [127:0] doublewidth0_out_data;                                 // doublewidth0:out_data -> eth_in_mux:in0_data
+	wire          doublewidth0_out_ready;                                // eth_in_mux:in0_ready -> doublewidth0:out_ready
+	wire    [5:0] doublewidth0_out_channel;                              // doublewidth0:out_channel -> eth_in_mux:in0_channel
+	wire          doublewidth0_out_startofpacket;                        // doublewidth0:out_startofpacket -> eth_in_mux:in0_startofpacket
+	wire          doublewidth0_out_endofpacket;                          // doublewidth0:out_endofpacket -> eth_in_mux:in0_endofpacket
+	wire    [3:0] doublewidth0_out_empty;                                // doublewidth0:out_empty -> eth_in_mux:in0_empty
+	wire          doublewidth1_out_valid;                                // doublewidth1:out_valid -> eth_in_mux:in1_valid
+	wire  [127:0] doublewidth1_out_data;                                 // doublewidth1:out_data -> eth_in_mux:in1_data
+	wire          doublewidth1_out_ready;                                // eth_in_mux:in1_ready -> doublewidth1:out_ready
+	wire    [5:0] doublewidth1_out_channel;                              // doublewidth1:out_channel -> eth_in_mux:in1_channel
+	wire          doublewidth1_out_startofpacket;                        // doublewidth1:out_startofpacket -> eth_in_mux:in1_startofpacket
+	wire          doublewidth1_out_endofpacket;                          // doublewidth1:out_endofpacket -> eth_in_mux:in1_endofpacket
+	wire    [3:0] doublewidth1_out_empty;                                // doublewidth1:out_empty -> eth_in_mux:in1_empty
+	wire          doublewidth2_out_valid;                                // doublewidth2:out_valid -> eth_in_mux:in2_valid
+	wire  [127:0] doublewidth2_out_data;                                 // doublewidth2:out_data -> eth_in_mux:in2_data
+	wire          doublewidth2_out_ready;                                // eth_in_mux:in2_ready -> doublewidth2:out_ready
+	wire    [5:0] doublewidth2_out_channel;                              // doublewidth2:out_channel -> eth_in_mux:in2_channel
+	wire          doublewidth2_out_startofpacket;                        // doublewidth2:out_startofpacket -> eth_in_mux:in2_startofpacket
+	wire          doublewidth2_out_endofpacket;                          // doublewidth2:out_endofpacket -> eth_in_mux:in2_endofpacket
+	wire    [3:0] doublewidth2_out_empty;                                // doublewidth2:out_empty -> eth_in_mux:in2_empty
+	wire          doublewidth3_out_valid;                                // doublewidth3:out_valid -> eth_in_mux:in3_valid
+	wire  [127:0] doublewidth3_out_data;                                 // doublewidth3:out_data -> eth_in_mux:in3_data
+	wire          doublewidth3_out_ready;                                // eth_in_mux:in3_ready -> doublewidth3:out_ready
+	wire    [5:0] doublewidth3_out_channel;                              // doublewidth3:out_channel -> eth_in_mux:in3_channel
+	wire          doublewidth3_out_startofpacket;                        // doublewidth3:out_startofpacket -> eth_in_mux:in3_startofpacket
+	wire          doublewidth3_out_endofpacket;                          // doublewidth3:out_endofpacket -> eth_in_mux:in3_endofpacket
+	wire    [3:0] doublewidth3_out_empty;                                // doublewidth3:out_empty -> eth_in_mux:in3_empty
+	wire          pcie_coreclkout_clk;                                   // pcie:coreclkout -> [ethpack_control:clk, irq_mapper:clk, mm_interconnect_0:pcie_coreclkout_clk, rst_controller_001:clk, rst_controller_005:clk]
+	wire          pll_1_outclk0_clk;                                     // pll_1:outclk_0 -> [mm_interconnect_0:pll_1_outclk0_clk, pr:clk, rst_controller_004:clk]
+	wire    [1:0] pcie_hip_currentspeed_currentspeed;                    // pcie:currentspeed -> pcie_reconfig_drvr:currentspeed
+	wire          pcie_hip_status_derr_cor_ext_rcv;                      // pcie:derr_cor_ext_rcv -> pcie_reconfig_drvr:derr_cor_ext_rcv_drv
+	wire          pcie_hip_status_hotrst_exit;                           // pcie:hotrst_exit -> pcie_reconfig_drvr:hotrst_exit_drv
+	wire          pcie_hip_status_rx_par_err;                            // pcie:rx_par_err -> pcie_reconfig_drvr:rx_par_err_drv
+	wire   [11:0] pcie_hip_status_ko_cpl_spc_data;                       // pcie:ko_cpl_spc_data -> pcie_reconfig_drvr:ko_cpl_spc_data_drv
+	wire          pcie_hip_status_dlup_exit;                             // pcie:dlup_exit -> pcie_reconfig_drvr:dlup_exit_drv
+	wire          pcie_hip_status_derr_cor_ext_rpl;                      // pcie:derr_cor_ext_rpl -> pcie_reconfig_drvr:derr_cor_ext_rpl_drv
+	wire          pcie_hip_status_l2_exit;                               // pcie:l2_exit -> pcie_reconfig_drvr:l2_exit_drv
+	wire          pcie_hip_status_dlup;                                  // pcie:dlup -> pcie_reconfig_drvr:dlup_drv
+	wire    [3:0] pcie_hip_status_int_status;                            // pcie:int_status -> pcie_reconfig_drvr:int_status_drv
+	wire          pcie_hip_status_ev128ns;                               // pcie:ev128ns -> pcie_reconfig_drvr:ev128ns_drv
+	wire    [4:0] pcie_hip_status_ltssmstate;                            // pcie:ltssmstate -> pcie_reconfig_drvr:ltssmstate_drv
+	wire    [1:0] pcie_hip_status_tx_par_err;                            // pcie:tx_par_err -> pcie_reconfig_drvr:tx_par_err_drv
+	wire    [3:0] pcie_hip_status_lane_act;                              // pcie:lane_act -> pcie_reconfig_drvr:lane_act_drv
+	wire          pcie_hip_status_cfg_par_err;                           // pcie:cfg_par_err -> pcie_reconfig_drvr:cfg_par_err_drv
+	wire          pcie_hip_status_derr_rpl;                              // pcie:derr_rpl -> pcie_reconfig_drvr:derr_rpl_drv
+	wire          pcie_hip_status_ev1us;                                 // pcie:ev1us -> pcie_reconfig_drvr:ev1us_drv
+	wire    [7:0] pcie_hip_status_ko_cpl_spc_header;                     // pcie:ko_cpl_spc_header -> pcie_reconfig_drvr:ko_cpl_spc_header_drv
+	wire          xcvr_reconfig_reconfig_busy_reconfig_busy;             // xcvr_reconfig:reconfig_busy -> pcie_reconfig_drvr:reconfig_busy
+	wire  [459:0] pcie_reconfig_from_xcvr_reconfig_from_xcvr;            // pcie:reconfig_from_xcvr -> xcvr_reconfig:reconfig_from_xcvr
+	wire  [699:0] xcvr_reconfig_reconfig_to_xcvr_reconfig_to_xcvr;       // xcvr_reconfig:reconfig_to_xcvr -> pcie:reconfig_to_xcvr
+	wire          pcie_rxm_bar0_waitrequest;                             // mm_interconnect_0:pcie_Rxm_BAR0_waitrequest -> pcie:RxmWaitRequest_0_i
+	wire  [127:0] pcie_rxm_bar0_readdata;                                // mm_interconnect_0:pcie_Rxm_BAR0_readdata -> pcie:RxmReadData_0_i
+	wire   [31:0] pcie_rxm_bar0_address;                                 // pcie:RxmAddress_0_o -> mm_interconnect_0:pcie_Rxm_BAR0_address
+	wire          pcie_rxm_bar0_read;                                    // pcie:RxmRead_0_o -> mm_interconnect_0:pcie_Rxm_BAR0_read
+	wire   [15:0] pcie_rxm_bar0_byteenable;                              // pcie:RxmByteEnable_0_o -> mm_interconnect_0:pcie_Rxm_BAR0_byteenable
+	wire          pcie_rxm_bar0_readdatavalid;                           // mm_interconnect_0:pcie_Rxm_BAR0_readdatavalid -> pcie:RxmReadDataValid_0_i
+	wire          pcie_rxm_bar0_write;                                   // pcie:RxmWrite_0_o -> mm_interconnect_0:pcie_Rxm_BAR0_write
+	wire  [127:0] pcie_rxm_bar0_writedata;                               // pcie:RxmWriteData_0_o -> mm_interconnect_0:pcie_Rxm_BAR0_writedata
+	wire    [5:0] pcie_rxm_bar0_burstcount;                              // pcie:RxmBurstCount_0_o -> mm_interconnect_0:pcie_Rxm_BAR0_burstcount
+	wire   [31:0] mm_interconnect_0_pr_avmm_slave_readdata;              // pr:avmm_slave_readdata -> mm_interconnect_0:pr_avmm_slave_readdata
+	wire          mm_interconnect_0_pr_avmm_slave_waitrequest;           // pr:avmm_slave_waitrequest -> mm_interconnect_0:pr_avmm_slave_waitrequest
+	wire    [0:0] mm_interconnect_0_pr_avmm_slave_address;               // mm_interconnect_0:pr_avmm_slave_address -> pr:avmm_slave_address
+	wire          mm_interconnect_0_pr_avmm_slave_read;                  // mm_interconnect_0:pr_avmm_slave_read -> pr:avmm_slave_read
+	wire          mm_interconnect_0_pr_avmm_slave_write;                 // mm_interconnect_0:pr_avmm_slave_write -> pr:avmm_slave_write
+	wire   [31:0] mm_interconnect_0_pr_avmm_slave_writedata;             // mm_interconnect_0:pr_avmm_slave_writedata -> pr:avmm_slave_writedata
+	wire   [31:0] mm_interconnect_0_ethpack_control_enable_readdata;     // ethpack_control:avs_enable_readdata -> mm_interconnect_0:ethpack_control_enable_readdata
+	wire    [2:0] mm_interconnect_0_ethpack_control_enable_address;      // mm_interconnect_0:ethpack_control_enable_address -> ethpack_control:avs_enable_address
+	wire          mm_interconnect_0_ethpack_control_enable_read;         // mm_interconnect_0:ethpack_control_enable_read -> ethpack_control:avs_enable_read
+	wire          mm_interconnect_0_ethpack_control_enable_write;        // mm_interconnect_0:ethpack_control_enable_write -> ethpack_control:avs_enable_write
+	wire   [31:0] mm_interconnect_0_ethpack_control_enable_writedata;    // mm_interconnect_0:ethpack_control_enable_writedata -> ethpack_control:avs_enable_writedata
+	wire   [31:0] mm_interconnect_0_ethpack_control_prcontrol_readdata;  // ethpack_control:avs_prcontrol_readdata -> mm_interconnect_0:ethpack_control_prcontrol_readdata
+	wire    [0:0] mm_interconnect_0_ethpack_control_prcontrol_address;   // mm_interconnect_0:ethpack_control_prcontrol_address -> ethpack_control:avs_prcontrol_address
+	wire          mm_interconnect_0_ethpack_control_prcontrol_read;      // mm_interconnect_0:ethpack_control_prcontrol_read -> ethpack_control:avs_prcontrol_read
+	wire          mm_interconnect_0_ethpack_control_prcontrol_write;     // mm_interconnect_0:ethpack_control_prcontrol_write -> ethpack_control:avs_prcontrol_write
+	wire   [31:0] mm_interconnect_0_ethpack_control_prcontrol_writedata; // mm_interconnect_0:ethpack_control_prcontrol_writedata -> ethpack_control:avs_prcontrol_writedata
+	wire   [15:0] pcie_rxmirq_irq;                                       // irq_mapper:sender_irq -> pcie:RxmIrq_i
+	wire          ethpack_packetout0_valid;                              // ethpack:packetout_0_valid -> avalon_st_adapter:in_0_valid
+	wire   [63:0] ethpack_packetout0_data;                               // ethpack:packetout_0_data -> avalon_st_adapter:in_0_data
+	wire          ethpack_packetout0_ready;                              // avalon_st_adapter:in_0_ready -> ethpack:packetout_0_ready
+	wire    [5:0] ethpack_packetout0_channel;                            // ethpack:packetout_0_channel -> avalon_st_adapter:in_0_channel
+	wire          ethpack_packetout0_startofpacket;                      // ethpack:packetout_0_sop -> avalon_st_adapter:in_0_startofpacket
+	wire          ethpack_packetout0_endofpacket;                        // ethpack:packetout_0_eop -> avalon_st_adapter:in_0_endofpacket
+	wire          avalon_st_adapter_out_0_valid;                         // avalon_st_adapter:out_0_valid -> doublewidth0:in_valid
+	wire   [63:0] avalon_st_adapter_out_0_data;                          // avalon_st_adapter:out_0_data -> doublewidth0:in_data
+	wire          avalon_st_adapter_out_0_ready;                         // doublewidth0:in_ready -> avalon_st_adapter:out_0_ready
+	wire    [5:0] avalon_st_adapter_out_0_channel;                       // avalon_st_adapter:out_0_channel -> doublewidth0:in_channel
+	wire          avalon_st_adapter_out_0_startofpacket;                 // avalon_st_adapter:out_0_startofpacket -> doublewidth0:in_startofpacket
+	wire          avalon_st_adapter_out_0_endofpacket;                   // avalon_st_adapter:out_0_endofpacket -> doublewidth0:in_endofpacket
+	wire    [2:0] avalon_st_adapter_out_0_empty;                         // avalon_st_adapter:out_0_empty -> doublewidth0:in_empty
+	wire          ethpack_packetout1_valid;                              // ethpack:packetout_1_valid -> avalon_st_adapter_001:in_0_valid
+	wire   [63:0] ethpack_packetout1_data;                               // ethpack:packetout_1_data -> avalon_st_adapter_001:in_0_data
+	wire          ethpack_packetout1_ready;                              // avalon_st_adapter_001:in_0_ready -> ethpack:packetout_1_ready
+	wire    [5:0] ethpack_packetout1_channel;                            // ethpack:packetout_1_channel -> avalon_st_adapter_001:in_0_channel
+	wire          ethpack_packetout1_startofpacket;                      // ethpack:packetout_1_sop -> avalon_st_adapter_001:in_0_startofpacket
+	wire          ethpack_packetout1_endofpacket;                        // ethpack:packetout_1_eop -> avalon_st_adapter_001:in_0_endofpacket
+	wire          avalon_st_adapter_001_out_0_valid;                     // avalon_st_adapter_001:out_0_valid -> doublewidth1:in_valid
+	wire   [63:0] avalon_st_adapter_001_out_0_data;                      // avalon_st_adapter_001:out_0_data -> doublewidth1:in_data
+	wire          avalon_st_adapter_001_out_0_ready;                     // doublewidth1:in_ready -> avalon_st_adapter_001:out_0_ready
+	wire    [5:0] avalon_st_adapter_001_out_0_channel;                   // avalon_st_adapter_001:out_0_channel -> doublewidth1:in_channel
+	wire          avalon_st_adapter_001_out_0_startofpacket;             // avalon_st_adapter_001:out_0_startofpacket -> doublewidth1:in_startofpacket
+	wire          avalon_st_adapter_001_out_0_endofpacket;               // avalon_st_adapter_001:out_0_endofpacket -> doublewidth1:in_endofpacket
+	wire    [2:0] avalon_st_adapter_001_out_0_empty;                     // avalon_st_adapter_001:out_0_empty -> doublewidth1:in_empty
+	wire          ethpack_packetout2_valid;                              // ethpack:packetout_2_valid -> avalon_st_adapter_002:in_0_valid
+	wire   [63:0] ethpack_packetout2_data;                               // ethpack:packetout_2_data -> avalon_st_adapter_002:in_0_data
+	wire          ethpack_packetout2_ready;                              // avalon_st_adapter_002:in_0_ready -> ethpack:packetout_2_ready
+	wire    [5:0] ethpack_packetout2_channel;                            // ethpack:packetout_2_channel -> avalon_st_adapter_002:in_0_channel
+	wire          ethpack_packetout2_startofpacket;                      // ethpack:packetout_2_sop -> avalon_st_adapter_002:in_0_startofpacket
+	wire          ethpack_packetout2_endofpacket;                        // ethpack:packetout_2_eop -> avalon_st_adapter_002:in_0_endofpacket
+	wire          avalon_st_adapter_002_out_0_valid;                     // avalon_st_adapter_002:out_0_valid -> doublewidth2:in_valid
+	wire   [63:0] avalon_st_adapter_002_out_0_data;                      // avalon_st_adapter_002:out_0_data -> doublewidth2:in_data
+	wire          avalon_st_adapter_002_out_0_ready;                     // doublewidth2:in_ready -> avalon_st_adapter_002:out_0_ready
+	wire    [5:0] avalon_st_adapter_002_out_0_channel;                   // avalon_st_adapter_002:out_0_channel -> doublewidth2:in_channel
+	wire          avalon_st_adapter_002_out_0_startofpacket;             // avalon_st_adapter_002:out_0_startofpacket -> doublewidth2:in_startofpacket
+	wire          avalon_st_adapter_002_out_0_endofpacket;               // avalon_st_adapter_002:out_0_endofpacket -> doublewidth2:in_endofpacket
+	wire    [2:0] avalon_st_adapter_002_out_0_empty;                     // avalon_st_adapter_002:out_0_empty -> doublewidth2:in_empty
+	wire          ethpack_packetout3_valid;                              // ethpack:packetout_3_valid -> avalon_st_adapter_003:in_0_valid
+	wire   [63:0] ethpack_packetout3_data;                               // ethpack:packetout_3_data -> avalon_st_adapter_003:in_0_data
+	wire          ethpack_packetout3_ready;                              // avalon_st_adapter_003:in_0_ready -> ethpack:packetout_3_ready
+	wire    [5:0] ethpack_packetout3_channel;                            // ethpack:packetout_3_channel -> avalon_st_adapter_003:in_0_channel
+	wire          ethpack_packetout3_startofpacket;                      // ethpack:packetout_3_sop -> avalon_st_adapter_003:in_0_startofpacket
+	wire          ethpack_packetout3_endofpacket;                        // ethpack:packetout_3_eop -> avalon_st_adapter_003:in_0_endofpacket
+	wire          avalon_st_adapter_003_out_0_valid;                     // avalon_st_adapter_003:out_0_valid -> doublewidth3:in_valid
+	wire   [63:0] avalon_st_adapter_003_out_0_data;                      // avalon_st_adapter_003:out_0_data -> doublewidth3:in_data
+	wire          avalon_st_adapter_003_out_0_ready;                     // doublewidth3:in_ready -> avalon_st_adapter_003:out_0_ready
+	wire    [5:0] avalon_st_adapter_003_out_0_channel;                   // avalon_st_adapter_003:out_0_channel -> doublewidth3:in_channel
+	wire          avalon_st_adapter_003_out_0_startofpacket;             // avalon_st_adapter_003:out_0_startofpacket -> doublewidth3:in_startofpacket
+	wire          avalon_st_adapter_003_out_0_endofpacket;               // avalon_st_adapter_003:out_0_endofpacket -> doublewidth3:in_endofpacket
+	wire    [2:0] avalon_st_adapter_003_out_0_empty;                     // avalon_st_adapter_003:out_0_empty -> doublewidth3:in_empty
+	wire          mac_0_rx_st_fifo_out_valid;                            // mac_0:rx_st_fifo_out_valid -> avalon_st_adapter_004:in_0_valid
+	wire   [63:0] mac_0_rx_st_fifo_out_data;                             // mac_0:rx_st_fifo_out_data -> avalon_st_adapter_004:in_0_data
+	wire          mac_0_rx_st_fifo_out_ready;                            // avalon_st_adapter_004:in_0_ready -> mac_0:rx_st_fifo_out_ready
+	wire          mac_0_rx_st_fifo_out_startofpacket;                    // mac_0:rx_st_fifo_out_startofpacket -> avalon_st_adapter_004:in_0_startofpacket
+	wire          mac_0_rx_st_fifo_out_endofpacket;                      // mac_0:rx_st_fifo_out_endofpacket -> avalon_st_adapter_004:in_0_endofpacket
+	wire    [5:0] mac_0_rx_st_fifo_out_error;                            // mac_0:rx_st_fifo_out_error -> avalon_st_adapter_004:in_0_error
+	wire    [2:0] mac_0_rx_st_fifo_out_empty;                            // mac_0:rx_st_fifo_out_empty -> avalon_st_adapter_004:in_0_empty
+	wire          avalon_st_adapter_004_out_0_valid;                     // avalon_st_adapter_004:out_0_valid -> ethpack:packetin_0_valid
+	wire   [63:0] avalon_st_adapter_004_out_0_data;                      // avalon_st_adapter_004:out_0_data -> ethpack:packetin_0_data
+	wire          avalon_st_adapter_004_out_0_ready;                     // ethpack:packetin_0_ready -> avalon_st_adapter_004:out_0_ready
+	wire          avalon_st_adapter_004_out_0_startofpacket;             // avalon_st_adapter_004:out_0_startofpacket -> ethpack:packetin_0_sop
+	wire          avalon_st_adapter_004_out_0_endofpacket;               // avalon_st_adapter_004:out_0_endofpacket -> ethpack:packetin_0_eop
+	wire          mac_1_rx_st_fifo_out_valid;                            // mac_1:rx_st_fifo_out_valid -> avalon_st_adapter_005:in_0_valid
+	wire   [63:0] mac_1_rx_st_fifo_out_data;                             // mac_1:rx_st_fifo_out_data -> avalon_st_adapter_005:in_0_data
+	wire          mac_1_rx_st_fifo_out_ready;                            // avalon_st_adapter_005:in_0_ready -> mac_1:rx_st_fifo_out_ready
+	wire          mac_1_rx_st_fifo_out_startofpacket;                    // mac_1:rx_st_fifo_out_startofpacket -> avalon_st_adapter_005:in_0_startofpacket
+	wire          mac_1_rx_st_fifo_out_endofpacket;                      // mac_1:rx_st_fifo_out_endofpacket -> avalon_st_adapter_005:in_0_endofpacket
+	wire    [5:0] mac_1_rx_st_fifo_out_error;                            // mac_1:rx_st_fifo_out_error -> avalon_st_adapter_005:in_0_error
+	wire    [2:0] mac_1_rx_st_fifo_out_empty;                            // mac_1:rx_st_fifo_out_empty -> avalon_st_adapter_005:in_0_empty
+	wire          avalon_st_adapter_005_out_0_valid;                     // avalon_st_adapter_005:out_0_valid -> ethpack:packetin_1_valid
+	wire   [63:0] avalon_st_adapter_005_out_0_data;                      // avalon_st_adapter_005:out_0_data -> ethpack:packetin_1_data
+	wire          avalon_st_adapter_005_out_0_ready;                     // ethpack:packetin_1_ready -> avalon_st_adapter_005:out_0_ready
+	wire          avalon_st_adapter_005_out_0_startofpacket;             // avalon_st_adapter_005:out_0_startofpacket -> ethpack:packetin_1_sop
+	wire          avalon_st_adapter_005_out_0_endofpacket;               // avalon_st_adapter_005:out_0_endofpacket -> ethpack:packetin_1_eop
+	wire          mac_2_rx_st_fifo_out_valid;                            // mac_2:rx_st_fifo_out_valid -> avalon_st_adapter_006:in_0_valid
+	wire   [63:0] mac_2_rx_st_fifo_out_data;                             // mac_2:rx_st_fifo_out_data -> avalon_st_adapter_006:in_0_data
+	wire          mac_2_rx_st_fifo_out_ready;                            // avalon_st_adapter_006:in_0_ready -> mac_2:rx_st_fifo_out_ready
+	wire          mac_2_rx_st_fifo_out_startofpacket;                    // mac_2:rx_st_fifo_out_startofpacket -> avalon_st_adapter_006:in_0_startofpacket
+	wire          mac_2_rx_st_fifo_out_endofpacket;                      // mac_2:rx_st_fifo_out_endofpacket -> avalon_st_adapter_006:in_0_endofpacket
+	wire    [5:0] mac_2_rx_st_fifo_out_error;                            // mac_2:rx_st_fifo_out_error -> avalon_st_adapter_006:in_0_error
+	wire    [2:0] mac_2_rx_st_fifo_out_empty;                            // mac_2:rx_st_fifo_out_empty -> avalon_st_adapter_006:in_0_empty
+	wire          avalon_st_adapter_006_out_0_valid;                     // avalon_st_adapter_006:out_0_valid -> ethpack:packetin_2_valid
+	wire   [63:0] avalon_st_adapter_006_out_0_data;                      // avalon_st_adapter_006:out_0_data -> ethpack:packetin_2_data
+	wire          avalon_st_adapter_006_out_0_ready;                     // ethpack:packetin_2_ready -> avalon_st_adapter_006:out_0_ready
+	wire          avalon_st_adapter_006_out_0_startofpacket;             // avalon_st_adapter_006:out_0_startofpacket -> ethpack:packetin_2_sop
+	wire          avalon_st_adapter_006_out_0_endofpacket;               // avalon_st_adapter_006:out_0_endofpacket -> ethpack:packetin_2_eop
+	wire          mac_3_rx_st_fifo_out_valid;                            // mac_3:rx_st_fifo_out_valid -> avalon_st_adapter_007:in_0_valid
+	wire   [63:0] mac_3_rx_st_fifo_out_data;                             // mac_3:rx_st_fifo_out_data -> avalon_st_adapter_007:in_0_data
+	wire          mac_3_rx_st_fifo_out_ready;                            // avalon_st_adapter_007:in_0_ready -> mac_3:rx_st_fifo_out_ready
+	wire          mac_3_rx_st_fifo_out_startofpacket;                    // mac_3:rx_st_fifo_out_startofpacket -> avalon_st_adapter_007:in_0_startofpacket
+	wire          mac_3_rx_st_fifo_out_endofpacket;                      // mac_3:rx_st_fifo_out_endofpacket -> avalon_st_adapter_007:in_0_endofpacket
+	wire    [5:0] mac_3_rx_st_fifo_out_error;                            // mac_3:rx_st_fifo_out_error -> avalon_st_adapter_007:in_0_error
+	wire    [2:0] mac_3_rx_st_fifo_out_empty;                            // mac_3:rx_st_fifo_out_empty -> avalon_st_adapter_007:in_0_empty
+	wire          avalon_st_adapter_007_out_0_valid;                     // avalon_st_adapter_007:out_0_valid -> ethpack:packetin_3_valid
+	wire   [63:0] avalon_st_adapter_007_out_0_data;                      // avalon_st_adapter_007:out_0_data -> ethpack:packetin_3_data
+	wire          avalon_st_adapter_007_out_0_ready;                     // ethpack:packetin_3_ready -> avalon_st_adapter_007:out_0_ready
+	wire          avalon_st_adapter_007_out_0_startofpacket;             // avalon_st_adapter_007:out_0_startofpacket -> ethpack:packetin_3_sop
+	wire          avalon_st_adapter_007_out_0_endofpacket;               // avalon_st_adapter_007:out_0_endofpacket -> ethpack:packetin_3_eop
+	wire          ethpack_transmitout0_valid;                            // ethpack:transmitout_0_valid -> avalon_st_adapter_008:in_0_valid
+	wire   [63:0] ethpack_transmitout0_data;                             // ethpack:transmitout_0_data -> avalon_st_adapter_008:in_0_data
+	wire          ethpack_transmitout0_ready;                            // avalon_st_adapter_008:in_0_ready -> ethpack:transmitout_0_ready
+	wire          ethpack_transmitout0_startofpacket;                    // ethpack:transmitout_0_sop -> avalon_st_adapter_008:in_0_startofpacket
+	wire          ethpack_transmitout0_endofpacket;                      // ethpack:transmitout_0_eop -> avalon_st_adapter_008:in_0_endofpacket
+	wire          avalon_st_adapter_008_out_0_valid;                     // avalon_st_adapter_008:out_0_valid -> mac_0:tx_st_fifo_in_valid
+	wire   [63:0] avalon_st_adapter_008_out_0_data;                      // avalon_st_adapter_008:out_0_data -> mac_0:tx_st_fifo_in_data
+	wire          avalon_st_adapter_008_out_0_ready;                     // mac_0:tx_st_fifo_in_ready -> avalon_st_adapter_008:out_0_ready
+	wire          avalon_st_adapter_008_out_0_startofpacket;             // avalon_st_adapter_008:out_0_startofpacket -> mac_0:tx_st_fifo_in_startofpacket
+	wire          avalon_st_adapter_008_out_0_endofpacket;               // avalon_st_adapter_008:out_0_endofpacket -> mac_0:tx_st_fifo_in_endofpacket
+	wire    [0:0] avalon_st_adapter_008_out_0_error;                     // avalon_st_adapter_008:out_0_error -> mac_0:tx_st_fifo_in_error
+	wire    [2:0] avalon_st_adapter_008_out_0_empty;                     // avalon_st_adapter_008:out_0_empty -> mac_0:tx_st_fifo_in_empty
+	wire          ethpack_transmitout1_valid;                            // ethpack:transmitout_1_valid -> avalon_st_adapter_009:in_0_valid
+	wire   [63:0] ethpack_transmitout1_data;                             // ethpack:transmitout_1_data -> avalon_st_adapter_009:in_0_data
+	wire          ethpack_transmitout1_ready;                            // avalon_st_adapter_009:in_0_ready -> ethpack:transmitout_1_ready
+	wire          ethpack_transmitout1_startofpacket;                    // ethpack:transmitout_1_sop -> avalon_st_adapter_009:in_0_startofpacket
+	wire          ethpack_transmitout1_endofpacket;                      // ethpack:transmitout_1_eop -> avalon_st_adapter_009:in_0_endofpacket
+	wire          avalon_st_adapter_009_out_0_valid;                     // avalon_st_adapter_009:out_0_valid -> mac_1:tx_st_fifo_in_valid
+	wire   [63:0] avalon_st_adapter_009_out_0_data;                      // avalon_st_adapter_009:out_0_data -> mac_1:tx_st_fifo_in_data
+	wire          avalon_st_adapter_009_out_0_ready;                     // mac_1:tx_st_fifo_in_ready -> avalon_st_adapter_009:out_0_ready
+	wire          avalon_st_adapter_009_out_0_startofpacket;             // avalon_st_adapter_009:out_0_startofpacket -> mac_1:tx_st_fifo_in_startofpacket
+	wire          avalon_st_adapter_009_out_0_endofpacket;               // avalon_st_adapter_009:out_0_endofpacket -> mac_1:tx_st_fifo_in_endofpacket
+	wire    [0:0] avalon_st_adapter_009_out_0_error;                     // avalon_st_adapter_009:out_0_error -> mac_1:tx_st_fifo_in_error
+	wire    [2:0] avalon_st_adapter_009_out_0_empty;                     // avalon_st_adapter_009:out_0_empty -> mac_1:tx_st_fifo_in_empty
+	wire          ethpack_transmitout2_valid;                            // ethpack:transmitout_2_valid -> avalon_st_adapter_010:in_0_valid
+	wire   [63:0] ethpack_transmitout2_data;                             // ethpack:transmitout_2_data -> avalon_st_adapter_010:in_0_data
+	wire          ethpack_transmitout2_ready;                            // avalon_st_adapter_010:in_0_ready -> ethpack:transmitout_2_ready
+	wire          ethpack_transmitout2_startofpacket;                    // ethpack:transmitout_2_sop -> avalon_st_adapter_010:in_0_startofpacket
+	wire          ethpack_transmitout2_endofpacket;                      // ethpack:transmitout_2_eop -> avalon_st_adapter_010:in_0_endofpacket
+	wire          avalon_st_adapter_010_out_0_valid;                     // avalon_st_adapter_010:out_0_valid -> mac_2:tx_st_fifo_in_valid
+	wire   [63:0] avalon_st_adapter_010_out_0_data;                      // avalon_st_adapter_010:out_0_data -> mac_2:tx_st_fifo_in_data
+	wire          avalon_st_adapter_010_out_0_ready;                     // mac_2:tx_st_fifo_in_ready -> avalon_st_adapter_010:out_0_ready
+	wire          avalon_st_adapter_010_out_0_startofpacket;             // avalon_st_adapter_010:out_0_startofpacket -> mac_2:tx_st_fifo_in_startofpacket
+	wire          avalon_st_adapter_010_out_0_endofpacket;               // avalon_st_adapter_010:out_0_endofpacket -> mac_2:tx_st_fifo_in_endofpacket
+	wire    [0:0] avalon_st_adapter_010_out_0_error;                     // avalon_st_adapter_010:out_0_error -> mac_2:tx_st_fifo_in_error
+	wire    [2:0] avalon_st_adapter_010_out_0_empty;                     // avalon_st_adapter_010:out_0_empty -> mac_2:tx_st_fifo_in_empty
+	wire          ethpack_transmitout3_valid;                            // ethpack:transmitout_3_valid -> avalon_st_adapter_011:in_0_valid
+	wire   [63:0] ethpack_transmitout3_data;                             // ethpack:transmitout_3_data -> avalon_st_adapter_011:in_0_data
+	wire          ethpack_transmitout3_ready;                            // avalon_st_adapter_011:in_0_ready -> ethpack:transmitout_3_ready
+	wire          ethpack_transmitout3_startofpacket;                    // ethpack:transmitout_3_sop -> avalon_st_adapter_011:in_0_startofpacket
+	wire          ethpack_transmitout3_endofpacket;                      // ethpack:transmitout_3_eop -> avalon_st_adapter_011:in_0_endofpacket
+	wire          avalon_st_adapter_011_out_0_valid;                     // avalon_st_adapter_011:out_0_valid -> mac_3:tx_st_fifo_in_valid
+	wire   [63:0] avalon_st_adapter_011_out_0_data;                      // avalon_st_adapter_011:out_0_data -> mac_3:tx_st_fifo_in_data
+	wire          avalon_st_adapter_011_out_0_ready;                     // mac_3:tx_st_fifo_in_ready -> avalon_st_adapter_011:out_0_ready
+	wire          avalon_st_adapter_011_out_0_startofpacket;             // avalon_st_adapter_011:out_0_startofpacket -> mac_3:tx_st_fifo_in_startofpacket
+	wire          avalon_st_adapter_011_out_0_endofpacket;               // avalon_st_adapter_011:out_0_endofpacket -> mac_3:tx_st_fifo_in_endofpacket
+	wire    [0:0] avalon_st_adapter_011_out_0_error;                     // avalon_st_adapter_011:out_0_error -> mac_3:tx_st_fifo_in_error
+	wire    [2:0] avalon_st_adapter_011_out_0_empty;                     // avalon_st_adapter_011:out_0_empty -> mac_3:tx_st_fifo_in_empty
+	wire          rst_controller_reset_out_reset;                        // rst_controller:reset_out -> [avalon_st_adapter:in_rst_0_reset, avalon_st_adapter_001:in_rst_0_reset, avalon_st_adapter_002:in_rst_0_reset, avalon_st_adapter_003:in_rst_0_reset, avalon_st_adapter_004:in_rst_0_reset, avalon_st_adapter_005:in_rst_0_reset, avalon_st_adapter_006:in_rst_0_reset, avalon_st_adapter_007:in_rst_0_reset, avalon_st_adapter_008:in_rst_0_reset, avalon_st_adapter_009:in_rst_0_reset, avalon_st_adapter_010:in_rst_0_reset, avalon_st_adapter_011:in_rst_0_reset, doublewidth0:reset_n, doublewidth1:reset_n, doublewidth2:reset_n, doublewidth3:reset_n, eth_in_mux:reset_n, ethpack:reset]
+	wire          rst_controller_001_reset_out_reset;                    // rst_controller_001:reset_out -> [ethpack_control:reset, mm_interconnect_0:ethpack_control_reset_reset_bridge_in_reset_reset]
+	wire          pcie_nreset_status_reset;                              // pcie:reset_status -> [rst_controller_001:reset_in1, rst_controller_005:reset_in0]
+	wire          rst_controller_002_reset_out_reset;                    // rst_controller_002:reset_out -> [mac_0:rst_in_reset_reset, mac_1:rst_in_reset_reset, mac_2:rst_in_reset_reset, mac_3:rst_in_reset_reset]
+	wire          rst_controller_003_reset_out_reset;                    // rst_controller_003:reset_out -> [pcie_reconfig_drvr:reconfig_xcvr_rst, xcvr_reconfig:mgmt_rst_reset]
+	wire          rst_controller_004_reset_out_reset;                    // rst_controller_004:reset_out -> [mm_interconnect_0:pr_nreset_reset_bridge_in_reset_reset, pr:nreset]
+	wire          rst_controller_005_reset_out_reset;                    // rst_controller_005:reset_out -> [irq_mapper:reset, mm_interconnect_0:pcie_Rxm_BAR0_translator_reset_reset_bridge_in_reset_reset]
 
-	eth4to1_eth_in_mux eth_in_mux (
+	eth4to1_doublewidth0 doublewidth0 (
+		.clk               (clk_312_out_clk_clk),                   //   clk.clk
+		.reset_n           (~rst_controller_reset_out_reset),       // reset.reset_n
+		.in_data           (avalon_st_adapter_out_0_data),          //    in.data
+		.in_valid          (avalon_st_adapter_out_0_valid),         //      .valid
+		.in_ready          (avalon_st_adapter_out_0_ready),         //      .ready
+		.in_startofpacket  (avalon_st_adapter_out_0_startofpacket), //      .startofpacket
+		.in_endofpacket    (avalon_st_adapter_out_0_endofpacket),   //      .endofpacket
+		.in_empty          (avalon_st_adapter_out_0_empty),         //      .empty
+		.in_channel        (avalon_st_adapter_out_0_channel),       //      .channel
+		.out_data          (doublewidth0_out_data),                 //   out.data
+		.out_valid         (doublewidth0_out_valid),                //      .valid
+		.out_ready         (doublewidth0_out_ready),                //      .ready
+		.out_startofpacket (doublewidth0_out_startofpacket),        //      .startofpacket
+		.out_endofpacket   (doublewidth0_out_endofpacket),          //      .endofpacket
+		.out_empty         (doublewidth0_out_empty),                //      .empty
+		.out_channel       (doublewidth0_out_channel)               //      .channel
+	);
+
+	eth4to1_doublewidth0 doublewidth1 (
 		.clk               (clk_312_out_clk_clk),                       //   clk.clk
 		.reset_n           (~rst_controller_reset_out_reset),           // reset.reset_n
-		.out_data          (eth_in_mux_out_data),                       //   out.data
-		.out_valid         (eth_in_mux_out_valid),                      //      .valid
-		.out_ready         (eth_in_mux_out_ready),                      //      .ready
-		.out_startofpacket (eth_in_mux_out_startofpacket),              //      .startofpacket
-		.out_endofpacket   (eth_in_mux_out_endofpacket),                //      .endofpacket
-		.out_empty         (eth_in_mux_out_empty),                      //      .empty
-		.out_channel       (eth_in_mux_out_channel),                    //      .channel
-		.in0_data          (avalon_st_adapter_out_0_data),              //   in0.data
-		.in0_valid         (avalon_st_adapter_out_0_valid),             //      .valid
-		.in0_ready         (avalon_st_adapter_out_0_ready),             //      .ready
-		.in0_startofpacket (avalon_st_adapter_out_0_startofpacket),     //      .startofpacket
-		.in0_endofpacket   (avalon_st_adapter_out_0_endofpacket),       //      .endofpacket
-		.in0_empty         (avalon_st_adapter_out_0_empty),             //      .empty
-		.in0_channel       (avalon_st_adapter_out_0_channel),           //      .channel
-		.in1_data          (avalon_st_adapter_001_out_0_data),          //   in1.data
-		.in1_valid         (avalon_st_adapter_001_out_0_valid),         //      .valid
-		.in1_ready         (avalon_st_adapter_001_out_0_ready),         //      .ready
-		.in1_startofpacket (avalon_st_adapter_001_out_0_startofpacket), //      .startofpacket
-		.in1_endofpacket   (avalon_st_adapter_001_out_0_endofpacket),   //      .endofpacket
-		.in1_empty         (avalon_st_adapter_001_out_0_empty),         //      .empty
-		.in1_channel       (avalon_st_adapter_001_out_0_channel),       //      .channel
-		.in2_data          (avalon_st_adapter_002_out_0_data),          //   in2.data
-		.in2_valid         (avalon_st_adapter_002_out_0_valid),         //      .valid
-		.in2_ready         (avalon_st_adapter_002_out_0_ready),         //      .ready
-		.in2_startofpacket (avalon_st_adapter_002_out_0_startofpacket), //      .startofpacket
-		.in2_endofpacket   (avalon_st_adapter_002_out_0_endofpacket),   //      .endofpacket
-		.in2_empty         (avalon_st_adapter_002_out_0_empty),         //      .empty
-		.in2_channel       (avalon_st_adapter_002_out_0_channel),       //      .channel
-		.in3_data          (avalon_st_adapter_003_out_0_data),          //   in3.data
-		.in3_valid         (avalon_st_adapter_003_out_0_valid),         //      .valid
-		.in3_ready         (avalon_st_adapter_003_out_0_ready),         //      .ready
-		.in3_startofpacket (avalon_st_adapter_003_out_0_startofpacket), //      .startofpacket
-		.in3_endofpacket   (avalon_st_adapter_003_out_0_endofpacket),   //      .endofpacket
-		.in3_empty         (avalon_st_adapter_003_out_0_empty),         //      .empty
-		.in3_channel       (avalon_st_adapter_003_out_0_channel)        //      .channel
+		.in_data           (avalon_st_adapter_001_out_0_data),          //    in.data
+		.in_valid          (avalon_st_adapter_001_out_0_valid),         //      .valid
+		.in_ready          (avalon_st_adapter_001_out_0_ready),         //      .ready
+		.in_startofpacket  (avalon_st_adapter_001_out_0_startofpacket), //      .startofpacket
+		.in_endofpacket    (avalon_st_adapter_001_out_0_endofpacket),   //      .endofpacket
+		.in_empty          (avalon_st_adapter_001_out_0_empty),         //      .empty
+		.in_channel        (avalon_st_adapter_001_out_0_channel),       //      .channel
+		.out_data          (doublewidth1_out_data),                     //   out.data
+		.out_valid         (doublewidth1_out_valid),                    //      .valid
+		.out_ready         (doublewidth1_out_ready),                    //      .ready
+		.out_startofpacket (doublewidth1_out_startofpacket),            //      .startofpacket
+		.out_endofpacket   (doublewidth1_out_endofpacket),              //      .endofpacket
+		.out_empty         (doublewidth1_out_empty),                    //      .empty
+		.out_channel       (doublewidth1_out_channel)                   //      .channel
+	);
+
+	eth4to1_doublewidth0 doublewidth2 (
+		.clk               (clk_312_out_clk_clk),                       //   clk.clk
+		.reset_n           (~rst_controller_reset_out_reset),           // reset.reset_n
+		.in_data           (avalon_st_adapter_002_out_0_data),          //    in.data
+		.in_valid          (avalon_st_adapter_002_out_0_valid),         //      .valid
+		.in_ready          (avalon_st_adapter_002_out_0_ready),         //      .ready
+		.in_startofpacket  (avalon_st_adapter_002_out_0_startofpacket), //      .startofpacket
+		.in_endofpacket    (avalon_st_adapter_002_out_0_endofpacket),   //      .endofpacket
+		.in_empty          (avalon_st_adapter_002_out_0_empty),         //      .empty
+		.in_channel        (avalon_st_adapter_002_out_0_channel),       //      .channel
+		.out_data          (doublewidth2_out_data),                     //   out.data
+		.out_valid         (doublewidth2_out_valid),                    //      .valid
+		.out_ready         (doublewidth2_out_ready),                    //      .ready
+		.out_startofpacket (doublewidth2_out_startofpacket),            //      .startofpacket
+		.out_endofpacket   (doublewidth2_out_endofpacket),              //      .endofpacket
+		.out_empty         (doublewidth2_out_empty),                    //      .empty
+		.out_channel       (doublewidth2_out_channel)                   //      .channel
+	);
+
+	eth4to1_doublewidth0 doublewidth3 (
+		.clk               (clk_312_out_clk_clk),                       //   clk.clk
+		.reset_n           (~rst_controller_reset_out_reset),           // reset.reset_n
+		.in_data           (avalon_st_adapter_003_out_0_data),          //    in.data
+		.in_valid          (avalon_st_adapter_003_out_0_valid),         //      .valid
+		.in_ready          (avalon_st_adapter_003_out_0_ready),         //      .ready
+		.in_startofpacket  (avalon_st_adapter_003_out_0_startofpacket), //      .startofpacket
+		.in_endofpacket    (avalon_st_adapter_003_out_0_endofpacket),   //      .endofpacket
+		.in_empty          (avalon_st_adapter_003_out_0_empty),         //      .empty
+		.in_channel        (avalon_st_adapter_003_out_0_channel),       //      .channel
+		.out_data          (doublewidth3_out_data),                     //   out.data
+		.out_valid         (doublewidth3_out_valid),                    //      .valid
+		.out_ready         (doublewidth3_out_ready),                    //      .ready
+		.out_startofpacket (doublewidth3_out_startofpacket),            //      .startofpacket
+		.out_endofpacket   (doublewidth3_out_endofpacket),              //      .endofpacket
+		.out_empty         (doublewidth3_out_empty),                    //      .empty
+		.out_channel       (doublewidth3_out_channel)                   //      .channel
+	);
+
+	eth4to1_eth_in_mux eth_in_mux (
+		.clk               (clk_312_out_clk_clk),             //   clk.clk
+		.reset_n           (~rst_controller_reset_out_reset), // reset.reset_n
+		.out_data          (eth_in_mux_out_data),             //   out.data
+		.out_valid         (eth_in_mux_out_valid),            //      .valid
+		.out_ready         (eth_in_mux_out_ready),            //      .ready
+		.out_startofpacket (eth_in_mux_out_startofpacket),    //      .startofpacket
+		.out_endofpacket   (eth_in_mux_out_endofpacket),      //      .endofpacket
+		.out_empty         (eth_in_mux_out_empty),            //      .empty
+		.out_channel       (eth_in_mux_out_channel),          //      .channel
+		.in0_data          (doublewidth0_out_data),           //   in0.data
+		.in0_valid         (doublewidth0_out_valid),          //      .valid
+		.in0_ready         (doublewidth0_out_ready),          //      .ready
+		.in0_startofpacket (doublewidth0_out_startofpacket),  //      .startofpacket
+		.in0_endofpacket   (doublewidth0_out_endofpacket),    //      .endofpacket
+		.in0_empty         (doublewidth0_out_empty),          //      .empty
+		.in0_channel       (doublewidth0_out_channel),        //      .channel
+		.in1_data          (doublewidth1_out_data),           //   in1.data
+		.in1_valid         (doublewidth1_out_valid),          //      .valid
+		.in1_ready         (doublewidth1_out_ready),          //      .ready
+		.in1_startofpacket (doublewidth1_out_startofpacket),  //      .startofpacket
+		.in1_endofpacket   (doublewidth1_out_endofpacket),    //      .endofpacket
+		.in1_empty         (doublewidth1_out_empty),          //      .empty
+		.in1_channel       (doublewidth1_out_channel),        //      .channel
+		.in2_data          (doublewidth2_out_data),           //   in2.data
+		.in2_valid         (doublewidth2_out_valid),          //      .valid
+		.in2_ready         (doublewidth2_out_ready),          //      .ready
+		.in2_startofpacket (doublewidth2_out_startofpacket),  //      .startofpacket
+		.in2_endofpacket   (doublewidth2_out_endofpacket),    //      .endofpacket
+		.in2_empty         (doublewidth2_out_empty),          //      .empty
+		.in2_channel       (doublewidth2_out_channel),        //      .channel
+		.in3_data          (doublewidth3_out_data),           //   in3.data
+		.in3_valid         (doublewidth3_out_valid),          //      .valid
+		.in3_ready         (doublewidth3_out_ready),          //      .ready
+		.in3_startofpacket (doublewidth3_out_startofpacket),  //      .startofpacket
+		.in3_endofpacket   (doublewidth3_out_endofpacket),    //      .endofpacket
+		.in3_empty         (doublewidth3_out_empty),          //      .empty
+		.in3_channel       (doublewidth3_out_channel)         //      .channel
 	);
 
 	pmem_group_wrap ethpack (
@@ -290,6 +478,25 @@ module eth4to1 (
 		.transmitout_3_eop   (ethpack_transmitout3_endofpacket)           //             .endofpacket
 	);
 
+	regioncontrol #(
+		.REGIONDEFAULT (9'b000000011)
+	) ethpack_control (
+		.clk                     (pcie_coreclkout_clk),                                   //         clock.clk
+		.reset                   (rst_controller_001_reset_out_reset),                    //         reset.reset
+		.avs_enable_address      (mm_interconnect_0_ethpack_control_enable_address),      //        enable.address
+		.avs_enable_write        (mm_interconnect_0_ethpack_control_enable_write),        //              .write
+		.avs_enable_read         (mm_interconnect_0_ethpack_control_enable_read),         //              .read
+		.avs_enable_writedata    (mm_interconnect_0_ethpack_control_enable_writedata),    //              .writedata
+		.avs_enable_readdata     (mm_interconnect_0_ethpack_control_enable_readdata),     //              .readdata
+		.avs_prcontrol_address   (mm_interconnect_0_ethpack_control_prcontrol_address),   //     prcontrol.address
+		.avs_prcontrol_write     (mm_interconnect_0_ethpack_control_prcontrol_write),     //              .write
+		.avs_prcontrol_read      (mm_interconnect_0_ethpack_control_prcontrol_read),      //              .read
+		.avs_prcontrol_writedata (mm_interconnect_0_ethpack_control_prcontrol_writedata), //              .writedata
+		.avs_prcontrol_readdata  (mm_interconnect_0_ethpack_control_prcontrol_readdata),  //              .readdata
+		.coe_region_enable       (ethpack_control_region_enable_export),                  // region_enable.export
+		.coe_region_freeze       (ethpack_control_region_freeze_export)                   // region_freeze.export
+	);
+
 	eth4to1_mac_0 mac_0 (
 		.clk_156_in_clk_clk                     (clk_clk),                                   //                    clk_156_in_clk.clk
 		.clk_312_in_clk_clk                     (clk_312_out_clk_clk),                       //                    clk_312_in_clk.clk
@@ -309,7 +516,7 @@ module eth4to1 (
 		.mac10g_link_fault_status_xgmii_rx_data (),                                          // mac10g_link_fault_status_xgmii_rx.data
 		.mac10g_xgmii_rx_data                   (xgmii_rx_data_0_data),                      //                   mac10g_xgmii_rx.data
 		.mac10g_xgmii_tx_data                   (xgmii_tx_data_0_data),                      //                   mac10g_xgmii_tx.data
-		.rst_in_reset_reset                     (rst_controller_001_reset_out_reset),        //                      rst_in_reset.reset
+		.rst_in_reset_reset                     (rst_controller_002_reset_out_reset),        //                      rst_in_reset.reset
 		.rx_st_fifo_out_data                    (mac_0_rx_st_fifo_out_data),                 //                    rx_st_fifo_out.data
 		.rx_st_fifo_out_valid                   (mac_0_rx_st_fifo_out_valid),                //                                  .valid
 		.rx_st_fifo_out_ready                   (mac_0_rx_st_fifo_out_ready),                //                                  .ready
@@ -345,7 +552,7 @@ module eth4to1 (
 		.mac10g_link_fault_status_xgmii_rx_data (),                                          // mac10g_link_fault_status_xgmii_rx.data
 		.mac10g_xgmii_rx_data                   (xgmii_rx_data_1_data),                      //                   mac10g_xgmii_rx.data
 		.mac10g_xgmii_tx_data                   (xgmii_tx_data_1_data),                      //                   mac10g_xgmii_tx.data
-		.rst_in_reset_reset                     (rst_controller_001_reset_out_reset),        //                      rst_in_reset.reset
+		.rst_in_reset_reset                     (rst_controller_002_reset_out_reset),        //                      rst_in_reset.reset
 		.rx_st_fifo_out_data                    (mac_1_rx_st_fifo_out_data),                 //                    rx_st_fifo_out.data
 		.rx_st_fifo_out_valid                   (mac_1_rx_st_fifo_out_valid),                //                                  .valid
 		.rx_st_fifo_out_ready                   (mac_1_rx_st_fifo_out_ready),                //                                  .ready
@@ -381,7 +588,7 @@ module eth4to1 (
 		.mac10g_link_fault_status_xgmii_rx_data (),                                          // mac10g_link_fault_status_xgmii_rx.data
 		.mac10g_xgmii_rx_data                   (xgmii_rx_data_2_data),                      //                   mac10g_xgmii_rx.data
 		.mac10g_xgmii_tx_data                   (xgmii_tx_data_2_data),                      //                   mac10g_xgmii_tx.data
-		.rst_in_reset_reset                     (rst_controller_001_reset_out_reset),        //                      rst_in_reset.reset
+		.rst_in_reset_reset                     (rst_controller_002_reset_out_reset),        //                      rst_in_reset.reset
 		.rx_st_fifo_out_data                    (mac_2_rx_st_fifo_out_data),                 //                    rx_st_fifo_out.data
 		.rx_st_fifo_out_valid                   (mac_2_rx_st_fifo_out_valid),                //                                  .valid
 		.rx_st_fifo_out_ready                   (mac_2_rx_st_fifo_out_ready),                //                                  .ready
@@ -417,7 +624,7 @@ module eth4to1 (
 		.mac10g_link_fault_status_xgmii_rx_data (),                                          // mac10g_link_fault_status_xgmii_rx.data
 		.mac10g_xgmii_rx_data                   (xgmii_rx_data_3_data),                      //                   mac10g_xgmii_rx.data
 		.mac10g_xgmii_tx_data                   (xgmii_tx_data_3_data),                      //                   mac10g_xgmii_tx.data
-		.rst_in_reset_reset                     (rst_controller_001_reset_out_reset),        //                      rst_in_reset.reset
+		.rst_in_reset_reset                     (rst_controller_002_reset_out_reset),        //                      rst_in_reset.reset
 		.rx_st_fifo_out_data                    (mac_3_rx_st_fifo_out_data),                 //                    rx_st_fifo_out.data
 		.rx_st_fifo_out_valid                   (mac_3_rx_st_fifo_out_valid),                //                                  .valid
 		.rx_st_fifo_out_ready                   (mac_3_rx_st_fifo_out_ready),                //                                  .ready
@@ -434,11 +641,669 @@ module eth4to1 (
 		.tx_st_fifo_in_error                    (avalon_st_adapter_011_out_0_error)          //                                  .error
 	);
 
+	altpcie_sv_hip_avmm_hwtcl #(
+		.lane_mask_hwtcl                          ("x8"),
+		.gen123_lane_rate_mode_hwtcl              ("Gen2 (5.0 Gbps)"),
+		.port_type_hwtcl                          ("Native endpoint"),
+		.pcie_spec_version_hwtcl                  ("2.1"),
+		.pll_refclk_freq_hwtcl                    ("100 MHz"),
+		.set_pld_clk_x1_625MHz_hwtcl              (0),
+		.in_cvp_mode_hwtcl                        (0),
+		.enable_tl_only_sim_hwtcl                 (0),
+		.use_atx_pll_hwtcl                        (0),
+		.enable_power_on_rst_pulse_hwtcl          (0),
+		.enable_pcisigtest_hwtcl                  (0),
+		.bar0_size_mask_hwtcl                     (10),
+		.bar0_io_space_hwtcl                      ("Disabled"),
+		.bar0_64bit_mem_space_hwtcl               ("Enabled"),
+		.bar0_prefetchable_hwtcl                  ("Enabled"),
+		.bar1_size_mask_hwtcl                     (0),
+		.bar1_io_space_hwtcl                      ("Disabled"),
+		.bar1_prefetchable_hwtcl                  ("Disabled"),
+		.bar2_size_mask_hwtcl                     (0),
+		.bar2_io_space_hwtcl                      ("Disabled"),
+		.bar2_64bit_mem_space_hwtcl               ("Enabled"),
+		.bar2_prefetchable_hwtcl                  ("Enabled"),
+		.bar3_size_mask_hwtcl                     (0),
+		.bar3_io_space_hwtcl                      ("Disabled"),
+		.bar3_prefetchable_hwtcl                  ("Disabled"),
+		.bar4_size_mask_hwtcl                     (0),
+		.bar4_io_space_hwtcl                      ("Disabled"),
+		.bar4_64bit_mem_space_hwtcl               ("Disabled"),
+		.bar4_prefetchable_hwtcl                  ("Disabled"),
+		.bar5_size_mask_hwtcl                     (0),
+		.bar5_io_space_hwtcl                      ("Disabled"),
+		.bar5_prefetchable_hwtcl                  ("Disabled"),
+		.vendor_id_hwtcl                          (4466),
+		.device_id_hwtcl                          (57599),
+		.revision_id_hwtcl                        (1),
+		.class_code_hwtcl                         (16711680),
+		.subsystem_vendor_id_hwtcl                (4466),
+		.subsystem_device_id_hwtcl                (57599),
+		.max_payload_size_hwtcl                   (128),
+		.extend_tag_field_hwtcl                   ("32"),
+		.completion_timeout_hwtcl                 ("ABCD"),
+		.enable_completion_timeout_disable_hwtcl  (1),
+		.use_aer_hwtcl                            (0),
+		.ecrc_check_capable_hwtcl                 (0),
+		.ecrc_gen_capable_hwtcl                   (0),
+		.use_crc_forwarding_hwtcl                 (0),
+		.port_link_number_hwtcl                   (1),
+		.dll_active_report_support_hwtcl          (0),
+		.surprise_down_error_support_hwtcl        (0),
+		.slotclkcfg_hwtcl                         (1),
+		.msi_multi_message_capable_hwtcl          ("4"),
+		.msi_64bit_addressing_capable_hwtcl       ("true"),
+		.msi_masking_capable_hwtcl                ("false"),
+		.msi_support_hwtcl                        ("true"),
+		.enable_function_msix_support_hwtcl       (0),
+		.msix_table_size_hwtcl                    (0),
+		.msix_table_offset_hwtcl                  ("0"),
+		.msix_table_bir_hwtcl                     (0),
+		.msix_pba_offset_hwtcl                    ("0"),
+		.msix_pba_bir_hwtcl                       (0),
+		.enable_slot_register_hwtcl               (0),
+		.slot_power_scale_hwtcl                   (0),
+		.slot_power_limit_hwtcl                   (0),
+		.slot_number_hwtcl                        (0),
+		.endpoint_l0_latency_hwtcl                (0),
+		.endpoint_l1_latency_hwtcl                (0),
+		.vsec_id_hwtcl                            (4466),
+		.vsec_rev_hwtcl                           (0),
+		.user_id_hwtcl                            (0),
+		.avmm_width_hwtcl                         (128),
+		.AVALON_ADDR_WIDTH                        (32),
+		.avmm_burst_width_hwtcl                   (6),
+		.CB_PCIE_MODE                             (0),
+		.CB_PCIE_RX_LITE                          (0),
+		.CB_RXM_DATA_WIDTH                        (128),
+		.CG_AVALON_S_ADDR_WIDTH                   (21),
+		.CG_IMPL_CRA_AV_SLAVE_PORT                (1),
+		.CG_ENABLE_ADVANCED_INTERRUPT             (0),
+		.CG_ENABLE_A2P_INTERRUPT                  (0),
+		.CB_A2P_ADDR_MAP_IS_FIXED                 (0),
+		.CB_A2P_ADDR_MAP_NUM_ENTRIES              (2),
+		.BYPASSS_A2P_TRANSLATION                  (0),
+		.a2p_pass_thru_bits                       (20),
+		.ast_width_hwtcl                          ("Avalon-ST 128-bit"),
+		.use_ast_parity                           (0),
+		.millisecond_cycle_count_hwtcl            (248500),
+		.port_width_be_hwtcl                      (16),
+		.port_width_data_hwtcl                    (128),
+		.hip_reconfig_hwtcl                       (0),
+		.expansion_base_address_register_hwtcl    (0),
+		.prefetchable_mem_window_addr_width_hwtcl (0),
+		.bypass_cdc_hwtcl                         ("false"),
+		.enable_rx_buffer_checking_hwtcl          ("false"),
+		.disable_link_x2_support_hwtcl            ("false"),
+		.wrong_device_id_hwtcl                    ("disable"),
+		.data_pack_rx_hwtcl                       ("disable"),
+		.ltssm_1ms_timeout_hwtcl                  ("disable"),
+		.ltssm_freqlocked_check_hwtcl             ("disable"),
+		.deskew_comma_hwtcl                       ("skp_eieos_deskw"),
+		.device_number_hwtcl                      (0),
+		.pipex1_debug_sel_hwtcl                   ("disable"),
+		.pclk_out_sel_hwtcl                       ("pclk"),
+		.no_soft_reset_hwtcl                      ("false"),
+		.maximum_current_hwtcl                    (0),
+		.d1_support_hwtcl                         ("false"),
+		.d2_support_hwtcl                         ("false"),
+		.d0_pme_hwtcl                             ("false"),
+		.d1_pme_hwtcl                             ("false"),
+		.d2_pme_hwtcl                             ("false"),
+		.d3_hot_pme_hwtcl                         ("false"),
+		.d3_cold_pme_hwtcl                        ("false"),
+		.low_priority_vc_hwtcl                    ("single_vc"),
+		.disable_snoop_packet_hwtcl               ("false"),
+		.enable_l1_aspm_hwtcl                     ("false"),
+		.rx_ei_l0s_hwtcl                          (0),
+		.enable_l0s_aspm_hwtcl                    ("false"),
+		.aspm_config_management_hwtcl             ("true"),
+		.l1_exit_latency_sameclock_hwtcl          (0),
+		.l1_exit_latency_diffclock_hwtcl          (0),
+		.hot_plug_support_hwtcl                   (0),
+		.extended_tag_reset_hwtcl                 ("false"),
+		.no_command_completed_hwtcl               ("false"),
+		.interrupt_pin_hwtcl                      ("inta"),
+		.bridge_port_vga_enable_hwtcl             ("false"),
+		.bridge_port_ssid_support_hwtcl           ("false"),
+		.ssvid_hwtcl                              (0),
+		.ssid_hwtcl                               (0),
+		.eie_before_nfts_count_hwtcl              (4),
+		.gen2_diffclock_nfts_count_hwtcl          (255),
+		.gen2_sameclock_nfts_count_hwtcl          (255),
+		.l0_exit_latency_sameclock_hwtcl          (6),
+		.l0_exit_latency_diffclock_hwtcl          (6),
+		.atomic_op_routing_hwtcl                  ("false"),
+		.atomic_op_completer_32bit_hwtcl          ("false"),
+		.atomic_op_completer_64bit_hwtcl          ("false"),
+		.cas_completer_128bit_hwtcl               ("false"),
+		.ltr_mechanism_hwtcl                      ("false"),
+		.tph_completer_hwtcl                      ("false"),
+		.extended_format_field_hwtcl              ("false"),
+		.atomic_malformed_hwtcl                   ("true"),
+		.flr_capability_hwtcl                     ("false"),
+		.enable_adapter_half_rate_mode_hwtcl      ("false"),
+		.vc0_clk_enable_hwtcl                     ("true"),
+		.register_pipe_signals_hwtcl              ("false"),
+		.skp_os_gen3_count_hwtcl                  (0),
+		.tx_cdc_almost_empty_hwtcl                (5),
+		.rx_l0s_count_idl_hwtcl                   (0),
+		.cdc_dummy_insert_limit_hwtcl             (11),
+		.ei_delay_powerdown_count_hwtcl           (10),
+		.skp_os_schedule_count_hwtcl              (0),
+		.fc_init_timer_hwtcl                      (1024),
+		.l01_entry_latency_hwtcl                  (31),
+		.flow_control_update_count_hwtcl          (30),
+		.flow_control_timeout_count_hwtcl         (200),
+		.retry_buffer_last_active_address_hwtcl   (2047),
+		.reserved_debug_hwtcl                     (0),
+		.bypass_clk_switch_hwtcl                  ("true"),
+		.l2_async_logic_hwtcl                     ("disable"),
+		.indicator_hwtcl                          (0),
+		.diffclock_nfts_count_hwtcl               (128),
+		.sameclock_nfts_count_hwtcl               (128),
+		.rx_cdc_almost_full_hwtcl                 (12),
+		.tx_cdc_almost_full_hwtcl                 (11),
+		.credit_buffer_allocation_aux_hwtcl       ("absolute"),
+		.vc0_rx_flow_ctrl_posted_header_hwtcl     (16),
+		.vc0_rx_flow_ctrl_posted_data_hwtcl       (16),
+		.vc0_rx_flow_ctrl_nonposted_header_hwtcl  (16),
+		.vc0_rx_flow_ctrl_nonposted_data_hwtcl    (0),
+		.vc0_rx_flow_ctrl_compl_header_hwtcl      (0),
+		.vc0_rx_flow_ctrl_compl_data_hwtcl        (0),
+		.cpl_spc_header_hwtcl                     (195),
+		.cpl_spc_data_hwtcl                       (781),
+		.gen3_rxfreqlock_counter_hwtcl            (0),
+		.gen3_skip_ph2_ph3_hwtcl                  (0),
+		.g3_bypass_equlz_hwtcl                    (0),
+		.cvp_data_compressed_hwtcl                ("false"),
+		.cvp_data_encrypted_hwtcl                 ("false"),
+		.cvp_mode_reset_hwtcl                     ("false"),
+		.cvp_clk_reset_hwtcl                      ("false"),
+		.cseb_cpl_status_during_cvp_hwtcl         ("config_retry_status"),
+		.core_clk_sel_hwtcl                       ("pld_clk"),
+		.cvp_rate_sel_hwtcl                       ("full_rate"),
+		.g3_dis_rx_use_prst_hwtcl                 ("true"),
+		.g3_dis_rx_use_prst_ep_hwtcl              ("true"),
+		.deemphasis_enable_hwtcl                  ("false"),
+		.reconfig_to_xcvr_width                   (700),
+		.reconfig_from_xcvr_width                 (460),
+		.single_rx_detect_hwtcl                   (0),
+		.hip_hard_reset_hwtcl                     (0),
+		.use_cvp_update_core_pof_hwtcl            (0),
+		.pcie_inspector_hwtcl                     (0),
+		.tlp_inspector_hwtcl                      (0),
+		.tlp_inspector_use_signal_probe_hwtcl     (0),
+		.tlp_insp_trg_dw0_hwtcl                   (2049),
+		.tlp_insp_trg_dw1_hwtcl                   (0),
+		.tlp_insp_trg_dw2_hwtcl                   (0),
+		.tlp_insp_trg_dw3_hwtcl                   (0),
+		.hwtcl_override_g2_txvod                  (1),
+		.rpre_emph_a_val_hwtcl                    (9),
+		.rpre_emph_b_val_hwtcl                    (0),
+		.rpre_emph_c_val_hwtcl                    (16),
+		.rpre_emph_d_val_hwtcl                    (13),
+		.rpre_emph_e_val_hwtcl                    (5),
+		.rvod_sel_a_val_hwtcl                     (42),
+		.rvod_sel_b_val_hwtcl                     (38),
+		.rvod_sel_c_val_hwtcl                     (38),
+		.rvod_sel_d_val_hwtcl                     (43),
+		.rvod_sel_e_val_hwtcl                     (15)
+	) pcie (
+		.coreclkout           (pcie_coreclkout_clk),                             //          coreclkout.clk
+		.refclk               (pcie_clk_in_clk_clk),                             //              refclk.clk
+		.npor                 (pcie_npor_npor),                                  //                npor.npor
+		.pin_perst            (pcie_npor_pin_perst),                             //                    .pin_perst
+		.reset_status         (pcie_nreset_status_reset),                        //       nreset_status.reset_n
+		.RxmAddress_0_o       (pcie_rxm_bar0_address),                           //            Rxm_BAR0.address
+		.RxmRead_0_o          (pcie_rxm_bar0_read),                              //                    .read
+		.RxmWaitRequest_0_i   (pcie_rxm_bar0_waitrequest),                       //                    .waitrequest
+		.RxmWrite_0_o         (pcie_rxm_bar0_write),                             //                    .write
+		.RxmReadDataValid_0_i (pcie_rxm_bar0_readdatavalid),                     //                    .readdatavalid
+		.RxmReadData_0_i      (pcie_rxm_bar0_readdata),                          //                    .readdata
+		.RxmWriteData_0_o     (pcie_rxm_bar0_writedata),                         //                    .writedata
+		.RxmBurstCount_0_o    (pcie_rxm_bar0_burstcount),                        //                    .burstcount
+		.RxmByteEnable_0_o    (pcie_rxm_bar0_byteenable),                        //                    .byteenable
+		.RxmAddress_2_o       (),                                                //            Rxm_BAR2.address
+		.RxmRead_2_o          (),                                                //                    .read
+		.RxmWaitRequest_2_i   (),                                                //                    .waitrequest
+		.RxmWrite_2_o         (),                                                //                    .write
+		.RxmReadDataValid_2_i (),                                                //                    .readdatavalid
+		.RxmReadData_2_i      (),                                                //                    .readdata
+		.RxmWriteData_2_o     (),                                                //                    .writedata
+		.RxmBurstCount_2_o    (),                                                //                    .burstcount
+		.RxmByteEnable_2_o    (),                                                //                    .byteenable
+		.RxmIrq_i             (pcie_rxmirq_irq),                                 //              RxmIrq.irq
+		.derr_cor_ext_rcv     (pcie_hip_status_derr_cor_ext_rcv),                //          hip_status.derr_cor_ext_rcv
+		.derr_cor_ext_rpl     (pcie_hip_status_derr_cor_ext_rpl),                //                    .derr_cor_ext_rpl
+		.derr_rpl             (pcie_hip_status_derr_rpl),                        //                    .derr_rpl
+		.dlup                 (pcie_hip_status_dlup),                            //                    .dlup
+		.dlup_exit            (pcie_hip_status_dlup_exit),                       //                    .dlup_exit
+		.ev128ns              (pcie_hip_status_ev128ns),                         //                    .ev128ns
+		.ev1us                (pcie_hip_status_ev1us),                           //                    .ev1us
+		.hotrst_exit          (pcie_hip_status_hotrst_exit),                     //                    .hotrst_exit
+		.int_status           (pcie_hip_status_int_status),                      //                    .int_status
+		.l2_exit              (pcie_hip_status_l2_exit),                         //                    .l2_exit
+		.lane_act             (pcie_hip_status_lane_act),                        //                    .lane_act
+		.ltssmstate           (pcie_hip_status_ltssmstate),                      //                    .ltssmstate
+		.rx_par_err           (pcie_hip_status_rx_par_err),                      //                    .rx_par_err
+		.tx_par_err           (pcie_hip_status_tx_par_err),                      //                    .tx_par_err
+		.cfg_par_err          (pcie_hip_status_cfg_par_err),                     //                    .cfg_par_err
+		.ko_cpl_spc_header    (pcie_hip_status_ko_cpl_spc_header),               //                    .ko_cpl_spc_header
+		.ko_cpl_spc_data      (pcie_hip_status_ko_cpl_spc_data),                 //                    .ko_cpl_spc_data
+		.currentspeed         (pcie_hip_currentspeed_currentspeed),              //    hip_currentspeed.currentspeed
+		.reconfig_to_xcvr     (xcvr_reconfig_reconfig_to_xcvr_reconfig_to_xcvr), //    reconfig_to_xcvr.reconfig_to_xcvr
+		.reconfig_from_xcvr   (pcie_reconfig_from_xcvr_reconfig_from_xcvr),      //  reconfig_from_xcvr.reconfig_from_xcvr
+		.fixedclk_locked      (),                                                // reconfig_clk_locked.fixedclk_locked
+		.rx_in0               (pcie_hip_serial_rx_in0),                          //          hip_serial.rx_in0
+		.rx_in1               (pcie_hip_serial_rx_in1),                          //                    .rx_in1
+		.rx_in2               (pcie_hip_serial_rx_in2),                          //                    .rx_in2
+		.rx_in3               (pcie_hip_serial_rx_in3),                          //                    .rx_in3
+		.rx_in4               (pcie_hip_serial_rx_in4),                          //                    .rx_in4
+		.rx_in5               (pcie_hip_serial_rx_in5),                          //                    .rx_in5
+		.rx_in6               (pcie_hip_serial_rx_in6),                          //                    .rx_in6
+		.rx_in7               (pcie_hip_serial_rx_in7),                          //                    .rx_in7
+		.tx_out0              (pcie_hip_serial_tx_out0),                         //                    .tx_out0
+		.tx_out1              (pcie_hip_serial_tx_out1),                         //                    .tx_out1
+		.tx_out2              (pcie_hip_serial_tx_out2),                         //                    .tx_out2
+		.tx_out3              (pcie_hip_serial_tx_out3),                         //                    .tx_out3
+		.tx_out4              (pcie_hip_serial_tx_out4),                         //                    .tx_out4
+		.tx_out5              (pcie_hip_serial_tx_out5),                         //                    .tx_out5
+		.tx_out6              (pcie_hip_serial_tx_out6),                         //                    .tx_out6
+		.tx_out7              (pcie_hip_serial_tx_out7),                         //                    .tx_out7
+		.sim_pipe_pclk_in     (),                                                //            hip_pipe.sim_pipe_pclk_in
+		.sim_pipe_rate        (),                                                //                    .sim_pipe_rate
+		.sim_ltssmstate       (),                                                //                    .sim_ltssmstate
+		.eidleinfersel0       (),                                                //                    .eidleinfersel0
+		.eidleinfersel1       (),                                                //                    .eidleinfersel1
+		.eidleinfersel2       (),                                                //                    .eidleinfersel2
+		.eidleinfersel3       (),                                                //                    .eidleinfersel3
+		.eidleinfersel4       (),                                                //                    .eidleinfersel4
+		.eidleinfersel5       (),                                                //                    .eidleinfersel5
+		.eidleinfersel6       (),                                                //                    .eidleinfersel6
+		.eidleinfersel7       (),                                                //                    .eidleinfersel7
+		.powerdown0           (),                                                //                    .powerdown0
+		.powerdown1           (),                                                //                    .powerdown1
+		.powerdown2           (),                                                //                    .powerdown2
+		.powerdown3           (),                                                //                    .powerdown3
+		.powerdown4           (),                                                //                    .powerdown4
+		.powerdown5           (),                                                //                    .powerdown5
+		.powerdown6           (),                                                //                    .powerdown6
+		.powerdown7           (),                                                //                    .powerdown7
+		.rxpolarity0          (),                                                //                    .rxpolarity0
+		.rxpolarity1          (),                                                //                    .rxpolarity1
+		.rxpolarity2          (),                                                //                    .rxpolarity2
+		.rxpolarity3          (),                                                //                    .rxpolarity3
+		.rxpolarity4          (),                                                //                    .rxpolarity4
+		.rxpolarity5          (),                                                //                    .rxpolarity5
+		.rxpolarity6          (),                                                //                    .rxpolarity6
+		.rxpolarity7          (),                                                //                    .rxpolarity7
+		.txcompl0             (),                                                //                    .txcompl0
+		.txcompl1             (),                                                //                    .txcompl1
+		.txcompl2             (),                                                //                    .txcompl2
+		.txcompl3             (),                                                //                    .txcompl3
+		.txcompl4             (),                                                //                    .txcompl4
+		.txcompl5             (),                                                //                    .txcompl5
+		.txcompl6             (),                                                //                    .txcompl6
+		.txcompl7             (),                                                //                    .txcompl7
+		.txdata0              (),                                                //                    .txdata0
+		.txdata1              (),                                                //                    .txdata1
+		.txdata2              (),                                                //                    .txdata2
+		.txdata3              (),                                                //                    .txdata3
+		.txdata4              (),                                                //                    .txdata4
+		.txdata5              (),                                                //                    .txdata5
+		.txdata6              (),                                                //                    .txdata6
+		.txdata7              (),                                                //                    .txdata7
+		.txdatak0             (),                                                //                    .txdatak0
+		.txdatak1             (),                                                //                    .txdatak1
+		.txdatak2             (),                                                //                    .txdatak2
+		.txdatak3             (),                                                //                    .txdatak3
+		.txdatak4             (),                                                //                    .txdatak4
+		.txdatak5             (),                                                //                    .txdatak5
+		.txdatak6             (),                                                //                    .txdatak6
+		.txdatak7             (),                                                //                    .txdatak7
+		.txdetectrx0          (),                                                //                    .txdetectrx0
+		.txdetectrx1          (),                                                //                    .txdetectrx1
+		.txdetectrx2          (),                                                //                    .txdetectrx2
+		.txdetectrx3          (),                                                //                    .txdetectrx3
+		.txdetectrx4          (),                                                //                    .txdetectrx4
+		.txdetectrx5          (),                                                //                    .txdetectrx5
+		.txdetectrx6          (),                                                //                    .txdetectrx6
+		.txdetectrx7          (),                                                //                    .txdetectrx7
+		.txelecidle0          (),                                                //                    .txelecidle0
+		.txelecidle1          (),                                                //                    .txelecidle1
+		.txelecidle2          (),                                                //                    .txelecidle2
+		.txelecidle3          (),                                                //                    .txelecidle3
+		.txelecidle4          (),                                                //                    .txelecidle4
+		.txelecidle5          (),                                                //                    .txelecidle5
+		.txelecidle6          (),                                                //                    .txelecidle6
+		.txelecidle7          (),                                                //                    .txelecidle7
+		.txdeemph0            (),                                                //                    .txdeemph0
+		.txdeemph1            (),                                                //                    .txdeemph1
+		.txdeemph2            (),                                                //                    .txdeemph2
+		.txdeemph3            (),                                                //                    .txdeemph3
+		.txdeemph4            (),                                                //                    .txdeemph4
+		.txdeemph5            (),                                                //                    .txdeemph5
+		.txdeemph6            (),                                                //                    .txdeemph6
+		.txdeemph7            (),                                                //                    .txdeemph7
+		.txmargin0            (),                                                //                    .txmargin0
+		.txmargin1            (),                                                //                    .txmargin1
+		.txmargin2            (),                                                //                    .txmargin2
+		.txmargin3            (),                                                //                    .txmargin3
+		.txmargin4            (),                                                //                    .txmargin4
+		.txmargin5            (),                                                //                    .txmargin5
+		.txmargin6            (),                                                //                    .txmargin6
+		.txmargin7            (),                                                //                    .txmargin7
+		.txswing0             (),                                                //                    .txswing0
+		.txswing1             (),                                                //                    .txswing1
+		.txswing2             (),                                                //                    .txswing2
+		.txswing3             (),                                                //                    .txswing3
+		.txswing4             (),                                                //                    .txswing4
+		.txswing5             (),                                                //                    .txswing5
+		.txswing6             (),                                                //                    .txswing6
+		.txswing7             (),                                                //                    .txswing7
+		.phystatus0           (),                                                //                    .phystatus0
+		.phystatus1           (),                                                //                    .phystatus1
+		.phystatus2           (),                                                //                    .phystatus2
+		.phystatus3           (),                                                //                    .phystatus3
+		.phystatus4           (),                                                //                    .phystatus4
+		.phystatus5           (),                                                //                    .phystatus5
+		.phystatus6           (),                                                //                    .phystatus6
+		.phystatus7           (),                                                //                    .phystatus7
+		.rxdata0              (),                                                //                    .rxdata0
+		.rxdata1              (),                                                //                    .rxdata1
+		.rxdata2              (),                                                //                    .rxdata2
+		.rxdata3              (),                                                //                    .rxdata3
+		.rxdata4              (),                                                //                    .rxdata4
+		.rxdata5              (),                                                //                    .rxdata5
+		.rxdata6              (),                                                //                    .rxdata6
+		.rxdata7              (),                                                //                    .rxdata7
+		.rxdatak0             (),                                                //                    .rxdatak0
+		.rxdatak1             (),                                                //                    .rxdatak1
+		.rxdatak2             (),                                                //                    .rxdatak2
+		.rxdatak3             (),                                                //                    .rxdatak3
+		.rxdatak4             (),                                                //                    .rxdatak4
+		.rxdatak5             (),                                                //                    .rxdatak5
+		.rxdatak6             (),                                                //                    .rxdatak6
+		.rxdatak7             (),                                                //                    .rxdatak7
+		.rxelecidle0          (),                                                //                    .rxelecidle0
+		.rxelecidle1          (),                                                //                    .rxelecidle1
+		.rxelecidle2          (),                                                //                    .rxelecidle2
+		.rxelecidle3          (),                                                //                    .rxelecidle3
+		.rxelecidle4          (),                                                //                    .rxelecidle4
+		.rxelecidle5          (),                                                //                    .rxelecidle5
+		.rxelecidle6          (),                                                //                    .rxelecidle6
+		.rxelecidle7          (),                                                //                    .rxelecidle7
+		.rxstatus0            (),                                                //                    .rxstatus0
+		.rxstatus1            (),                                                //                    .rxstatus1
+		.rxstatus2            (),                                                //                    .rxstatus2
+		.rxstatus3            (),                                                //                    .rxstatus3
+		.rxstatus4            (),                                                //                    .rxstatus4
+		.rxstatus5            (),                                                //                    .rxstatus5
+		.rxstatus6            (),                                                //                    .rxstatus6
+		.rxstatus7            (),                                                //                    .rxstatus7
+		.rxvalid0             (),                                                //                    .rxvalid0
+		.rxvalid1             (),                                                //                    .rxvalid1
+		.rxvalid2             (),                                                //                    .rxvalid2
+		.rxvalid3             (),                                                //                    .rxvalid3
+		.rxvalid4             (),                                                //                    .rxvalid4
+		.rxvalid5             (),                                                //                    .rxvalid5
+		.rxvalid6             (),                                                //                    .rxvalid6
+		.rxvalid7             (),                                                //                    .rxvalid7
+		.test_in              (),                                                //            hip_ctrl.test_in
+		.simu_mode_pipe       (),                                                //                    .simu_mode_pipe
+		.TxsChipSelect_i      (),                                                //                 Txs.chipselect
+		.TxsByteEnable_i      (),                                                //                    .byteenable
+		.TxsReadData_o        (),                                                //                    .readdata
+		.TxsWriteData_i       (),                                                //                    .writedata
+		.TxsRead_i            (),                                                //                    .read
+		.TxsWrite_i           (),                                                //                    .write
+		.TxsBurstCount_i      (),                                                //                    .burstcount
+		.TxsReadDataValid_o   (),                                                //                    .readdatavalid
+		.TxsWaitRequest_o     (),                                                //                    .waitrequest
+		.TxsAddress_i         (),                                                //                    .address
+		.CraChipSelect_i      (),                                                //                 Cra.chipselect
+		.CraAddress_i         (),                                                //                    .address
+		.CraByteEnable_i      (),                                                //                    .byteenable
+		.CraRead              (),                                                //                    .read
+		.CraReadData_o        (),                                                //                    .readdata
+		.CraWrite             (),                                                //                    .write
+		.CraWriteData_i       (),                                                //                    .writedata
+		.CraWaitRequest_o     (),                                                //                    .waitrequest
+		.CraIrq_o             (),                                                //              CraIrq.irq
+		.rxdataskip0          (1'b0),                                            //         (terminated)
+		.rxdataskip1          (1'b0),                                            //         (terminated)
+		.rxdataskip2          (1'b0),                                            //         (terminated)
+		.rxdataskip3          (1'b0),                                            //         (terminated)
+		.rxdataskip4          (1'b0),                                            //         (terminated)
+		.rxdataskip5          (1'b0),                                            //         (terminated)
+		.rxdataskip6          (1'b0),                                            //         (terminated)
+		.rxdataskip7          (1'b0),                                            //         (terminated)
+		.rxblkst0             (1'b0),                                            //         (terminated)
+		.rxblkst1             (1'b0),                                            //         (terminated)
+		.rxblkst2             (1'b0),                                            //         (terminated)
+		.rxblkst3             (1'b0),                                            //         (terminated)
+		.rxblkst4             (1'b0),                                            //         (terminated)
+		.rxblkst5             (1'b0),                                            //         (terminated)
+		.rxblkst6             (1'b0),                                            //         (terminated)
+		.rxblkst7             (1'b0),                                            //         (terminated)
+		.rxsynchd0            (2'b00),                                           //         (terminated)
+		.rxsynchd1            (2'b00),                                           //         (terminated)
+		.rxsynchd2            (2'b00),                                           //         (terminated)
+		.rxsynchd3            (2'b00),                                           //         (terminated)
+		.rxsynchd4            (2'b00),                                           //         (terminated)
+		.rxsynchd5            (2'b00),                                           //         (terminated)
+		.rxsynchd6            (2'b00),                                           //         (terminated)
+		.rxsynchd7            (2'b00),                                           //         (terminated)
+		.rxfreqlocked0        (1'b0),                                            //         (terminated)
+		.rxfreqlocked1        (1'b0),                                            //         (terminated)
+		.rxfreqlocked2        (1'b0),                                            //         (terminated)
+		.rxfreqlocked3        (1'b0),                                            //         (terminated)
+		.rxfreqlocked4        (1'b0),                                            //         (terminated)
+		.rxfreqlocked5        (1'b0),                                            //         (terminated)
+		.rxfreqlocked6        (1'b0),                                            //         (terminated)
+		.rxfreqlocked7        (1'b0),                                            //         (terminated)
+		.currentcoeff0        (),                                                //         (terminated)
+		.currentcoeff1        (),                                                //         (terminated)
+		.currentcoeff2        (),                                                //         (terminated)
+		.currentcoeff3        (),                                                //         (terminated)
+		.currentcoeff4        (),                                                //         (terminated)
+		.currentcoeff5        (),                                                //         (terminated)
+		.currentcoeff6        (),                                                //         (terminated)
+		.currentcoeff7        (),                                                //         (terminated)
+		.currentrxpreset0     (),                                                //         (terminated)
+		.currentrxpreset1     (),                                                //         (terminated)
+		.currentrxpreset2     (),                                                //         (terminated)
+		.currentrxpreset3     (),                                                //         (terminated)
+		.currentrxpreset4     (),                                                //         (terminated)
+		.currentrxpreset5     (),                                                //         (terminated)
+		.currentrxpreset6     (),                                                //         (terminated)
+		.currentrxpreset7     (),                                                //         (terminated)
+		.txsynchd0            (),                                                //         (terminated)
+		.txsynchd1            (),                                                //         (terminated)
+		.txsynchd2            (),                                                //         (terminated)
+		.txsynchd3            (),                                                //         (terminated)
+		.txsynchd4            (),                                                //         (terminated)
+		.txsynchd5            (),                                                //         (terminated)
+		.txsynchd6            (),                                                //         (terminated)
+		.txsynchd7            (),                                                //         (terminated)
+		.txblkst0             (),                                                //         (terminated)
+		.txblkst1             (),                                                //         (terminated)
+		.txblkst2             (),                                                //         (terminated)
+		.txblkst3             (),                                                //         (terminated)
+		.txblkst4             (),                                                //         (terminated)
+		.txblkst5             (),                                                //         (terminated)
+		.txblkst6             (),                                                //         (terminated)
+		.txblkst7             ()                                                 //         (terminated)
+	);
+
+	altpcie_reconfig_driver #(
+		.INTENDED_DEVICE_FAMILY        ("Stratix V"),
+		.gen123_lane_rate_mode_hwtcl   ("Gen3 (8.0 Gbps)"),
+		.number_of_reconfig_interfaces (11)
+	) pcie_reconfig_drvr (
+		.reconfig_xcvr_clk         (clk_100_clk),                                  // reconfig_xcvr_clk.clk
+		.reconfig_xcvr_rst         (rst_controller_003_reset_out_reset),           // reconfig_xcvr_rst.reset
+		.reconfig_mgmt_address     (pcie_reconfig_drvr_reconfig_mgmt_address),     //     reconfig_mgmt.address
+		.reconfig_mgmt_read        (pcie_reconfig_drvr_reconfig_mgmt_read),        //                  .read
+		.reconfig_mgmt_readdata    (pcie_reconfig_drvr_reconfig_mgmt_readdata),    //                  .readdata
+		.reconfig_mgmt_waitrequest (pcie_reconfig_drvr_reconfig_mgmt_waitrequest), //                  .waitrequest
+		.reconfig_mgmt_write       (pcie_reconfig_drvr_reconfig_mgmt_write),       //                  .write
+		.reconfig_mgmt_writedata   (pcie_reconfig_drvr_reconfig_mgmt_writedata),   //                  .writedata
+		.currentspeed              (pcie_hip_currentspeed_currentspeed),           //  hip_currentspeed.currentspeed
+		.reconfig_busy             (xcvr_reconfig_reconfig_busy_reconfig_busy),    //     reconfig_busy.reconfig_busy
+		.pld_clk                   (clk_100_clk),                                  //           pld_clk.clk
+		.derr_cor_ext_rcv_drv      (pcie_hip_status_derr_cor_ext_rcv),             //    hip_status_drv.derr_cor_ext_rcv
+		.derr_cor_ext_rpl_drv      (pcie_hip_status_derr_cor_ext_rpl),             //                  .derr_cor_ext_rpl
+		.derr_rpl_drv              (pcie_hip_status_derr_rpl),                     //                  .derr_rpl
+		.dlup_exit_drv             (pcie_hip_status_dlup_exit),                    //                  .dlup_exit
+		.ev128ns_drv               (pcie_hip_status_ev128ns),                      //                  .ev128ns
+		.ev1us_drv                 (pcie_hip_status_ev1us),                        //                  .ev1us
+		.hotrst_exit_drv           (pcie_hip_status_hotrst_exit),                  //                  .hotrst_exit
+		.int_status_drv            (pcie_hip_status_int_status),                   //                  .int_status
+		.l2_exit_drv               (pcie_hip_status_l2_exit),                      //                  .l2_exit
+		.lane_act_drv              (pcie_hip_status_lane_act),                     //                  .lane_act
+		.ltssmstate_drv            (pcie_hip_status_ltssmstate),                   //                  .ltssmstate
+		.dlup_drv                  (pcie_hip_status_dlup),                         //                  .dlup
+		.rx_par_err_drv            (pcie_hip_status_rx_par_err),                   //                  .rx_par_err
+		.tx_par_err_drv            (pcie_hip_status_tx_par_err),                   //                  .tx_par_err
+		.cfg_par_err_drv           (pcie_hip_status_cfg_par_err),                  //                  .cfg_par_err
+		.ko_cpl_spc_header_drv     (pcie_hip_status_ko_cpl_spc_header),            //                  .ko_cpl_spc_header
+		.ko_cpl_spc_data_drv       (pcie_hip_status_ko_cpl_spc_data),              //                  .ko_cpl_spc_data
+		.cal_busy_in               ()                                              //       (terminated)
+	);
+
 	eth4to1_pll_0 pll_0 (
 		.refclk   (clk_clk),             //  refclk.clk
 		.rst      (~reset_reset_n),      //   reset.reset
-		.outclk_0 (clk_312_out_clk_clk), // outclk0.clk
+		.outclk_0 (),                    // outclk0.clk
+		.outclk_1 (clk_312_out_clk_clk), // outclk1.clk
 		.locked   ()                     // (terminated)
+	);
+
+	eth4to1_pll_1 pll_1 (
+		.refclk   (clk_clk),           //  refclk.clk
+		.rst      (~reset_reset_n),    //   reset.reset
+		.outclk_0 (pll_1_outclk0_clk), // outclk0.clk
+		.locked   ()                   // (terminated)
+	);
+
+	alt_pr #(
+		.PR_INTERNAL_HOST              (1),
+		.ENABLE_JTAG                   (1),
+		.ENABLE_AVMM_SLAVE             (1),
+		.ENABLE_INTERRUPT              (0),
+		.ENABLE_PRPOF_ID_CHECK         (1),
+		.EXT_HOST_PRPOF_ID             (0),
+		.EXT_HOST_TARGET_DEVICE_FAMILY ("Stratix V"),
+		.DATA_WIDTH_INDEX              (32),
+		.CB_DATA_WIDTH                 (16),
+		.ENABLE_DATA_PACKING           (1),
+		.CDRATIO                       (1),
+		.EDCRC_OSC_DIVIDER             (1),
+		.ENABLE_ENHANCED_DECOMPRESSION (0),
+		.INSTANTIATE_PR_BLOCK          (1),
+		.INSTANTIATE_CRC_BLOCK         (1),
+		.DEVICE_FAMILY                 ("Stratix V")
+	) pr (
+		.clk                    (pll_1_outclk0_clk),                           //        clk.clk
+		.nreset                 (~rst_controller_004_reset_out_reset),         //     nreset.reset_n
+		.freeze                 (pr_freeze_freeze),                            //     freeze.freeze
+		.avmm_slave_address     (mm_interconnect_0_pr_avmm_slave_address),     // avmm_slave.address
+		.avmm_slave_read        (mm_interconnect_0_pr_avmm_slave_read),        //           .read
+		.avmm_slave_writedata   (mm_interconnect_0_pr_avmm_slave_writedata),   //           .writedata
+		.avmm_slave_write       (mm_interconnect_0_pr_avmm_slave_write),       //           .write
+		.avmm_slave_readdata    (mm_interconnect_0_pr_avmm_slave_readdata),    //           .readdata
+		.avmm_slave_waitrequest (mm_interconnect_0_pr_avmm_slave_waitrequest), //           .waitrequest
+		.pr_start               (1'b0),                                        // (terminated)
+		.double_pr              (1'b0),                                        // (terminated)
+		.status                 (),                                            // (terminated)
+		.pr_ready_pin           (1'b0),                                        // (terminated)
+		.pr_done_pin            (1'b0),                                        // (terminated)
+		.pr_error_pin           (1'b0),                                        // (terminated)
+		.crc_error_pin          (1'b0),                                        // (terminated)
+		.pr_request_pin         (),                                            // (terminated)
+		.pr_clk_pin             (),                                            // (terminated)
+		.pr_data_pin            (),                                            // (terminated)
+		.data                   (32'b00000000000000000000000000000000),        // (terminated)
+		.data_valid             (1'b0),                                        // (terminated)
+		.data_ready             (),                                            // (terminated)
+		.irq                    ()                                             // (terminated)
+	);
+
+	alt_xcvr_reconfig #(
+		.device_family                 ("Stratix V"),
+		.number_of_reconfig_interfaces (10),
+		.enable_offset                 (1),
+		.enable_lc                     (1),
+		.enable_dcd                    (0),
+		.enable_dcd_power_up           (1),
+		.enable_analog                 (1),
+		.enable_eyemon                 (0),
+		.enable_ber                    (0),
+		.enable_dfe                    (0),
+		.enable_adce                   (0),
+		.enable_mif                    (0),
+		.enable_pll                    (0)
+	) xcvr_reconfig (
+		.reconfig_busy             (xcvr_reconfig_reconfig_busy_reconfig_busy),       //      reconfig_busy.reconfig_busy
+		.mgmt_clk_clk              (clk_100_clk),                                     //       mgmt_clk_clk.clk
+		.mgmt_rst_reset            (rst_controller_003_reset_out_reset),              //     mgmt_rst_reset.reset
+		.reconfig_mgmt_address     (pcie_reconfig_drvr_reconfig_mgmt_address),        //      reconfig_mgmt.address
+		.reconfig_mgmt_read        (pcie_reconfig_drvr_reconfig_mgmt_read),           //                   .read
+		.reconfig_mgmt_readdata    (pcie_reconfig_drvr_reconfig_mgmt_readdata),       //                   .readdata
+		.reconfig_mgmt_waitrequest (pcie_reconfig_drvr_reconfig_mgmt_waitrequest),    //                   .waitrequest
+		.reconfig_mgmt_write       (pcie_reconfig_drvr_reconfig_mgmt_write),          //                   .write
+		.reconfig_mgmt_writedata   (pcie_reconfig_drvr_reconfig_mgmt_writedata),      //                   .writedata
+		.reconfig_to_xcvr          (xcvr_reconfig_reconfig_to_xcvr_reconfig_to_xcvr), //   reconfig_to_xcvr.reconfig_to_xcvr
+		.reconfig_from_xcvr        (pcie_reconfig_from_xcvr_reconfig_from_xcvr),      // reconfig_from_xcvr.reconfig_from_xcvr
+		.tx_cal_busy               (),                                                //        (terminated)
+		.rx_cal_busy               (),                                                //        (terminated)
+		.cal_busy_in               (1'b0),                                            //        (terminated)
+		.reconfig_mif_address      (),                                                //        (terminated)
+		.reconfig_mif_read         (),                                                //        (terminated)
+		.reconfig_mif_readdata     (16'b0000000000000000),                            //        (terminated)
+		.reconfig_mif_waitrequest  (1'b0)                                             //        (terminated)
+	);
+
+	eth4to1_mm_interconnect_0 mm_interconnect_0 (
+		.pcie_coreclkout_clk                                        (pcie_coreclkout_clk),                                   //                                      pcie_coreclkout.clk
+		.pll_1_outclk0_clk                                          (pll_1_outclk0_clk),                                     //                                        pll_1_outclk0.clk
+		.ethpack_control_reset_reset_bridge_in_reset_reset          (rst_controller_001_reset_out_reset),                    //          ethpack_control_reset_reset_bridge_in_reset.reset
+		.pcie_Rxm_BAR0_translator_reset_reset_bridge_in_reset_reset (rst_controller_005_reset_out_reset),                    // pcie_Rxm_BAR0_translator_reset_reset_bridge_in_reset.reset
+		.pr_nreset_reset_bridge_in_reset_reset                      (rst_controller_004_reset_out_reset),                    //                      pr_nreset_reset_bridge_in_reset.reset
+		.pcie_Rxm_BAR0_address                                      (pcie_rxm_bar0_address),                                 //                                        pcie_Rxm_BAR0.address
+		.pcie_Rxm_BAR0_waitrequest                                  (pcie_rxm_bar0_waitrequest),                             //                                                     .waitrequest
+		.pcie_Rxm_BAR0_burstcount                                   (pcie_rxm_bar0_burstcount),                              //                                                     .burstcount
+		.pcie_Rxm_BAR0_byteenable                                   (pcie_rxm_bar0_byteenable),                              //                                                     .byteenable
+		.pcie_Rxm_BAR0_read                                         (pcie_rxm_bar0_read),                                    //                                                     .read
+		.pcie_Rxm_BAR0_readdata                                     (pcie_rxm_bar0_readdata),                                //                                                     .readdata
+		.pcie_Rxm_BAR0_readdatavalid                                (pcie_rxm_bar0_readdatavalid),                           //                                                     .readdatavalid
+		.pcie_Rxm_BAR0_write                                        (pcie_rxm_bar0_write),                                   //                                                     .write
+		.pcie_Rxm_BAR0_writedata                                    (pcie_rxm_bar0_writedata),                               //                                                     .writedata
+		.ethpack_control_enable_address                             (mm_interconnect_0_ethpack_control_enable_address),      //                               ethpack_control_enable.address
+		.ethpack_control_enable_write                               (mm_interconnect_0_ethpack_control_enable_write),        //                                                     .write
+		.ethpack_control_enable_read                                (mm_interconnect_0_ethpack_control_enable_read),         //                                                     .read
+		.ethpack_control_enable_readdata                            (mm_interconnect_0_ethpack_control_enable_readdata),     //                                                     .readdata
+		.ethpack_control_enable_writedata                           (mm_interconnect_0_ethpack_control_enable_writedata),    //                                                     .writedata
+		.ethpack_control_prcontrol_address                          (mm_interconnect_0_ethpack_control_prcontrol_address),   //                            ethpack_control_prcontrol.address
+		.ethpack_control_prcontrol_write                            (mm_interconnect_0_ethpack_control_prcontrol_write),     //                                                     .write
+		.ethpack_control_prcontrol_read                             (mm_interconnect_0_ethpack_control_prcontrol_read),      //                                                     .read
+		.ethpack_control_prcontrol_readdata                         (mm_interconnect_0_ethpack_control_prcontrol_readdata),  //                                                     .readdata
+		.ethpack_control_prcontrol_writedata                        (mm_interconnect_0_ethpack_control_prcontrol_writedata), //                                                     .writedata
+		.pr_avmm_slave_address                                      (mm_interconnect_0_pr_avmm_slave_address),               //                                        pr_avmm_slave.address
+		.pr_avmm_slave_write                                        (mm_interconnect_0_pr_avmm_slave_write),                 //                                                     .write
+		.pr_avmm_slave_read                                         (mm_interconnect_0_pr_avmm_slave_read),                  //                                                     .read
+		.pr_avmm_slave_readdata                                     (mm_interconnect_0_pr_avmm_slave_readdata),              //                                                     .readdata
+		.pr_avmm_slave_writedata                                    (mm_interconnect_0_pr_avmm_slave_writedata),             //                                                     .writedata
+		.pr_avmm_slave_waitrequest                                  (mm_interconnect_0_pr_avmm_slave_waitrequest)            //                                                     .waitrequest
+	);
+
+	eth4to1_irq_mapper irq_mapper (
+		.clk        (pcie_coreclkout_clk),                //       clk.clk
+		.reset      (rst_controller_005_reset_out_reset), // clk_reset.reset
+		.sender_irq (pcie_rxmirq_irq)                     //    sender.irq
 	);
 
 	eth4to1_avalon_st_adapter #(
@@ -917,7 +1782,7 @@ module eth4to1 (
 	);
 
 	altera_reset_controller #(
-		.NUM_RESET_INPUTS          (1),
+		.NUM_RESET_INPUTS          (2),
 		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
 		.SYNC_DEPTH                (2),
 		.RESET_REQUEST_PRESENT     (0),
@@ -943,8 +1808,260 @@ module eth4to1 (
 		.ADAPT_RESET_REQUEST       (0)
 	) rst_controller_001 (
 		.reset_in0      (~reset_reset_n),                     // reset_in0.reset
-		.clk            (clk_clk),                            //       clk.clk
+		.reset_in1      (~pcie_nreset_status_reset),          // reset_in1.reset
+		.clk            (pcie_coreclkout_clk),                //       clk.clk
 		.reset_out      (rst_controller_001_reset_out_reset), // reset_out.reset
+		.reset_req      (),                                   // (terminated)
+		.reset_req_in0  (1'b0),                               // (terminated)
+		.reset_req_in1  (1'b0),                               // (terminated)
+		.reset_in2      (1'b0),                               // (terminated)
+		.reset_req_in2  (1'b0),                               // (terminated)
+		.reset_in3      (1'b0),                               // (terminated)
+		.reset_req_in3  (1'b0),                               // (terminated)
+		.reset_in4      (1'b0),                               // (terminated)
+		.reset_req_in4  (1'b0),                               // (terminated)
+		.reset_in5      (1'b0),                               // (terminated)
+		.reset_req_in5  (1'b0),                               // (terminated)
+		.reset_in6      (1'b0),                               // (terminated)
+		.reset_req_in6  (1'b0),                               // (terminated)
+		.reset_in7      (1'b0),                               // (terminated)
+		.reset_req_in7  (1'b0),                               // (terminated)
+		.reset_in8      (1'b0),                               // (terminated)
+		.reset_req_in8  (1'b0),                               // (terminated)
+		.reset_in9      (1'b0),                               // (terminated)
+		.reset_req_in9  (1'b0),                               // (terminated)
+		.reset_in10     (1'b0),                               // (terminated)
+		.reset_req_in10 (1'b0),                               // (terminated)
+		.reset_in11     (1'b0),                               // (terminated)
+		.reset_req_in11 (1'b0),                               // (terminated)
+		.reset_in12     (1'b0),                               // (terminated)
+		.reset_req_in12 (1'b0),                               // (terminated)
+		.reset_in13     (1'b0),                               // (terminated)
+		.reset_req_in13 (1'b0),                               // (terminated)
+		.reset_in14     (1'b0),                               // (terminated)
+		.reset_req_in14 (1'b0),                               // (terminated)
+		.reset_in15     (1'b0),                               // (terminated)
+		.reset_req_in15 (1'b0)                                // (terminated)
+	);
+
+	altera_reset_controller #(
+		.NUM_RESET_INPUTS          (1),
+		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
+		.SYNC_DEPTH                (2),
+		.RESET_REQUEST_PRESENT     (0),
+		.RESET_REQ_WAIT_TIME       (1),
+		.MIN_RST_ASSERTION_TIME    (3),
+		.RESET_REQ_EARLY_DSRT_TIME (1),
+		.USE_RESET_REQUEST_IN0     (0),
+		.USE_RESET_REQUEST_IN1     (0),
+		.USE_RESET_REQUEST_IN2     (0),
+		.USE_RESET_REQUEST_IN3     (0),
+		.USE_RESET_REQUEST_IN4     (0),
+		.USE_RESET_REQUEST_IN5     (0),
+		.USE_RESET_REQUEST_IN6     (0),
+		.USE_RESET_REQUEST_IN7     (0),
+		.USE_RESET_REQUEST_IN8     (0),
+		.USE_RESET_REQUEST_IN9     (0),
+		.USE_RESET_REQUEST_IN10    (0),
+		.USE_RESET_REQUEST_IN11    (0),
+		.USE_RESET_REQUEST_IN12    (0),
+		.USE_RESET_REQUEST_IN13    (0),
+		.USE_RESET_REQUEST_IN14    (0),
+		.USE_RESET_REQUEST_IN15    (0),
+		.ADAPT_RESET_REQUEST       (0)
+	) rst_controller_002 (
+		.reset_in0      (~reset_reset_n),                     // reset_in0.reset
+		.clk            (clk_clk),                            //       clk.clk
+		.reset_out      (rst_controller_002_reset_out_reset), // reset_out.reset
+		.reset_req      (),                                   // (terminated)
+		.reset_req_in0  (1'b0),                               // (terminated)
+		.reset_in1      (1'b0),                               // (terminated)
+		.reset_req_in1  (1'b0),                               // (terminated)
+		.reset_in2      (1'b0),                               // (terminated)
+		.reset_req_in2  (1'b0),                               // (terminated)
+		.reset_in3      (1'b0),                               // (terminated)
+		.reset_req_in3  (1'b0),                               // (terminated)
+		.reset_in4      (1'b0),                               // (terminated)
+		.reset_req_in4  (1'b0),                               // (terminated)
+		.reset_in5      (1'b0),                               // (terminated)
+		.reset_req_in5  (1'b0),                               // (terminated)
+		.reset_in6      (1'b0),                               // (terminated)
+		.reset_req_in6  (1'b0),                               // (terminated)
+		.reset_in7      (1'b0),                               // (terminated)
+		.reset_req_in7  (1'b0),                               // (terminated)
+		.reset_in8      (1'b0),                               // (terminated)
+		.reset_req_in8  (1'b0),                               // (terminated)
+		.reset_in9      (1'b0),                               // (terminated)
+		.reset_req_in9  (1'b0),                               // (terminated)
+		.reset_in10     (1'b0),                               // (terminated)
+		.reset_req_in10 (1'b0),                               // (terminated)
+		.reset_in11     (1'b0),                               // (terminated)
+		.reset_req_in11 (1'b0),                               // (terminated)
+		.reset_in12     (1'b0),                               // (terminated)
+		.reset_req_in12 (1'b0),                               // (terminated)
+		.reset_in13     (1'b0),                               // (terminated)
+		.reset_req_in13 (1'b0),                               // (terminated)
+		.reset_in14     (1'b0),                               // (terminated)
+		.reset_req_in14 (1'b0),                               // (terminated)
+		.reset_in15     (1'b0),                               // (terminated)
+		.reset_req_in15 (1'b0)                                // (terminated)
+	);
+
+	altera_reset_controller #(
+		.NUM_RESET_INPUTS          (1),
+		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
+		.SYNC_DEPTH                (2),
+		.RESET_REQUEST_PRESENT     (0),
+		.RESET_REQ_WAIT_TIME       (1),
+		.MIN_RST_ASSERTION_TIME    (3),
+		.RESET_REQ_EARLY_DSRT_TIME (1),
+		.USE_RESET_REQUEST_IN0     (0),
+		.USE_RESET_REQUEST_IN1     (0),
+		.USE_RESET_REQUEST_IN2     (0),
+		.USE_RESET_REQUEST_IN3     (0),
+		.USE_RESET_REQUEST_IN4     (0),
+		.USE_RESET_REQUEST_IN5     (0),
+		.USE_RESET_REQUEST_IN6     (0),
+		.USE_RESET_REQUEST_IN7     (0),
+		.USE_RESET_REQUEST_IN8     (0),
+		.USE_RESET_REQUEST_IN9     (0),
+		.USE_RESET_REQUEST_IN10    (0),
+		.USE_RESET_REQUEST_IN11    (0),
+		.USE_RESET_REQUEST_IN12    (0),
+		.USE_RESET_REQUEST_IN13    (0),
+		.USE_RESET_REQUEST_IN14    (0),
+		.USE_RESET_REQUEST_IN15    (0),
+		.ADAPT_RESET_REQUEST       (0)
+	) rst_controller_003 (
+		.reset_in0      (~reset_reset_n),                     // reset_in0.reset
+		.clk            (clk_100_clk),                        //       clk.clk
+		.reset_out      (rst_controller_003_reset_out_reset), // reset_out.reset
+		.reset_req      (),                                   // (terminated)
+		.reset_req_in0  (1'b0),                               // (terminated)
+		.reset_in1      (1'b0),                               // (terminated)
+		.reset_req_in1  (1'b0),                               // (terminated)
+		.reset_in2      (1'b0),                               // (terminated)
+		.reset_req_in2  (1'b0),                               // (terminated)
+		.reset_in3      (1'b0),                               // (terminated)
+		.reset_req_in3  (1'b0),                               // (terminated)
+		.reset_in4      (1'b0),                               // (terminated)
+		.reset_req_in4  (1'b0),                               // (terminated)
+		.reset_in5      (1'b0),                               // (terminated)
+		.reset_req_in5  (1'b0),                               // (terminated)
+		.reset_in6      (1'b0),                               // (terminated)
+		.reset_req_in6  (1'b0),                               // (terminated)
+		.reset_in7      (1'b0),                               // (terminated)
+		.reset_req_in7  (1'b0),                               // (terminated)
+		.reset_in8      (1'b0),                               // (terminated)
+		.reset_req_in8  (1'b0),                               // (terminated)
+		.reset_in9      (1'b0),                               // (terminated)
+		.reset_req_in9  (1'b0),                               // (terminated)
+		.reset_in10     (1'b0),                               // (terminated)
+		.reset_req_in10 (1'b0),                               // (terminated)
+		.reset_in11     (1'b0),                               // (terminated)
+		.reset_req_in11 (1'b0),                               // (terminated)
+		.reset_in12     (1'b0),                               // (terminated)
+		.reset_req_in12 (1'b0),                               // (terminated)
+		.reset_in13     (1'b0),                               // (terminated)
+		.reset_req_in13 (1'b0),                               // (terminated)
+		.reset_in14     (1'b0),                               // (terminated)
+		.reset_req_in14 (1'b0),                               // (terminated)
+		.reset_in15     (1'b0),                               // (terminated)
+		.reset_req_in15 (1'b0)                                // (terminated)
+	);
+
+	altera_reset_controller #(
+		.NUM_RESET_INPUTS          (1),
+		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
+		.SYNC_DEPTH                (2),
+		.RESET_REQUEST_PRESENT     (0),
+		.RESET_REQ_WAIT_TIME       (1),
+		.MIN_RST_ASSERTION_TIME    (3),
+		.RESET_REQ_EARLY_DSRT_TIME (1),
+		.USE_RESET_REQUEST_IN0     (0),
+		.USE_RESET_REQUEST_IN1     (0),
+		.USE_RESET_REQUEST_IN2     (0),
+		.USE_RESET_REQUEST_IN3     (0),
+		.USE_RESET_REQUEST_IN4     (0),
+		.USE_RESET_REQUEST_IN5     (0),
+		.USE_RESET_REQUEST_IN6     (0),
+		.USE_RESET_REQUEST_IN7     (0),
+		.USE_RESET_REQUEST_IN8     (0),
+		.USE_RESET_REQUEST_IN9     (0),
+		.USE_RESET_REQUEST_IN10    (0),
+		.USE_RESET_REQUEST_IN11    (0),
+		.USE_RESET_REQUEST_IN12    (0),
+		.USE_RESET_REQUEST_IN13    (0),
+		.USE_RESET_REQUEST_IN14    (0),
+		.USE_RESET_REQUEST_IN15    (0),
+		.ADAPT_RESET_REQUEST       (0)
+	) rst_controller_004 (
+		.reset_in0      (~reset_reset_n),                     // reset_in0.reset
+		.clk            (pll_1_outclk0_clk),                  //       clk.clk
+		.reset_out      (rst_controller_004_reset_out_reset), // reset_out.reset
+		.reset_req      (),                                   // (terminated)
+		.reset_req_in0  (1'b0),                               // (terminated)
+		.reset_in1      (1'b0),                               // (terminated)
+		.reset_req_in1  (1'b0),                               // (terminated)
+		.reset_in2      (1'b0),                               // (terminated)
+		.reset_req_in2  (1'b0),                               // (terminated)
+		.reset_in3      (1'b0),                               // (terminated)
+		.reset_req_in3  (1'b0),                               // (terminated)
+		.reset_in4      (1'b0),                               // (terminated)
+		.reset_req_in4  (1'b0),                               // (terminated)
+		.reset_in5      (1'b0),                               // (terminated)
+		.reset_req_in5  (1'b0),                               // (terminated)
+		.reset_in6      (1'b0),                               // (terminated)
+		.reset_req_in6  (1'b0),                               // (terminated)
+		.reset_in7      (1'b0),                               // (terminated)
+		.reset_req_in7  (1'b0),                               // (terminated)
+		.reset_in8      (1'b0),                               // (terminated)
+		.reset_req_in8  (1'b0),                               // (terminated)
+		.reset_in9      (1'b0),                               // (terminated)
+		.reset_req_in9  (1'b0),                               // (terminated)
+		.reset_in10     (1'b0),                               // (terminated)
+		.reset_req_in10 (1'b0),                               // (terminated)
+		.reset_in11     (1'b0),                               // (terminated)
+		.reset_req_in11 (1'b0),                               // (terminated)
+		.reset_in12     (1'b0),                               // (terminated)
+		.reset_req_in12 (1'b0),                               // (terminated)
+		.reset_in13     (1'b0),                               // (terminated)
+		.reset_req_in13 (1'b0),                               // (terminated)
+		.reset_in14     (1'b0),                               // (terminated)
+		.reset_req_in14 (1'b0),                               // (terminated)
+		.reset_in15     (1'b0),                               // (terminated)
+		.reset_req_in15 (1'b0)                                // (terminated)
+	);
+
+	altera_reset_controller #(
+		.NUM_RESET_INPUTS          (1),
+		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
+		.SYNC_DEPTH                (2),
+		.RESET_REQUEST_PRESENT     (0),
+		.RESET_REQ_WAIT_TIME       (1),
+		.MIN_RST_ASSERTION_TIME    (3),
+		.RESET_REQ_EARLY_DSRT_TIME (1),
+		.USE_RESET_REQUEST_IN0     (0),
+		.USE_RESET_REQUEST_IN1     (0),
+		.USE_RESET_REQUEST_IN2     (0),
+		.USE_RESET_REQUEST_IN3     (0),
+		.USE_RESET_REQUEST_IN4     (0),
+		.USE_RESET_REQUEST_IN5     (0),
+		.USE_RESET_REQUEST_IN6     (0),
+		.USE_RESET_REQUEST_IN7     (0),
+		.USE_RESET_REQUEST_IN8     (0),
+		.USE_RESET_REQUEST_IN9     (0),
+		.USE_RESET_REQUEST_IN10    (0),
+		.USE_RESET_REQUEST_IN11    (0),
+		.USE_RESET_REQUEST_IN12    (0),
+		.USE_RESET_REQUEST_IN13    (0),
+		.USE_RESET_REQUEST_IN14    (0),
+		.USE_RESET_REQUEST_IN15    (0),
+		.ADAPT_RESET_REQUEST       (0)
+	) rst_controller_005 (
+		.reset_in0      (~pcie_nreset_status_reset),          // reset_in0.reset
+		.clk            (pcie_coreclkout_clk),                //       clk.clk
+		.reset_out      (rst_controller_005_reset_out_reset), // reset_out.reset
 		.reset_req      (),                                   // (terminated)
 		.reset_req_in0  (1'b0),                               // (terminated)
 		.reset_in1      (1'b0),                               // (terminated)

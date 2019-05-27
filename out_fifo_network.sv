@@ -64,7 +64,21 @@ always @* begin
 	end
 	fin_rdreq[ncount-1] = tag_ready;
 end	
+/*
 
+always @* begin
+	data_ack[ncount-1] = data_valid[ncount-1]&&!fin_full[ncount-1];
+	fin_wrreq[ncount-1] = data_valid[ncount-1]&& !fin_full[ncount-1];
+	fin[ncount-1] = data_valid[ncount-1]? dataout [ncount-1]: 10'bzzzzzzzzzz;
+	for (x=0; x<ncount-1; x=x+1) begin
+		fin [x] = fin_empty[x+1]? (data_valid[x]? dataout[x]:10'bzzzzzzzzzz): fin_q[x+1];
+		data_ack[x] = fin_empty[x+1]? data_valid[x]&&!fin_full[x]: 1'b0;
+		fin_rdreq[x+1] = fin_empty[x+1]? 1'b0: !fin_full[x] ;
+		fin_wrreq[x] = fin_full[x]? 1'b0 : (fin_empty[x+1] ?data_valid[x]: 1'b1);
+	end
+	fin_rdreq[0] = tag_ready;
+end
+*/
 /*
 reg done;
 always@* begin

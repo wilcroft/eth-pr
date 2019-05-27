@@ -13,22 +13,26 @@ module hardmatchblock #(parameter CHOUT=0)(
 	wire [63:0] cap_data;
 	wire cap_sop, cap_eop, cap_valid, cap_ready;
 	
+	wire fifo_empty;
+	
 	wire [CONCAT_WIDTH-1:0] concat;
 	wire concat_valid, concat_ready;
 	
 	wire z0_out, z0_valid;
-	wire match_flush = z0_valid && !z0_out;
+	wire match_flush;
 
 	reg [7:0] tag_in;
 	reg [7:0] tag_out;
 	
 	assign {cap_sop, cap_eop, cap_data} = pnode_data[65:0];
-	assign data_valid = z0_valid &&z0_out;
+	assign match_flush = z0_valid && !z0_out;
+//	assign data_valid = z0_valid &&z0_out;
+	assign data_valid = !fifo_empty;
 	
 	//assign data_out = tag_out;
 	
 	/// TEMPORARY CHANGE UNTIL DESIRED DEST ADDED TO BPF RULE
-	assign data_out = {tag_out[7:6],tag_out};
+	//assign data_out = {tag_out[7:6],tag_out};
 	/// END TEMP CHANGE
 	assign pnode_ready = cap_ready;
 	assign cap_valid = pnode_valid;
@@ -62,6 +66,16 @@ module hardmatchblock #(parameter CHOUT=0)(
 		.z0_valid(z0_valid),
 		.z0_ready(data_ack||match_flush),
 		.xin_ready(concat_ready)
+	);
+	
+	hardblockfifo matchfifo (
+		.clock,
+		.data({tag_out[7:6],tag_out}),
+		.rdreq(data_ack),
+		.wrreq(z0_valid &&z0_out),
+		.empty(fifo_empty),
+		//.full,
+		.q(data_out)
 	);
 	
 endmodule

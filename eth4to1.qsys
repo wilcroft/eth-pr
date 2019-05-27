@@ -18,7 +18,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -44,8 +44,40 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
+      }
+   }
+   element doublewidth0
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+   }
+   element doublewidth1
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+   }
+   element doublewidth2
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
+      }
+   }
+   element doublewidth3
+   {
+      datum _sortIndex
+      {
+         value = "12";
+         type = "int";
       }
    }
    element eth4to1
@@ -92,12 +124,12 @@
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "13";
          type = "int";
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -110,7 +142,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -118,8 +150,13 @@
    {
       datum _sortIndex
       {
-         value = "14";
+         value = "19";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
       }
    }
    element ethpack_control.prcontrol
@@ -139,7 +176,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -152,7 +189,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -165,7 +202,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -178,7 +215,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -186,16 +223,39 @@
    {
       datum _sortIndex
       {
-         value = "10";
+         value = "15";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element pcie_clk
+   {
+      datum _sortIndex
+      {
+         value = "14";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
       }
    }
    element pcie_reconfig_drvr
    {
       datum _sortIndex
       {
-         value = "12";
+         value = "17";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
       }
    }
    element pll_0
@@ -207,7 +267,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -215,16 +275,26 @@
    {
       datum _sortIndex
       {
-         value = "15";
+         value = "20";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
       }
    }
    element pr
    {
       datum _sortIndex
       {
-         value = "13";
+         value = "18";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
       }
    }
    element pr.avmm_slave
@@ -239,8 +309,13 @@
    {
       datum _sortIndex
       {
-         value = "11";
+         value = "16";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
       }
    }
 }
@@ -290,6 +365,11 @@
    name="ethpack_tagin"
    internal="ethpack.tagin"
    type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="pcie_clk_in_clk"
+   internal="pcie_clk.in_clk"
+   type="clock"
    dir="end" />
  <interface
    name="pcie_hip_serial"
@@ -353,9 +433,85 @@
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
  <module name="clk_312" kind="altera_clock_bridge" version="16.1" enabled="1">
-  <parameter name="DERIVED_CLOCK_RATE" value="312500000" />
+  <parameter name="DERIVED_CLOCK_RATE" value="260416666" />
   <parameter name="EXPLICIT_CLOCK_RATE" value="312500000" />
   <parameter name="NUM_CLOCK_OUTPUTS" value="1" />
+ </module>
+ <module
+   name="doublewidth0"
+   kind="data_format_adapter"
+   version="16.1"
+   enabled="1">
+  <parameter name="inBitsPerSymbol" value="8" />
+  <parameter name="inChannelWidth" value="6" />
+  <parameter name="inErrorDescriptor" value="" />
+  <parameter name="inErrorWidth" value="0" />
+  <parameter name="inMaxChannel" value="63" />
+  <parameter name="inReadyLatency" value="0" />
+  <parameter name="inSymbolsPerBeat" value="8" />
+  <parameter name="inUseEmpty" value="false" />
+  <parameter name="inUseEmptyPort" value="AUTO" />
+  <parameter name="inUsePackets" value="true" />
+  <parameter name="outSymbolsPerBeat" value="16" />
+  <parameter name="outUseEmpty" value="false" />
+  <parameter name="outUseEmptyPort" value="AUTO" />
+ </module>
+ <module
+   name="doublewidth1"
+   kind="data_format_adapter"
+   version="16.1"
+   enabled="1">
+  <parameter name="inBitsPerSymbol" value="8" />
+  <parameter name="inChannelWidth" value="6" />
+  <parameter name="inErrorDescriptor" value="" />
+  <parameter name="inErrorWidth" value="0" />
+  <parameter name="inMaxChannel" value="63" />
+  <parameter name="inReadyLatency" value="0" />
+  <parameter name="inSymbolsPerBeat" value="8" />
+  <parameter name="inUseEmpty" value="false" />
+  <parameter name="inUseEmptyPort" value="AUTO" />
+  <parameter name="inUsePackets" value="true" />
+  <parameter name="outSymbolsPerBeat" value="16" />
+  <parameter name="outUseEmpty" value="false" />
+  <parameter name="outUseEmptyPort" value="AUTO" />
+ </module>
+ <module
+   name="doublewidth2"
+   kind="data_format_adapter"
+   version="16.1"
+   enabled="1">
+  <parameter name="inBitsPerSymbol" value="8" />
+  <parameter name="inChannelWidth" value="6" />
+  <parameter name="inErrorDescriptor" value="" />
+  <parameter name="inErrorWidth" value="0" />
+  <parameter name="inMaxChannel" value="63" />
+  <parameter name="inReadyLatency" value="0" />
+  <parameter name="inSymbolsPerBeat" value="8" />
+  <parameter name="inUseEmpty" value="false" />
+  <parameter name="inUseEmptyPort" value="AUTO" />
+  <parameter name="inUsePackets" value="true" />
+  <parameter name="outSymbolsPerBeat" value="16" />
+  <parameter name="outUseEmpty" value="false" />
+  <parameter name="outUseEmptyPort" value="AUTO" />
+ </module>
+ <module
+   name="doublewidth3"
+   kind="data_format_adapter"
+   version="16.1"
+   enabled="1">
+  <parameter name="inBitsPerSymbol" value="8" />
+  <parameter name="inChannelWidth" value="6" />
+  <parameter name="inErrorDescriptor" value="" />
+  <parameter name="inErrorWidth" value="0" />
+  <parameter name="inMaxChannel" value="63" />
+  <parameter name="inReadyLatency" value="0" />
+  <parameter name="inSymbolsPerBeat" value="8" />
+  <parameter name="inUseEmpty" value="false" />
+  <parameter name="inUseEmptyPort" value="AUTO" />
+  <parameter name="inUsePackets" value="true" />
+  <parameter name="outSymbolsPerBeat" value="16" />
+  <parameter name="outUseEmpty" value="false" />
+  <parameter name="outUseEmptyPort" value="AUTO" />
  </module>
  <module name="eth_in_mux" kind="multiplexer" version="16.1" enabled="1">
   <parameter name="bitsPerSymbol" value="8" />
@@ -364,7 +520,7 @@
   <parameter name="outChannelWidth" value="8" />
   <parameter name="packetScheduling" value="true" />
   <parameter name="schedulingSize" value="2" />
-  <parameter name="symbolsPerBeat" value="8" />
+  <parameter name="symbolsPerBeat" value="16" />
   <parameter name="useHighBitsOfChannel" value="true" />
   <parameter name="usePackets" value="true" />
  </module>
@@ -380,9 +536,9 @@
   <parameter name="AUTO_CLK_156_IN_CLK_CLOCK_DOMAIN" value="1" />
   <parameter name="AUTO_CLK_156_IN_CLK_CLOCK_RATE" value="156250000" />
   <parameter name="AUTO_CLK_156_IN_CLK_RESET_DOMAIN" value="1" />
-  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_DOMAIN" value="8" />
-  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_RATE" value="312500000" />
-  <parameter name="AUTO_CLK_312_IN_CLK_RESET_DOMAIN" value="8" />
+  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_DOMAIN" value="9" />
+  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_RATE" value="260416666" />
+  <parameter name="AUTO_CLK_312_IN_CLK_RESET_DOMAIN" value="9" />
   <parameter name="AUTO_DEVICE" value="5SGXEA7N2F45C2" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Stratix V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2_H2" />
@@ -393,9 +549,9 @@
   <parameter name="AUTO_CLK_156_IN_CLK_CLOCK_DOMAIN" value="1" />
   <parameter name="AUTO_CLK_156_IN_CLK_CLOCK_RATE" value="156250000" />
   <parameter name="AUTO_CLK_156_IN_CLK_RESET_DOMAIN" value="1" />
-  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_DOMAIN" value="8" />
-  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_RATE" value="312500000" />
-  <parameter name="AUTO_CLK_312_IN_CLK_RESET_DOMAIN" value="8" />
+  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_DOMAIN" value="9" />
+  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_RATE" value="260416666" />
+  <parameter name="AUTO_CLK_312_IN_CLK_RESET_DOMAIN" value="9" />
   <parameter name="AUTO_DEVICE" value="5SGXEA7N2F45C2" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Stratix V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2_H2" />
@@ -406,9 +562,9 @@
   <parameter name="AUTO_CLK_156_IN_CLK_CLOCK_DOMAIN" value="1" />
   <parameter name="AUTO_CLK_156_IN_CLK_CLOCK_RATE" value="156250000" />
   <parameter name="AUTO_CLK_156_IN_CLK_RESET_DOMAIN" value="1" />
-  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_DOMAIN" value="8" />
-  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_RATE" value="312500000" />
-  <parameter name="AUTO_CLK_312_IN_CLK_RESET_DOMAIN" value="8" />
+  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_DOMAIN" value="9" />
+  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_RATE" value="260416666" />
+  <parameter name="AUTO_CLK_312_IN_CLK_RESET_DOMAIN" value="9" />
   <parameter name="AUTO_DEVICE" value="5SGXEA7N2F45C2" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Stratix V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2_H2" />
@@ -419,20 +575,55 @@
   <parameter name="AUTO_CLK_156_IN_CLK_CLOCK_DOMAIN" value="1" />
   <parameter name="AUTO_CLK_156_IN_CLK_CLOCK_RATE" value="156250000" />
   <parameter name="AUTO_CLK_156_IN_CLK_RESET_DOMAIN" value="1" />
-  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_DOMAIN" value="8" />
-  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_RATE" value="312500000" />
-  <parameter name="AUTO_CLK_312_IN_CLK_RESET_DOMAIN" value="8" />
+  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_DOMAIN" value="9" />
+  <parameter name="AUTO_CLK_312_IN_CLK_CLOCK_RATE" value="260416666" />
+  <parameter name="AUTO_CLK_312_IN_CLK_RESET_DOMAIN" value="9" />
   <parameter name="AUTO_DEVICE" value="5SGXEA7N2F45C2" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Stratix V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2_H2" />
   <parameter name="AUTO_GENERATION_ID" value="0" />
   <parameter name="AUTO_UNIQUE_ID" value="$${FILENAME}_mac_3" />
  </module>
- <module
-   name="pcie"
-   kind="altera_pcie_256_hip_avmm"
-   version="16.1"
-   enabled="1">
+ <module name="pcie" kind="altera_pcie_sv_hip_avmm" version="16.1" enabled="1">
+  <parameter name="AST_LITE" value="0" />
+  <parameter name="AVALON_ADDR_WIDTH" value="32" />
+  <parameter name="AddressPage">0\,1\,2\,3\,4\,5\,6\,7\,8\,9\,10\,11\,12\,13\,14\,15</parameter>
+  <parameter name="BYPASSS_A2P_TRANSLATION" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_0_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_0_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_10_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_10_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_11_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_11_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_12_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_12_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_13_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_13_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_14_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_14_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_15_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_15_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_1_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_1_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_2_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_2_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_3_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_3_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_4_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_4_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_5_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_5_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_6_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_6_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_7_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_7_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_8_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_8_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_9_HIGH" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_FIXED_TABLE_9_LOW" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_IS_FIXED" value="0" />
+  <parameter name="CB_A2P_ADDR_MAP_NUM_ENTRIES" value="2" />
+  <parameter name="CB_A2P_ADDR_MAP_PASS_THRU_BITS" value="20" />
   <parameter name="CB_P2A_AVALON_ADDR_B0" value="0x00000000" />
   <parameter name="CB_P2A_AVALON_ADDR_B1" value="0x00000000" />
   <parameter name="CB_P2A_AVALON_ADDR_B2" value="0x00000000" />
@@ -445,11 +636,22 @@
   <parameter name="CB_P2A_FIXED_AVALON_ADDR_B3" value="0" />
   <parameter name="CB_P2A_FIXED_AVALON_ADDR_B4" value="0" />
   <parameter name="CB_P2A_FIXED_AVALON_ADDR_B5" value="0" />
+  <parameter name="CB_PCIE_MODE" value="0" />
+  <parameter name="CB_PCIE_RX_LITE" value="0" />
+  <parameter name="CB_RP_S_ADDR_WIDTH" value="32" />
   <parameter name="CG_COMMON_CLOCK_MODE" value="1" />
+  <parameter name="CG_ENABLE_A2P_INTERRUPT" value="0" />
+  <parameter name="CG_ENABLE_ADVANCED_INTERRUPT" value="0" />
+  <parameter name="CG_ENABLE_HIP_STATUS" value="1" />
+  <parameter name="CG_ENABLE_HIP_STATUS_EXTENSION" value="0" />
+  <parameter name="CG_IMPL_CRA_AV_SLAVE_PORT" value="1" />
   <parameter name="CG_RXM_IRQ_NUM" value="16" />
   <parameter name="INTENDED_DEVICE_FAMILY" value="Stratix V" />
   <parameter name="NUM_PREFETCH_MASTERS" value="1" />
-  <parameter name="RD_SLAVE_ADDRESS_MAP" value="1" />
+  <parameter name="PCIeAddress31_0">0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000</parameter>
+  <parameter name="PCIeAddress63_32">0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000\,0x00000000</parameter>
+  <parameter name="RXM_BEN_WIDTH" value="8" />
+  <parameter name="RXM_DATA_WIDTH" value="64" />
   <parameter name="SLAVE_ADDRESS_MAP_0" value="10" />
   <parameter name="SLAVE_ADDRESS_MAP_1" value="0" />
   <parameter name="SLAVE_ADDRESS_MAP_2" value="0" />
@@ -457,8 +659,6 @@
   <parameter name="SLAVE_ADDRESS_MAP_4" value="0" />
   <parameter name="SLAVE_ADDRESS_MAP_5" value="0" />
   <parameter name="TX_S_ADDR_WIDTH" value="32" />
-  <parameter name="WR_SLAVE_ADDRESS_MAP" value="1" />
-  <parameter name="add_pll_to_hip_coreclkout" value="0" />
   <parameter name="advanced_default_hwtcl_atomic_malformed" value="true" />
   <parameter name="advanced_default_hwtcl_atomic_op_completer_32bit" value="false" />
   <parameter name="advanced_default_hwtcl_atomic_op_completer_64bit" value="false" />
@@ -527,97 +727,41 @@
   <parameter name="advanced_default_hwtcl_vc0_clk_enable" value="true" />
   <parameter name="advanced_default_hwtcl_wrong_device_id" value="disable" />
   <parameter name="advanced_default_parameter_override" value="0" />
-  <parameter name="altpcie_avmm_hwtcl" value="1" />
-  <parameter name="app_interface_width_hwtcl" value="256" />
-  <parameter name="av_rpre_emph_a_val_hwtcl" value="12" />
-  <parameter name="av_rpre_emph_b_val_hwtcl" value="0" />
-  <parameter name="av_rpre_emph_c_val_hwtcl" value="19" />
-  <parameter name="av_rpre_emph_d_val_hwtcl" value="13" />
-  <parameter name="av_rpre_emph_e_val_hwtcl" value="21" />
-  <parameter name="av_rvod_sel_a_val_hwtcl" value="42" />
-  <parameter name="av_rvod_sel_b_val_hwtcl" value="30" />
-  <parameter name="av_rvod_sel_c_val_hwtcl" value="43" />
-  <parameter name="av_rvod_sel_d_val_hwtcl" value="43" />
-  <parameter name="av_rvod_sel_e_val_hwtcl" value="9" />
-  <parameter name="avmm_width_hwtcl" value="256" />
-  <parameter name="bar0_type_hwtcl" value="32" />
-  <parameter name="bar1_type_hwtcl" value="1" />
-  <parameter name="bar2_type_hwtcl" value="64" />
-  <parameter name="bar3_type_hwtcl" value="1" />
-  <parameter name="bar4_type_hwtcl" value="1" />
-  <parameter name="bar5_type_hwtcl" value="1" />
-  <parameter name="cdc_dummy_insert_limit_advanced_default_hwtcl" value="11" />
+  <parameter name="avmm_width_hwtcl" value="128" />
+  <parameter name="bar0_type_hwtcl" value="1" />
+  <parameter name="bar1_type_hwtcl" value="0" />
+  <parameter name="bar2_type_hwtcl" value="1" />
+  <parameter name="bar3_type_hwtcl" value="0" />
+  <parameter name="bar4_type_hwtcl" value="0" />
+  <parameter name="bar5_type_hwtcl" value="0" />
+  <parameter name="bypass_tl" value="false" />
   <parameter name="class_code_hwtcl" value="16711680" />
-  <parameter name="completion_timeout_hwtcl" value="NONE" />
-  <parameter name="cv_rpre_emph_a_val_hwtcl" value="11" />
-  <parameter name="cv_rpre_emph_b_val_hwtcl" value="0" />
-  <parameter name="cv_rpre_emph_c_val_hwtcl" value="22" />
-  <parameter name="cv_rpre_emph_d_val_hwtcl" value="12" />
-  <parameter name="cv_rpre_emph_e_val_hwtcl" value="21" />
-  <parameter name="cv_rvod_sel_a_val_hwtcl" value="50" />
-  <parameter name="cv_rvod_sel_b_val_hwtcl" value="34" />
-  <parameter name="cv_rvod_sel_c_val_hwtcl" value="50" />
-  <parameter name="cv_rvod_sel_d_val_hwtcl" value="50" />
-  <parameter name="cv_rvod_sel_e_val_hwtcl" value="9" />
-  <parameter name="d0_pme_advanced_default_hwtcl" value="false" />
-  <parameter name="d1_pme_advanced_default_hwtcl" value="false" />
-  <parameter name="d1_support_advanced_default_hwtcl" value="false" />
-  <parameter name="d2_pme_advanced_default_hwtcl" value="false" />
-  <parameter name="d2_support_advanced_default_hwtcl" value="false" />
-  <parameter name="d3_cold_pme_advanced_default_hwtcl" value="false" />
-  <parameter name="d3_hot_pme_advanced_default_hwtcl" value="false" />
-  <parameter name="deemphasis_enable_advanced_default_hwtcl" value="false" />
+  <parameter name="completion_timeout_hwtcl" value="ABCD" />
   <parameter name="device_id_hwtcl" value="57599" />
-  <parameter name="device_number_advanced_default_hwtcl" value="0" />
-  <parameter name="diffclock_nfts_count_advanced_default_hwtcl" value="255" />
-  <parameter name="disable_link_x2_support_advanced_default_hwtcl" value="false" />
   <parameter name="dll_active_report_support_hwtcl" value="0" />
-  <parameter name="dma_use_scfifo_ext_hwtcl" value="0" />
   <parameter name="ecrc_check_capable_hwtcl" value="0" />
   <parameter name="ecrc_gen_capable_hwtcl" value="0" />
-  <parameter name="ei_delay_powerdown_count_advanced_default_hwtcl" value="10" />
-  <parameter name="eie_before_nfts_count_advanced_default_hwtcl" value="4" />
   <parameter name="enable_completion_timeout_disable_hwtcl" value="1" />
-  <parameter name="enable_cra_hwtcl" value="1" />
   <parameter name="enable_function_msix_support_hwtcl" value="0" />
-  <parameter name="enable_l1_aspm_advanced_default_hwtcl" value="false" />
   <parameter name="enable_pcisigtest_hwtcl" value="0" />
   <parameter name="enable_power_on_rst_pulse_hwtcl" value="0" />
-  <parameter name="enable_rx_buffer_checking_advanced_default_hwtcl" value="false" />
-  <parameter name="enable_rxm_burst_hwtcl" value="1" />
   <parameter name="enable_slot_register_hwtcl" value="0" />
   <parameter name="enable_tl_only_sim_hwtcl" value="0" />
   <parameter name="endpoint_l0_latency_hwtcl" value="0" />
   <parameter name="endpoint_l1_latency_hwtcl" value="0" />
   <parameter name="expansion_base_address_register_hwtcl" value="0" />
   <parameter name="extend_tag_field_hwtcl" value="32" />
-  <parameter name="fc_init_timer_advanced_default_hwtcl" value="1024" />
   <parameter name="fixed_address_mode" value="0" />
-  <parameter name="flow_control_timeout_count_advanced_default_hwtcl" value="200" />
-  <parameter name="flow_control_update_count_advanced_default_hwtcl" value="30" />
   <parameter name="force_hrc" value="0" />
   <parameter name="force_src" value="0" />
-  <parameter name="gen123_lane_rate_mode_hwtcl" value="Gen3 (8.0 Gbps)" />
-  <parameter name="gen2_diffclock_nfts_count_advanced_default_hwtcl" value="255" />
-  <parameter name="gen2_sameclock_nfts_count_advanced_default_hwtcl" value="255" />
+  <parameter name="gen123_lane_rate_mode_hwtcl" value="Gen2 (5.0 Gbps)" />
   <parameter name="gen3_rxfreqlock_counter_hwtcl" value="0" />
-  <parameter name="generate_sdc_for_qsys_design_example" value="0" />
   <parameter name="hip_reconfig_hwtcl" value="0" />
   <parameter name="hip_tag_checking_hwtcl" value="1" />
-  <parameter name="hot_plug_support_advanced_default_hwtcl" value="0" />
   <parameter name="hwtcl_override_g2_txvod" value="1" />
   <parameter name="in_cvp_mode_hwtcl" value="0" />
-  <parameter name="indicator_advanced_default_hwtcl" value="0" />
-  <parameter name="internal_controller_hwtcl" value="0" />
   <parameter name="io_window_addr_width_hwtcl" value="0" />
-  <parameter name="l01_entry_latency_advanced_default_hwtcl" value="31" />
-  <parameter name="l0_exit_latency_diffclock_advanced_default_hwtcl" value="6" />
-  <parameter name="l0_exit_latency_sameclock_advanced_default_hwtcl" value="6" />
-  <parameter name="l1_exit_latency_diffclock_advanced_default_hwtcl" value="0" />
-  <parameter name="l1_exit_latency_sameclock_advanced_default_hwtcl" value="0" />
-  <parameter name="l2_async_logic_advanced_default_hwtcl" value="disable" />
   <parameter name="lane_mask_hwtcl" value="x8" />
-  <parameter name="low_priority_vc_advanced_default_hwtcl" value="single_vc" />
   <parameter name="max_payload_size_hwtcl" value="128" />
   <parameter name="msi_64bit_addressing_capable_hwtcl" value="true" />
   <parameter name="msi_masking_capable_hwtcl" value="false" />
@@ -628,23 +772,14 @@
   <parameter name="msix_table_bir_hwtcl" value="0" />
   <parameter name="msix_table_offset_hwtcl" value="0" />
   <parameter name="msix_table_size_hwtcl" value="0" />
-  <parameter name="no_command_completed_advanced_default_hwtcl" value="false" />
-  <parameter name="no_soft_reset_advanced_default_hwtcl" value="false" />
   <parameter name="override_rxbuffer_cred_preset" value="0" />
   <parameter name="override_tbpartner_driver_setting_hwtcl" value="0" />
   <parameter name="pcie_inspector_hwtcl" value="0" />
   <parameter name="pcie_qsys" value="1" />
-  <parameter name="pclk_out_sel_advanced_default_hwtcl" value="pclk" />
-  <parameter name="pipex1_debug_sel_advanced_default_hwtcl" value="disable" />
   <parameter name="pll_refclk_freq_hwtcl" value="100 MHz" />
   <parameter name="port_link_number_hwtcl" value="1" />
   <parameter name="port_type_hwtcl" value="Native endpoint" />
   <parameter name="prefetchable_mem_window_addr_width_hwtcl" value="0" />
-  <parameter name="register_pipe_signals_advanced_default_hwtcl" value="true" />
-  <parameter name="reserved_debug_advanced_default_hwtcl" value="0" />
-  <parameter
-     name="retry_buffer_last_active_address_advanced_default_hwtcl"
-     value="255" />
   <parameter name="revision_id_hwtcl" value="1" />
   <parameter name="rpre_emph_a_val_hwtcl" value="9" />
   <parameter name="rpre_emph_b_val_hwtcl" value="0" />
@@ -656,14 +791,9 @@
   <parameter name="rvod_sel_c_val_hwtcl" value="38" />
   <parameter name="rvod_sel_d_val_hwtcl" value="43" />
   <parameter name="rvod_sel_e_val_hwtcl" value="15" />
-  <parameter name="rx_cdc_almost_full_advanced_default_hwtcl" value="12" />
-  <parameter name="rx_l0s_count_idl_advanced_default_hwtcl" value="0" />
   <parameter name="rxbuffer_rxreq_hwtcl" value="Low" />
-  <parameter name="sameclock_nfts_count_advanced_default_hwtcl" value="255" />
   <parameter name="serial_sim_hwtcl" value="1" />
   <parameter name="set_pld_clk_x1_625MHz_hwtcl" value="0" />
-  <parameter name="set_pll_coreclkout_slack" value="10" />
-  <parameter name="skp_os_schedule_count_advanced_default_hwtcl" value="0" />
   <parameter name="slot_number_hwtcl" value="0" />
   <parameter name="slot_power_limit_hwtcl" value="0" />
   <parameter name="slot_power_scale_hwtcl" value="0" />
@@ -677,19 +807,21 @@
   <parameter name="tlp_insp_trg_dw3_hwtcl" value="0" />
   <parameter name="tlp_inspector_hwtcl" value="0" />
   <parameter name="tlp_inspector_use_signal_probe_hwtcl" value="0" />
-  <parameter name="tx_cdc_almost_empty_advanced_default_hwtcl" value="5" />
-  <parameter name="tx_cdc_almost_full_advanced_default_hwtcl" value="11" />
   <parameter name="use_aer_hwtcl" value="0" />
   <parameter name="use_ast_parity" value="0" />
   <parameter name="use_atx_pll_hwtcl" value="0" />
   <parameter name="use_crc_forwarding_hwtcl" value="0" />
   <parameter name="use_cvp_update_core_pof_hwtcl" value="0" />
   <parameter name="use_rx_st_be_hwtcl" value="0" />
-  <parameter name="use_tl_cfg_sync_advanced_default_hwtcl" value="1" />
-  <parameter name="vc0_clk_enable_advanced_default_hwtcl" value="true" />
+  <parameter name="user_id_hwtcl" value="0" />
   <parameter name="vendor_id_hwtcl" value="4466" />
-  <parameter name="vsec_id_hwtcl" value="40960" />
+  <parameter name="vsec_id_hwtcl" value="4466" />
   <parameter name="vsec_rev_hwtcl" value="0" />
+ </module>
+ <module name="pcie_clk" kind="altera_clock_bridge" version="16.1" enabled="1">
+  <parameter name="DERIVED_CLOCK_RATE" value="0" />
+  <parameter name="EXPLICIT_CLOCK_RATE" value="100000000" />
+  <parameter name="NUM_CLOCK_OUTPUTS" value="1" />
  </module>
  <module
    name="pcie_reconfig_drvr"
@@ -707,8 +839,8 @@
   <parameter name="device" value="5SGXEA7N2F45C2" />
   <parameter name="device_family" value="Stratix V" />
   <parameter name="gui_active_clk" value="false" />
-  <parameter name="gui_actual_output_clock_frequency0" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency1" value="0 MHz" />
+  <parameter name="gui_actual_output_clock_frequency0" value="262.910227 MHz" />
+  <parameter name="gui_actual_output_clock_frequency1" value="260.416666 MHz" />
   <parameter name="gui_actual_output_clock_frequency10" value="0 MHz" />
   <parameter name="gui_actual_output_clock_frequency11" value="0 MHz" />
   <parameter name="gui_actual_output_clock_frequency12" value="0 MHz" />
@@ -818,10 +950,10 @@
   <parameter name="gui_fractional_cout" value="32" />
   <parameter name="gui_mif_generate" value="false" />
   <parameter name="gui_multiply_factor" value="1" />
-  <parameter name="gui_number_of_clocks" value="1" />
+  <parameter name="gui_number_of_clocks" value="2" />
   <parameter name="gui_operation_mode" value="direct" />
   <parameter name="gui_output_clock_frequency0" value="312.5" />
-  <parameter name="gui_output_clock_frequency1" value="100.0" />
+  <parameter name="gui_output_clock_frequency1" value="260.416666" />
   <parameter name="gui_output_clock_frequency10" value="100.0" />
   <parameter name="gui_output_clock_frequency11" value="100.0" />
   <parameter name="gui_output_clock_frequency12" value="100.0" />
@@ -875,7 +1007,7 @@
   <parameter name="gui_phase_shift_deg8" value="0.0" />
   <parameter name="gui_phase_shift_deg9" value="0.0" />
   <parameter name="gui_phout_division" value="1" />
-  <parameter name="gui_pll_auto_reset" value="Off" />
+  <parameter name="gui_pll_auto_reset" value="On" />
   <parameter name="gui_pll_bandwidth_preset" value="Auto" />
   <parameter name="gui_pll_cascading_mode">Create an adjpllin signal to connect with an upstream PLL</parameter>
   <parameter name="gui_pll_mode" value="Integer-N PLL" />
@@ -910,7 +1042,7 @@
   <parameter name="device" value="5SGXEA7N2F45C2" />
   <parameter name="device_family" value="Stratix V" />
   <parameter name="gui_active_clk" value="false" />
-  <parameter name="gui_actual_output_clock_frequency0" value="0 MHz" />
+  <parameter name="gui_actual_output_clock_frequency0" value="99.997368 MHz" />
   <parameter name="gui_actual_output_clock_frequency1" value="0 MHz" />
   <parameter name="gui_actual_output_clock_frequency10" value="0 MHz" />
   <parameter name="gui_actual_output_clock_frequency11" value="0 MHz" />
@@ -1142,7 +1274,7 @@
   <parameter name="gui_cal_status_port" value="false" />
   <parameter name="gui_enable_pll" value="0" />
   <parameter name="gui_split_sizes" value="" />
-  <parameter name="number_of_reconfig_interfaces" value="11" />
+  <parameter name="number_of_reconfig_interfaces" value="10" />
  </module>
  <connection
    kind="avalon"
@@ -1183,23 +1315,43 @@
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="ethpack.packetout0"
+   start="doublewidth0.out"
    end="eth_in_mux.in0" />
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="ethpack.packetout1"
+   start="doublewidth1.out"
    end="eth_in_mux.in1" />
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="ethpack.packetout2"
+   start="doublewidth2.out"
    end="eth_in_mux.in2" />
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="ethpack.packetout3"
+   start="doublewidth3.out"
    end="eth_in_mux.in3" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="ethpack.packetout0"
+   end="doublewidth0.in" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="ethpack.packetout1"
+   end="doublewidth1.in" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="ethpack.packetout2"
+   end="doublewidth2.in" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="ethpack.packetout3"
+   end="doublewidth3.in" />
  <connection
    kind="avalon_streaming"
    version="16.1"
@@ -1285,36 +1437,60 @@
  <connection
    kind="clock"
    version="16.1"
-   start="pll_0.outclk0"
-   end="eth_in_mux.clk" />
+   start="pcie_clk.out_clk"
+   end="pcie.refclk" />
  <connection kind="clock" version="16.1" start="pll_1.outclk0" end="pr.clk" />
  <connection
    kind="clock"
    version="16.1"
-   start="pll_0.outclk0"
+   start="pll_0.outclk1"
+   end="doublewidth0.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="pll_0.outclk1"
+   end="doublewidth1.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="pll_0.outclk1"
+   end="doublewidth2.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="pll_0.outclk1"
+   end="doublewidth3.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="pll_0.outclk1"
+   end="eth_in_mux.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="pll_0.outclk1"
    end="mac_0.clk_312_in_clk" />
  <connection
    kind="clock"
    version="16.1"
-   start="pll_0.outclk0"
+   start="pll_0.outclk1"
    end="mac_1.clk_312_in_clk" />
  <connection
    kind="clock"
    version="16.1"
-   start="pll_0.outclk0"
+   start="pll_0.outclk1"
    end="mac_2.clk_312_in_clk" />
  <connection
    kind="clock"
    version="16.1"
-   start="pll_0.outclk0"
+   start="pll_0.outclk1"
    end="mac_3.clk_312_in_clk" />
- <connection kind="clock" version="16.1" start="pll_0.outclk0" end="ethpack.clock" />
+ <connection kind="clock" version="16.1" start="pll_0.outclk1" end="ethpack.clock" />
  <connection
    kind="clock"
    version="16.1"
-   start="pll_0.outclk0"
+   start="pll_0.outclk1"
    end="clk_312.in_clk" />
- <connection kind="clock" version="16.1" start="pll_1.outclk0" end="pcie.refclk" />
  <connection
    kind="conduit"
    version="16.1"
@@ -1351,8 +1527,8 @@
  <connection
    kind="conduit"
    version="16.1"
-   start="pcie.reconfig_from_xcvr"
-   end="xcvr_reconfig.reconfig_from_xcvr">
+   start="xcvr_reconfig.reconfig_from_xcvr"
+   end="pcie.reconfig_from_xcvr">
   <parameter name="endPort" value="" />
   <parameter name="endPortLSB" value="0" />
   <parameter name="startPort" value="" />
@@ -1406,6 +1582,26 @@
    version="16.1"
    start="clk_156.clk_reset"
    end="pll_1.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_156.clk_reset"
+   end="doublewidth0.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_156.clk_reset"
+   end="doublewidth1.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_156.clk_reset"
+   end="doublewidth3.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_156.clk_reset"
+   end="doublewidth2.reset" />
  <connection
    kind="reset"
    version="16.1"

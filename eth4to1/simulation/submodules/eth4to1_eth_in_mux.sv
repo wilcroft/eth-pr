@@ -42,8 +42,8 @@
 //   output_name:        eth4to1_eth_in_mux
 //   use_packets:        true
 //   use_empty:          1
-//   empty_width:        3
-//   data_width:         64
+//   empty_width:        4
+//   data_width:         128
 //   channel_width:      8
 //   error_width:        0
 //   num_inputs:         4
@@ -53,7 +53,7 @@
 //   channelSelectBits:  8-1:6
 //   inPayloadMap:       in0_data,in0_startofpacket,in0_endofpacket,in0_empty,in0_channel in1_data,in1_startofpacket,in1_endofpacket,in1_empty,in1_channel in2_data,in2_startofpacket,in2_endofpacket,in2_empty,in2_channel in3_data,in3_startofpacket,in3_endofpacket,in3_empty,in3_channel
 //   outPayloadMap:      out_data,out_startofpacket,out_endofpacket,out_empty,out_channel[5:0]
-//   inPayloadWidth:     75
+//   inPayloadWidth:     140
 //   use_packet_scheduling: true
 //   schedulingSize:        2
 //   schedulingSizeInBits:     1   
@@ -66,47 +66,47 @@ module eth4to1_eth_in_mux (
  output reg     [8-1: 0] out_channel,
  output reg              out_valid,
  input                   out_ready,
- output reg    [64-1: 0] out_data,
+ output reg    [128-1: 0] out_data,
  output reg              out_startofpacket,
  output reg              out_endofpacket,
- output reg    [3-1 : 0] out_empty,
+ output reg    [4-1 : 0] out_empty,
 
 // Interface: in0
  input [6-1: 0]  in0_channel,
  input           in0_valid,
  output reg      in0_ready,
- input [64-1: 0] in0_data,
+ input [128-1: 0] in0_data,
            
  input           in0_startofpacket,
  input           in0_endofpacket, 
- input [3-1: 0]  in0_empty,
+ input [4-1: 0]  in0_empty,
 // Interface: in1
  input [6-1: 0]  in1_channel,
  input           in1_valid,
  output reg      in1_ready,
- input [64-1: 0] in1_data,
+ input [128-1: 0] in1_data,
            
  input           in1_startofpacket,
  input           in1_endofpacket, 
- input [3-1: 0]  in1_empty,
+ input [4-1: 0]  in1_empty,
 // Interface: in2
  input [6-1: 0]  in2_channel,
  input           in2_valid,
  output reg      in2_ready,
- input [64-1: 0] in2_data,
+ input [128-1: 0] in2_data,
            
  input           in2_startofpacket,
  input           in2_endofpacket, 
- input [3-1: 0]  in2_empty,
+ input [4-1: 0]  in2_empty,
 // Interface: in3
  input [6-1: 0]  in3_channel,
  input           in3_valid,
  output reg      in3_ready,
- input [64-1: 0] in3_data,
+ input [128-1: 0] in3_data,
            
  input           in3_startofpacket,
  input           in3_endofpacket, 
- input [3-1: 0]  in3_empty,
+ input [4-1: 0]  in3_empty,
   // Interface: clk
  input              clk,
  // Interface: reset
@@ -117,10 +117,10 @@ module eth4to1_eth_in_mux (
    // ---------------------------------------------------------------------
    //| Signal Declarations
    // ---------------------------------------------------------------------
-   reg [75 -1:0]      in0_payload;
-   reg [75 -1:0]      in1_payload;
-   reg [75 -1:0]      in2_payload;
-   reg [75 -1:0]      in3_payload;
+   reg [140 -1:0]      in0_payload;
+   reg [140 -1:0]      in1_payload;
+   reg [140 -1:0]      in2_payload;
+   reg [140 -1:0]      in3_payload;
  
    reg [2-1:0]        decision = 0;
    reg [2-1:0]        select = 0;   
@@ -128,10 +128,10 @@ module eth4to1_eth_in_mux (
    reg                selected_valid;
    wire               out_valid_wire;
    wire               selected_ready;
-   reg   [75 -1 :0]   selected_payload;  
+   reg   [140 -1 :0]   selected_payload;  
    reg                packet_in_progress;
    wire [2-1:0]       out_select;   
-   wire [75 - 1:0]    out_payload;
+   wire [140 - 1:0]    out_payload;
 
    // ---------------------------------------------------------------------
    //| Input Mapping
@@ -260,7 +260,7 @@ end // always @ *
    // ---------------------------------------------------------------------
    //| output Pipeline
    // ---------------------------------------------------------------------
-   eth4to1_eth_in_mux_1stage_pipeline  #( .PAYLOAD_WIDTH( 75 + 2 ) ) outpipe
+   eth4to1_eth_in_mux_1stage_pipeline  #( .PAYLOAD_WIDTH( 140 + 2 ) ) outpipe
               ( .clk      (clk ),
                 .reset_n  (reset_n  ),
                 .in_ready ( selected_ready ),

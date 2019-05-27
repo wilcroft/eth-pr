@@ -14,10 +14,10 @@ preplace inst eth4to1.mac_2.mac10g.rx_st_timing_adapter_frame_status_in -pg 1
 preplace inst eth4to1.mac_0.mac10g.rx_st_timing_adapter_splitter_status_output -pg 1
 preplace inst eth4to1.mac_1.mac10g.rx_eth_link_fault_detection -pg 1
 preplace inst eth4to1.mac_2.mac10g.tx_eth_address_inserter -pg 1
-preplace inst eth4to1.alt_pr_0 -pg 1 -lvl 3 -y 470
 preplace inst eth4to1.mac_1.mac10g.tx_st_timing_adapter_frame_decoder -pg 1
 preplace inst eth4to1.mac_2.mac10g.tx_eth_frame_decoder -pg 1
 preplace inst eth4to1.mac_2.mac10g.rx_bridge -pg 1
+preplace inst eth4to1.pr -pg 1 -lvl 4 -y 780
 preplace inst eth4to1.mac_3.mac10g.tx_eth_pad_inserter -pg 1
 preplace inst eth4to1.mac_2.mac10g.tx_st_timing_adapter_splitter_out_0 -pg 1
 preplace inst eth4to1.mac_0.mac10g.rxtx_timing_adapter_link_fault_status_tx -pg 1
@@ -27,6 +27,7 @@ preplace inst eth4to1.mac_2.mac10g.rx_eth_frame_status_merger -pg 1
 preplace inst eth4to1.mac_1.mac10g.txrx_timing_adapter_link_fault_status_export -pg 1
 preplace inst eth4to1.mac_1.mac10g.tx_st_timing_adapter_splitter_status_statistics -pg 1
 preplace inst eth4to1.mac_3.mac10g.tx_eth_link_fault_generation -pg 1
+preplace inst eth4to1.pcie_reconfig_drvr -pg 1 -lvl 3 -y 570
 preplace inst eth4to1.mac_2.mac10g.txrx_timing_adapter_link_fault_status_export -pg 1
 preplace inst eth4to1.mac_2.mac10g.tx_st_timing_adapter_splitter_status_output -pg 1
 preplace inst eth4to1.mac_0.mac10g.rx_st_timing_adapter_interface_conversion -pg 1
@@ -36,7 +37,7 @@ preplace inst eth4to1.mac_2.mac10g.rx_eth_pkt_backpressure_control -pg 1
 preplace inst eth4to1.mac_0.rx_st_fifo -pg 1
 preplace inst eth4to1.mac_0.mac10g.txrx_st_splitter_link_fault_status -pg 1
 preplace inst eth4to1.mac_1.mac10g.rx_st_status_statistics_delay -pg 1
-preplace inst eth4to1.clk_156 -pg 1 -lvl 1 -y 680
+preplace inst eth4to1.clk_156 -pg 1 -lvl 1 -y 660
 preplace inst eth4to1.mac_2.mac10g.tx_eth_link_fault_generation -pg 1
 preplace inst eth4to1.mac_0.mac10g.rx_eth_packet_overflow_control -pg 1
 preplace inst eth4to1.mac_0.mac10g.tx_eth_crc_inserter -pg 1
@@ -51,7 +52,7 @@ preplace inst eth4to1.mac_3.mac10g.tx_st_error_adapter_stat -pg 1
 preplace inst eth4to1.mac_3.mac10g.rx_st_status_statistics_delay -pg 1
 preplace inst eth4to1.mac_2.mac10g.rx_st_timing_adapter_interface_conversion -pg 1
 preplace inst eth4to1.mac_0.mac10g.rx_eth_lane_decoder -pg 1
-preplace inst eth4to1.eth_in_mux -pg 1 -lvl 8 -y 230
+preplace inst eth4to1.eth_in_mux -pg 1 -lvl 8 -y 260
 preplace inst eth4to1.mac_1.mac10g.tx_bridge -pg 1
 preplace inst eth4to1.mac_3.mac10g.rx_clk_module -pg 1
 preplace inst eth4to1.mac_1.mac10g.rxtx_timing_adapter_pauselen_rx -pg 1
@@ -87,9 +88,8 @@ preplace inst eth4to1.mac_0.mac10g -pg 1
 preplace inst eth4to1.mac_1.clk_156 -pg 1
 preplace inst eth4to1.pll_0 -pg 1 -lvl 2 -y 690
 preplace inst eth4to1.mac_0.mac10g.rx_st_timing_adapter_splitter_status_in -pg 1
-preplace inst eth4to1.pll_1 -pg 1 -lvl 2 -y 570
+preplace inst eth4to1.pll_1 -pg 1 -lvl 2 -y 530
 preplace inst eth4to1.mac_3.mac10g.tx_st_timing_adapter_splitter_status_output -pg 1
-preplace inst eth4to1.ethpack_control_0 -pg 1 -lvl 4 -y 170
 preplace inst eth4to1.mac_1.mac10g.rx_st_status_output_delay -pg 1
 preplace inst eth4to1.mac_2.mac10g.merlin_master_translator -pg 1
 preplace inst eth4to1.mac_0.mac10g.rx_bridge -pg 1
@@ -149,6 +149,7 @@ preplace inst eth4to1.mac_0.mac10g.rx_eth_crc_checker -pg 1
 preplace inst eth4to1.mac_0.mac10g.tx_eth_address_inserter -pg 1
 preplace inst eth4to1.mac_1.mac10g.rx_st_status_splitter -pg 1
 preplace inst eth4to1.mac_2.mac10g.tx_eth_pause_ctrl_gen -pg 1
+preplace inst eth4to1.pcie_clk -pg 1 -lvl 1 -y 210
 preplace inst eth4to1.mac_0.mac10g.rx_eth_crc_pad_rem -pg 1
 preplace inst eth4to1.mac_3.mac10g.rx_eth_crc_pad_rem -pg 1
 preplace inst eth4to1.mac_0.mac10g.tx_st_timing_adapter_splitter_status_output -pg 1
@@ -163,13 +164,13 @@ preplace inst eth4to1.mac_3.mac10g.tx_eth_packet_underflow_control -pg 1
 preplace inst eth4to1.mac_3.mac10g.tx_clk_module -pg 1
 preplace inst eth4to1.mac_0 -pg 1 -lvl 8 -y 50
 preplace inst eth4to1.mac_1.mac10g.txrx_st_splitter_link_fault_status -pg 1
-preplace inst eth4to1.mac_1 -pg 1 -lvl 8 -y 420
+preplace inst eth4to1.mac_1 -pg 1 -lvl 8 -y 430
 preplace inst eth4to1.mac_3.rx_st_fifo -pg 1
 preplace inst eth4to1.mac_3.mac10g.rx_eth_pkt_backpressure_control -pg 1
 preplace inst eth4to1.mac_1.mac10g.tx_st_splitter_1 -pg 1
 preplace inst eth4to1.mac_0.mac10g.rx_clk_module -pg 1
-preplace inst eth4to1.mac_2 -pg 1 -lvl 8 -y 660
-preplace inst eth4to1.mac_3 -pg 1 -lvl 8 -y 880
+preplace inst eth4to1.mac_2 -pg 1 -lvl 8 -y 690
+preplace inst eth4to1.mac_3 -pg 1 -lvl 8 -y 930
 preplace inst eth4to1.mac_0.mac10g.tx_st_status_output_delay_to_statistic -pg 1
 preplace inst eth4to1.mac_1.mac10g.merlin_master_translator -pg 1
 preplace inst eth4to1.mac_0.mac10g.rx_st_status_splitter -pg 1
@@ -220,6 +221,7 @@ preplace inst eth4to1.mac_2.mac10g.rx_eth_lane_decoder -pg 1
 preplace inst eth4to1.mac_0.tx_st_fifo -pg 1
 preplace inst eth4to1.mac_1.mac10g.tx_eth_address_inserter -pg 1
 preplace inst eth4to1.mac_0.mac10g.rx_register_map -pg 1
+preplace inst eth4to1.xcvr_reconfig -pg 1 -lvl 4 -y 210
 preplace inst eth4to1.mac_3.mac10g.tx_eth_address_inserter -pg 1
 preplace inst eth4to1.mac_0.mac10g.rx_eth_pkt_backpressure_control -pg 1
 preplace inst eth4to1.mac_2.clk_312 -pg 1
@@ -278,6 +280,7 @@ preplace inst eth4to1.mac_3.mac10g.interface_conversion -pg 1
 preplace inst eth4to1.mac_1.mac10g.rx_eth_crc_checker -pg 1
 preplace inst eth4to1.mac_3.tx_st_fifo -pg 1
 preplace inst eth4to1.mac_3.mac10g.rx_eth_packet_overflow_control -pg 1
+preplace inst eth4to1.ethpack_control -pg 1 -lvl 4 -y 550
 preplace inst eth4to1.mac_0.mac10g.tx_st_mux_flow_control_user_frame -pg 1
 preplace inst eth4to1.mac_3.mac10g.tx_eth_frame_decoder -pg 1
 preplace inst eth4to1.mac_1.mac10g.rx_eth_pkt_backpressure_control -pg 1
@@ -296,7 +299,7 @@ preplace inst eth4to1.mac_2.mac10g.tx_eth_statistics_collector -pg 1
 preplace inst eth4to1.mac_0.mac10g.rx_eth_frame_decoder -pg 1
 preplace inst eth4to1.mac_3.mac10g.tx_st_timing_adapter_splitter_in -pg 1
 preplace inst eth4to1.mac_3.mac10g -pg 1
-preplace inst eth4to1.ethpack -pg 1 -lvl 7 -y 510
+preplace inst eth4to1.ethpack -pg 1 -lvl 7 -y 530
 preplace inst eth4to1.mac_2.mac10g.tx_st_splitter_xgmii -pg 1
 preplace inst eth4to1.mac_0.mac10g.tx_st_error_adapter_stat -pg 1
 preplace inst eth4to1.mac_0.mac10g.rx_eth_frame_status_merger -pg 1
@@ -319,39 +322,52 @@ preplace inst eth4to1.mac_1.mac10g.rx_eth_statistics_collector -pg 1
 preplace inst eth4to1.mac_2.mac10g.tx_eth_pad_inserter -pg 1
 preplace inst eth4to1.mac_1.mac10g.rx_st_timing_adapter_interface_conversion -pg 1
 preplace inst eth4to1.mac_0.mac10g.tx_st_status_splitter -pg 1
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)eth_in_mux.in2,(MASTER)ethpack.packetout2) 1 7 1 2410
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)mac_3.mac10g_xgmii_rx,(SLAVE)eth4to1.xgmii_rx_data_3) 1 0 8 NJ 1020 NJ 1020 NJ 1020 NJ 1020 NJ 1020 NJ 1020 NJ 1020 NJ
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)eth_in_mux.in3,(MASTER)ethpack.packetout3) 1 7 1 2550
 preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.clk,(SLAVE)clk_156.clk_in) 1 0 1 NJ
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)mac_3.tx_st_fifo_in,(MASTER)ethpack.transmitout3) 1 7 1 2250
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)mac_3.rx_st_fifo_out,(SLAVE)ethpack.packetin3) 1 6 3 1910 1060 NJ 1060 2960
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)mac_0.rx_st_fifo_out,(SLAVE)ethpack.packetin0) 1 6 3 1870 400 NJ 600 2980
-preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)mac_0.mac10g_xgmii_rx,(SLAVE)eth4to1.xgmii_rx_data_0) 1 0 8 NJ 440 NJ 440 NJ 440 NJ 440 NJ 440 NJ 440 NJ 440 NJ
-preplace netloc EXPORT<net_container>eth4to1</net_container>(MASTER)eth4to1.xgmii_tx_data_0,(MASTER)mac_0.mac10g_xgmii_tx) 1 8 1 NJ
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)ethpack_control_0.clock,(MASTER)pcie.coreclkout) 1 3 1 N
-preplace netloc FAN_OUT<net_container>eth4to1</net_container>(MASTER)pcie.Rxm_BAR0,(SLAVE)ethpack_control_0.prcontrol,(SLAVE)ethpack_control_0.enable) 1 3 1 820
-preplace netloc INTERCONNECT<net_container>eth4to1</net_container>(SLAVE)ethpack.reset,(SLAVE)pll_0.reset,(SLAVE)mac_3.rst_in_reset,(SLAVE)eth_in_mux.reset,(SLAVE)mac_0.rst_in_reset,(SLAVE)pll_1.reset,(SLAVE)mac_2.rst_in_reset,(MASTER)pcie.nreset_status,(SLAVE)alt_pr_0.nreset,(MASTER)clk_156.clk_reset,(SLAVE)ethpack_control_0.reset,(SLAVE)mac_1.rst_in_reset) 1 1 7 320 660 520 460 820 530 NJ 530 NJ 530 1830 380 2370
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)pcie_reconfig_drvr.hip_status_drv,(SLAVE)pcie.hip_status) 1 2 1 780
+preplace netloc INTERCONNECT<net_container>eth4to1</net_container>(SLAVE)pr.nreset,(MASTER)pcie.nreset_status,(SLAVE)pll_1.reset,(SLAVE)mac_3.rst_in_reset,(SLAVE)mac_1.rst_in_reset,(MASTER)clk_156.clk_reset,(SLAVE)mac_2.rst_in_reset,(SLAVE)ethpack_control.reset,(SLAVE)xcvr_reconfig.mgmt_rst_reset,(SLAVE)pcie_reconfig_drvr.reconfig_xcvr_rst,(SLAVE)mac_0.rst_in_reset,(SLAVE)eth_in_mux.reset,(SLAVE)pll_0.reset,(SLAVE)ethpack.reset) 1 1 7 420 660 680 720 1250 740 NJ 740 NJ 740 1910 760 2530
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)ethpack.transmitout3,(SLAVE)mac_3.tx_st_fifo_in) 1 7 1 2330
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)pcie_reconfig_drvr.hip_currentspeed,(SLAVE)pcie.hip_currentspeed) 1 2 1 760
+preplace netloc FAN_OUT<net_container>eth4to1</net_container>(SLAVE)pr.avmm_slave,(MASTER)pcie.Rxm_BAR0,(SLAVE)ethpack_control.prcontrol,(SLAVE)ethpack_control.enable) 1 3 1 1150
 preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.reset,(SLAVE)clk_156.clk_in_reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.reset_0,(SLAVE)clk_100.clk_in_reset) 1 0 1 NJ
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)eth_in_mux.in0,(MASTER)ethpack.packetout0) 1 7 1 2290
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)ethpack.transmitout2,(SLAVE)mac_2.tx_st_fifo_in) 1 7 1 2290
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)eth_in_mux.in0,(MASTER)ethpack.packetout0) 1 7 1 2350
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)pcie.refclk,(MASTER)pcie_clk.out_clk) 1 1 2 NJ 240 NJ
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)ethpack_control.clock,(MASTER)pcie.coreclkout) 1 3 1 1350
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)ethpack_control.region_enable,(SLAVE)eth4to1.ethpack_control_region_enable) 1 0 4 NJ 500 NJ 500 NJ 500 NJ
+preplace netloc FAN_OUT<net_container>eth4to1</net_container>(SLAVE)pll_0.refclk,(SLAVE)mac_0.clk_156_in_clk,(SLAVE)mac_1.clk_156_in_clk,(SLAVE)mac_3.clk_156_in_clk,(SLAVE)mac_2.clk_156_in_clk,(SLAVE)pll_1.refclk,(MASTER)clk_156.clk) 1 1 7 400 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 2490
 preplace netloc EXPORT<net_container>eth4to1</net_container>(MASTER)eth4to1.xgmii_tx_data_1,(MASTER)mac_1.mac10g_xgmii_tx) 1 8 1 NJ
 preplace netloc EXPORT<net_container>eth4to1</net_container>(MASTER)eth4to1.xgmii_tx_data_2,(MASTER)mac_2.mac10g_xgmii_tx) 1 8 1 NJ
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)ethpack.packetout3,(SLAVE)eth_in_mux.in3) 1 7 1 2510
-preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)mac_1.mac10g_xgmii_rx,(SLAVE)eth4to1.xgmii_rx_data_1) 1 0 8 NJ 420 NJ 420 NJ 420 NJ 420 NJ 420 NJ 420 NJ 360 NJ
-preplace netloc FAN_OUT<net_container>eth4to1</net_container>(SLAVE)pll_0.refclk,(SLAVE)pll_1.refclk,(SLAVE)mac_2.clk_156_in_clk,(SLAVE)mac_1.clk_156_in_clk,(SLAVE)mac_3.clk_156_in_clk,(MASTER)clk_156.clk,(SLAVE)mac_0.clk_156_in_clk) 1 1 7 340 680 NJ 700 NJ 700 NJ 700 NJ 700 NJ 700 2470
-preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)mac_2.mac10g_xgmii_rx,(SLAVE)eth4to1.xgmii_rx_data_2) 1 0 8 NJ 770 NJ 770 NJ 770 NJ 770 NJ 770 NJ 770 NJ 770 NJ
+preplace netloc FAN_OUT<net_container>eth4to1</net_container>(SLAVE)eth_in_mux.clk,(MASTER)pll_0.outclk0,(SLAVE)mac_2.clk_312_in_clk,(SLAVE)clk_312.in_clk,(SLAVE)ethpack.clock,(SLAVE)mac_3.clk_312_in_clk,(SLAVE)mac_0.clk_312_in_clk,(SLAVE)mac_1.clk_312_in_clk) 1 2 6 NJ 830 NJ 700 1550 630 NJ 630 1890 740 2510
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)ethpack.packetout2,(SLAVE)eth_in_mux.in2) 1 7 1 2410
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)xcvr_reconfig.reconfig_busy,(SLAVE)pcie_reconfig_drvr.reconfig_busy) 1 2 2 820 810 1210
+preplace netloc EXPORT<net_container>eth4to1</net_container>(MASTER)eth4to1.eth_in_mux_out,(MASTER)eth_in_mux.out) 1 8 1 NJ
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.pr_freeze,(SLAVE)pr.freeze) 1 0 4 NJ 890 NJ 890 NJ 890 NJ
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)clk_100.clk_in_reset,(SLAVE)eth4to1.reset_0) 1 0 1 NJ
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.ethpack_tagin,(SLAVE)ethpack.tagin) 1 0 7 NJ 730 NJ 850 NJ 850 NJ 720 NJ 660 NJ 660 NJ
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.pcie_clk_in_clk,(SLAVE)pcie_clk.in_clk) 1 0 1 NJ
 preplace netloc EXPORT<net_container>eth4to1</net_container>(MASTER)mac_3.mac10g_xgmii_tx,(MASTER)eth4to1.xgmii_tx_data_3) 1 8 1 NJ
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)mac_2.rx_st_fifo_out,(SLAVE)ethpack.packetin2) 1 6 3 1910 490 NJ 840 2960
-preplace netloc FAN_OUT<net_container>eth4to1</net_container>(SLAVE)mac_0.clk_312_in_clk,(MASTER)pll_0.outclk0,(SLAVE)mac_2.clk_312_in_clk,(SLAVE)eth_in_mux.clk,(SLAVE)mac_1.clk_312_in_clk,(SLAVE)mac_3.clk_312_in_clk,(SLAVE)clk_312.in_clk,(SLAVE)ethpack.clock) 1 2 6 NJ 750 NJ 750 1170 510 NJ 510 1850 340 2270
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)mac_1.rx_st_fifo_out,(SLAVE)ethpack.packetin1) 1 6 3 1890 420 NJ 620 2960
-preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)ethpack.tagin,(SLAVE)eth4to1.ethpack_tagin) 1 0 7 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)ethpack.transmitout1,(SLAVE)mac_1.tx_st_fifo_in) 1 7 1 2430
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)ethpack.transmitout0,(SLAVE)mac_0.tx_st_fifo_in) 1 7 1 2350
-preplace netloc FAN_OUT<net_container>eth4to1</net_container>(SLAVE)alt_pr_0.clk,(SLAVE)pcie.refclk,(MASTER)pll_1.outclk0) 1 2 1 500
-preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)ethpack.packetout1,(SLAVE)eth_in_mux.in1) 1 7 1 2330
-preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.xgmii_rx_data_3,(SLAVE)mac_3.mac10g_xgmii_rx) 1 0 8 NJ 970 NJ 970 NJ 970 NJ 970 NJ 970 NJ 970 NJ 970 NJ
-preplace netloc EXPORT<net_container>eth4to1</net_container>(MASTER)clk_312.out_clk,(MASTER)eth4to1.clk_312_out_clk) 1 5 4 NJ 300 NJ 300 NJ 380 NJ
-preplace netloc EXPORT<net_container>eth4to1</net_container>(MASTER)eth_in_mux.out,(MASTER)eth4to1.eth_in_mux_out) 1 8 1 NJ
-preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.pcie_npor,(SLAVE)pcie.npor) 1 0 3 NJ 260 NJ 260 NJ
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)pcie.reconfig_from_xcvr,(SLAVE)xcvr_reconfig.reconfig_from_xcvr) 1 2 2 800 340 NJ
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.ethpack_control_region_freeze,(SLAVE)ethpack_control.region_freeze) 1 0 4 NJ 520 NJ 520 NJ 520 NJ
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)xcvr_reconfig.reconfig_to_xcvr,(SLAVE)pcie.reconfig_to_xcvr) 1 2 2 820 360 NJ
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)xcvr_reconfig.reconfig_mgmt,(MASTER)pcie_reconfig_drvr.reconfig_mgmt) 1 3 1 1270
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)mac_0.tx_st_fifo_in,(MASTER)ethpack.transmitout0) 1 7 1 2370
+preplace netloc EXPORT<net_container>eth4to1</net_container>(MASTER)mac_0.mac10g_xgmii_tx,(MASTER)eth4to1.xgmii_tx_data_0) 1 8 1 NJ
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)mac_1.rx_st_fifo_out,(SLAVE)ethpack.packetin1) 1 6 3 1970 720 NJ 650 3060
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)ethpack.packetin3,(MASTER)mac_3.rx_st_fifo_out) 1 6 3 1950 890 NJ 890 3040
+preplace netloc FAN_OUT<net_container>eth4to1</net_container>(MASTER)clk_100.clk,(SLAVE)xcvr_reconfig.mgmt_clk_clk,(SLAVE)pcie_reconfig_drvr.reconfig_xcvr_clk,(SLAVE)pcie_reconfig_drvr.pld_clk) 1 1 3 NJ 80 700 320 NJ
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)mac_2.tx_st_fifo_in,(MASTER)ethpack.transmitout2) 1 7 1 2430
+preplace netloc EXPORT<net_container>eth4to1</net_container>(MASTER)eth4to1.clk_312_out_clk,(MASTER)clk_312.out_clk) 1 5 4 NJ 300 NJ 300 NJ 250 NJ
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.xgmii_rx_data_1,(SLAVE)mac_1.mac10g_xgmii_rx) 1 0 8 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)ethpack.packetin0,(MASTER)mac_0.rx_st_fifo_out) 1 6 3 1930 780 NJ 870 3080
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)pcie.hip_serial,(SLAVE)eth4to1.pcie_hip_serial) 1 0 3 NJ 160 NJ 160 NJ
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)ethpack.packetin2,(MASTER)mac_2.rx_st_fifo_out) 1 6 3 1950 520 NJ 630 3040
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)pr.clk,(MASTER)pll_1.outclk0) 1 2 2 660 870 NJ
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(MASTER)ethpack.packetout1,(SLAVE)eth_in_mux.in1) 1 7 1 2390
+preplace netloc POINT_TO_POINT<net_container>eth4to1</net_container>(SLAVE)mac_1.tx_st_fifo_in,(MASTER)ethpack.transmitout1) 1 7 1 2430
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.xgmii_rx_data_2,(SLAVE)mac_2.mac10g_xgmii_rx) 1 0 8 NJ 750 NJ 680 NJ 910 NJ 760 NJ 760 NJ 760 NJ 830 NJ
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.pcie_npor,(SLAVE)pcie.npor) 1 0 3 NJ 200 NJ 200 NJ
 preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)clk_100.clk_in,(SLAVE)eth4to1.clk_100) 1 0 1 NJ
-levelinfo -pg 1 0 110 3130
-levelinfo -hier eth4to1 120 150 370 620 1030 1320 1790 2080 2690 3000
+preplace netloc EXPORT<net_container>eth4to1</net_container>(SLAVE)eth4to1.xgmii_rx_data_0,(SLAVE)mac_0.mac10g_xgmii_rx) 1 0 8 NJ 60 NJ 60 NJ 560 NJ 140 NJ 140 NJ 140 NJ 140 NJ
+levelinfo -pg 1 0 190 3230
+levelinfo -hier eth4to1 200 230 490 950 1400 1620 1870 2160 2770 3100

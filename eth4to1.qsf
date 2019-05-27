@@ -1584,6 +1584,396 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda
 set_global_assignment -name EDA_MAINTAIN_DESIGN_HIERARCHY ON -section_id eda_simulation
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
 set_global_assignment -name EDA_GENERATE_RTL_SIMULATION_COMMAND_SCRIPT ON -section_id eda_simulation
+set_global_assignment -name LL_ENABLED ON -section_id Eth0
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Eth0
+set_global_assignment -name LL_STATE LOCKED -section_id Eth0
+set_global_assignment -name LL_RESERVED OFF -section_id Eth0
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Eth0
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Eth0
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Eth0
+set_global_assignment -name LL_PR_REGION OFF -section_id Eth0
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Eth0
+set_global_assignment -name LL_WIDTH 32 -section_id Eth0
+set_global_assignment -name LL_HEIGHT 11 -section_id Eth0
+set_global_assignment -name LL_ORIGIN X179_Y41 -section_id Eth0
+set_instance_assignment -name LL_MEMBER_OF Eth0 -to "eth4to1:u0|eth4to1_mac_0:mac_0" -section_id Eth0
+set_global_assignment -name LL_ENABLED ON -section_id Eth1
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Eth1
+set_global_assignment -name LL_STATE LOCKED -section_id Eth1
+set_global_assignment -name LL_RESERVED OFF -section_id Eth1
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Eth1
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Eth1
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Eth1
+set_global_assignment -name LL_PR_REGION OFF -section_id Eth1
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Eth1
+set_global_assignment -name LL_WIDTH 32 -section_id Eth1
+set_global_assignment -name LL_HEIGHT 11 -section_id Eth1
+set_global_assignment -name LL_ORIGIN X179_Y30 -section_id Eth1
+set_instance_assignment -name LL_MEMBER_OF Eth1 -to "eth4to1:u0|eth4to1_mac_1:mac_1" -section_id Eth1
+set_global_assignment -name LL_ENABLED ON -section_id Eth2
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Eth2
+set_global_assignment -name LL_STATE LOCKED -section_id Eth2
+set_global_assignment -name LL_RESERVED OFF -section_id Eth2
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Eth2
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Eth2
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Eth2
+set_global_assignment -name LL_PR_REGION OFF -section_id Eth2
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Eth2
+set_global_assignment -name LL_WIDTH 32 -section_id Eth2
+set_global_assignment -name LL_HEIGHT 11 -section_id Eth2
+set_global_assignment -name LL_ORIGIN X179_Y19 -section_id Eth2
+set_instance_assignment -name LL_MEMBER_OF Eth2 -to "eth4to1:u0|eth4to1_mac_2:mac_2" -section_id Eth2
+set_global_assignment -name LL_ENABLED ON -section_id Eth3
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Eth3
+set_global_assignment -name LL_STATE LOCKED -section_id Eth3
+set_global_assignment -name LL_RESERVED OFF -section_id Eth3
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Eth3
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Eth3
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Eth3
+set_global_assignment -name LL_PR_REGION OFF -section_id Eth3
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Eth3
+set_global_assignment -name LL_WIDTH 32 -section_id Eth3
+set_global_assignment -name LL_HEIGHT 11 -section_id Eth3
+set_global_assignment -name LL_ORIGIN X179_Y8 -section_id Eth3
+set_instance_assignment -name LL_MEMBER_OF Eth3 -to "eth4to1:u0|eth4to1_mac_3:mac_3" -section_id Eth3
+set_global_assignment -name LL_ENABLED ON -section_id Match0
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Match0
+set_global_assignment -name LL_STATE LOCKED -section_id Match0
+set_global_assignment -name LL_RESERVED ON -section_id Match0
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Match0
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Match0
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Match0
+set_global_assignment -name LL_PR_REGION ON -section_id Match0
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 12 -section_id Match0
+set_global_assignment -name LL_WIDTH 30 -section_id Match0
+set_global_assignment -name LL_HEIGHT 26 -section_id Match0
+set_global_assignment -name LL_ORIGIN X121_Y38 -section_id Match0
+set_global_assignment -name LL_ENABLED ON -section_id Match1
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Match1
+set_global_assignment -name LL_STATE LOCKED -section_id Match1
+set_global_assignment -name LL_RESERVED ON -section_id Match1
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Match1
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Match1
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Match1
+set_global_assignment -name LL_PR_REGION ON -section_id Match1
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 12 -section_id Match1
+set_global_assignment -name LL_WIDTH 30 -section_id Match1
+set_global_assignment -name LL_HEIGHT 26 -section_id Match1
+set_global_assignment -name LL_ORIGIN X107_Y1 -section_id Match1
+set_global_assignment -name LL_ENABLED ON -section_id Match2
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Match2
+set_global_assignment -name LL_STATE LOCKED -section_id Match2
+set_global_assignment -name LL_RESERVED ON -section_id Match2
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Match2
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Match2
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Match2
+set_global_assignment -name LL_PR_REGION ON -section_id Match2
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 12 -section_id Match2
+set_global_assignment -name LL_WIDTH 30 -section_id Match2
+set_global_assignment -name LL_HEIGHT 26 -section_id Match2
+set_global_assignment -name LL_ORIGIN X90_Y38 -section_id Match2
+set_global_assignment -name LL_ENABLED ON -section_id Match3
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Match3
+set_global_assignment -name LL_STATE LOCKED -section_id Match3
+set_global_assignment -name LL_RESERVED ON -section_id Match3
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Match3
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Match3
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Match3
+set_global_assignment -name LL_PR_REGION ON -section_id Match3
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 12 -section_id Match3
+set_global_assignment -name LL_WIDTH 30 -section_id Match3
+set_global_assignment -name LL_HEIGHT 26 -section_id Match3
+set_global_assignment -name LL_ORIGIN X67_Y1 -section_id Match3
+set_global_assignment -name LL_ENABLED ON -section_id Match4
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Match4
+set_global_assignment -name LL_STATE LOCKED -section_id Match4
+set_global_assignment -name LL_RESERVED ON -section_id Match4
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Match4
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Match4
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Match4
+set_global_assignment -name LL_PR_REGION ON -section_id Match4
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 12 -section_id Match4
+set_global_assignment -name LL_WIDTH 30 -section_id Match4
+set_global_assignment -name LL_HEIGHT 26 -section_id Match4
+set_global_assignment -name LL_ORIGIN X59_Y38 -section_id Match4
+set_global_assignment -name LL_ENABLED ON -section_id Match5
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Match5
+set_global_assignment -name LL_STATE LOCKED -section_id Match5
+set_global_assignment -name LL_RESERVED ON -section_id Match5
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Match5
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Match5
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Match5
+set_global_assignment -name LL_PR_REGION ON -section_id Match5
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 12 -section_id Match5
+set_global_assignment -name LL_WIDTH 30 -section_id Match5
+set_global_assignment -name LL_HEIGHT 26 -section_id Match5
+set_global_assignment -name LL_ORIGIN X29_Y1 -section_id Match5
+set_global_assignment -name LL_ENABLED ON -section_id Match6
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Match6
+set_global_assignment -name LL_STATE LOCKED -section_id Match6
+set_global_assignment -name LL_RESERVED ON -section_id Match6
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Match6
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Match6
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Match6
+set_global_assignment -name LL_PR_REGION ON -section_id Match6
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 12 -section_id Match6
+set_global_assignment -name LL_WIDTH 30 -section_id Match6
+set_global_assignment -name LL_HEIGHT 26 -section_id Match6
+set_global_assignment -name LL_ORIGIN X28_Y38 -section_id Match6
+set_global_assignment -name LL_ENABLED ON -section_id Match7
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Match7
+set_global_assignment -name LL_STATE LOCKED -section_id Match7
+set_global_assignment -name LL_RESERVED ON -section_id Match7
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Match7
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Match7
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Match7
+set_global_assignment -name LL_PR_REGION ON -section_id Match7
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 12 -section_id Match7
+set_global_assignment -name LL_WIDTH 30 -section_id Match7
+set_global_assignment -name LL_HEIGHT 26 -section_id Match7
+set_global_assignment -name LL_ORIGIN X159_Y74 -section_id Match7
+set_global_assignment -name LL_ROUTING_REGION EXPANDED -section_id Match0
+set_global_assignment -name LL_ROUTING_REGION EXPANDED -section_id Match1
+set_global_assignment -name LL_ROUTING_REGION EXPANDED -section_id Match2
+set_global_assignment -name LL_ROUTING_REGION EXPANDED -section_id Match3
+set_global_assignment -name LL_ROUTING_REGION EXPANDED -section_id Match4
+set_global_assignment -name LL_ROUTING_REGION EXPANDED -section_id Match5
+set_global_assignment -name LL_ROUTING_REGION EXPANDED -section_id Match6
+set_global_assignment -name LL_ROUTING_REGION EXPANDED -section_id Match7
+set_instance_assignment -name LL_MEMBER_OF Match0 -to "matchblock_wrapper:pnode_gen[0].mb" -section_id Match0
+set_instance_assignment -name LL_MEMBER_OF Match1 -to "matchblock_wrapper:pnode_gen[1].mb" -section_id Match1
+set_instance_assignment -name LL_MEMBER_OF Match2 -to "matchblock_wrapper:pnode_gen[2].mb" -section_id Match2
+set_instance_assignment -name LL_MEMBER_OF Match3 -to "matchblock_wrapper:pnode_gen[3].mb" -section_id Match3
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id "matchblock_wrapper:pnode_gen_4__mb"
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id "matchblock_wrapper:pnode_gen_4__mb"
+set_global_assignment -name PARTITION_COLOR 39423 -section_id "matchblock_wrapper:pnode_gen_4__mb"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id "matchblock_wrapper:pnode_gen_0__mb"
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id "matchblock_wrapper:pnode_gen_0__mb"
+set_global_assignment -name PARTITION_COLOR 52377 -section_id "matchblock_wrapper:pnode_gen_0__mb"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id "matchblock_wrapper:pnode_gen_1__mb"
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id "matchblock_wrapper:pnode_gen_1__mb"
+set_global_assignment -name PARTITION_COLOR 16776960 -section_id "matchblock_wrapper:pnode_gen_1__mb"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id "matchblock_wrapper:pnode_gen_2__mb"
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id "matchblock_wrapper:pnode_gen_2__mb"
+set_global_assignment -name PARTITION_COLOR 16711935 -section_id "matchblock_wrapper:pnode_gen_2__mb"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id "matchblock_wrapper:pnode_gen_3__mb"
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id "matchblock_wrapper:pnode_gen_3__mb"
+set_global_assignment -name PARTITION_COLOR 65535 -section_id "matchblock_wrapper:pnode_gen_3__mb"
+set_instance_assignment -name LL_MEMBER_OF Match4 -to "matchblock_wrapper:pnode_gen[4].mb" -section_id Match4
+set_instance_assignment -name LL_MEMBER_OF Match5 -to "matchblock_wrapper:pnode_gen[5].mb" -section_id Match5
+set_instance_assignment -name LL_MEMBER_OF Match6 -to "matchblock_wrapper:pnode_gen[6].mb" -section_id Match6
+#set_instance_assignment -name LL_MEMBER_OF Match7 -to "matchblock_wrapper:pnode_gen[7].mb" -section_id Match7
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id "matchblock_wrapper:pnode_gen_5__mb"
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id "matchblock_wrapper:pnode_gen_5__mb"
+set_global_assignment -name PARTITION_COLOR 16777164 -section_id "matchblock_wrapper:pnode_gen_5__mb"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id "matchblock_wrapper:pnode_gen_6__mb"
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id "matchblock_wrapper:pnode_gen_6__mb"
+set_global_assignment -name PARTITION_COLOR 10198015 -section_id "matchblock_wrapper:pnode_gen_6__mb"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id "matchblock_wrapper:pnode_gen_7__mb"
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id "matchblock_wrapper:pnode_gen_7__mb"
+set_global_assignment -name PARTITION_COLOR 32896 -section_id "matchblock_wrapper:pnode_gen_7__mb"
+set_global_assignment -name ALLOW_MULTIPLE_PERSONAS ON -section_id "matchblock_wrapper:pnode_gen_4__mb"
+set_global_assignment -name ALLOW_MULTIPLE_PERSONAS ON -section_id "matchblock_wrapper:pnode_gen_0__mb"
+set_global_assignment -name ALLOW_MULTIPLE_PERSONAS ON -section_id "matchblock_wrapper:pnode_gen_1__mb"
+set_global_assignment -name ALLOW_MULTIPLE_PERSONAS ON -section_id "matchblock_wrapper:pnode_gen_7__mb"
+set_global_assignment -name ALLOW_MULTIPLE_PERSONAS ON -section_id "matchblock_wrapper:pnode_gen_6__mb"
+set_global_assignment -name ALLOW_MULTIPLE_PERSONAS ON -section_id "matchblock_wrapper:pnode_gen_5__mb"
+set_global_assignment -name ALLOW_MULTIPLE_PERSONAS ON -section_id "matchblock_wrapper:pnode_gen_3__mb"
+set_global_assignment -name ALLOW_MULTIPLE_PERSONAS ON -section_id "matchblock_wrapper:pnode_gen_2__mb"
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name OPTIMIZATION_MODE "HIGH PERFORMANCE EFFORT"
+set_global_assignment -name PERIPHERY_TO_CORE_PLACEMENT_AND_ROUTING_OPTIMIZATION AUTO
+set_global_assignment -name AUTO_DELAY_CHAINS_FOR_HIGH_FANOUT_INPUT_PINS ON
+set_global_assignment -name LL_ENABLED ON -section_id FIFONode0
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id FIFONode0
+set_global_assignment -name LL_STATE LOCKED -section_id FIFONode0
+set_global_assignment -name LL_RESERVED OFF -section_id FIFONode0
+set_global_assignment -name LL_CORE_ONLY OFF -section_id FIFONode0
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id FIFONode0
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id FIFONode0
+set_global_assignment -name LL_PR_REGION OFF -section_id FIFONode0
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id FIFONode0
+set_global_assignment -name LL_WIDTH 13 -section_id FIFONode0
+set_global_assignment -name LL_HEIGHT 6 -section_id FIFONode0
+set_global_assignment -name LL_ORIGIN X128_Y31 -section_id FIFONode0
+set_global_assignment -name LL_ENABLED ON -section_id FIFONode1
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id FIFONode1
+set_global_assignment -name LL_STATE LOCKED -section_id FIFONode1
+set_global_assignment -name LL_RESERVED OFF -section_id FIFONode1
+set_global_assignment -name LL_CORE_ONLY OFF -section_id FIFONode1
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id FIFONode1
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id FIFONode1
+set_global_assignment -name LL_PR_REGION OFF -section_id FIFONode1
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id FIFONode1
+set_global_assignment -name LL_WIDTH 13 -section_id FIFONode1
+set_global_assignment -name LL_HEIGHT 6 -section_id FIFONode1
+set_global_assignment -name LL_ORIGIN X113_Y31 -section_id FIFONode1
+set_global_assignment -name LL_ENABLED ON -section_id FIFONode2
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id FIFONode2
+set_global_assignment -name LL_STATE LOCKED -section_id FIFONode2
+set_global_assignment -name LL_RESERVED OFF -section_id FIFONode2
+set_global_assignment -name LL_CORE_ONLY OFF -section_id FIFONode2
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id FIFONode2
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id FIFONode2
+set_global_assignment -name LL_PR_REGION OFF -section_id FIFONode2
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id FIFONode2
+set_global_assignment -name LL_WIDTH 13 -section_id FIFONode2
+set_global_assignment -name LL_HEIGHT 6 -section_id FIFONode2
+set_global_assignment -name LL_ORIGIN X99_Y31 -section_id FIFONode2
+set_global_assignment -name LL_ENABLED ON -section_id FIFONode3
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id FIFONode3
+set_global_assignment -name LL_STATE LOCKED -section_id FIFONode3
+set_global_assignment -name LL_RESERVED OFF -section_id FIFONode3
+set_global_assignment -name LL_CORE_ONLY OFF -section_id FIFONode3
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id FIFONode3
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id FIFONode3
+set_global_assignment -name LL_PR_REGION OFF -section_id FIFONode3
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id FIFONode3
+set_global_assignment -name LL_WIDTH 13 -section_id FIFONode3
+set_global_assignment -name LL_HEIGHT 6 -section_id FIFONode3
+set_global_assignment -name LL_ORIGIN X84_Y31 -section_id FIFONode3
+set_global_assignment -name LL_ENABLED ON -section_id FIFONode4
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id FIFONode4
+set_global_assignment -name LL_STATE LOCKED -section_id FIFONode4
+set_global_assignment -name LL_RESERVED OFF -section_id FIFONode4
+set_global_assignment -name LL_CORE_ONLY OFF -section_id FIFONode4
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id FIFONode4
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id FIFONode4
+set_global_assignment -name LL_PR_REGION OFF -section_id FIFONode4
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id FIFONode4
+set_global_assignment -name LL_WIDTH 13 -section_id FIFONode4
+set_global_assignment -name LL_HEIGHT 6 -section_id FIFONode4
+set_global_assignment -name LL_ORIGIN X67_Y31 -section_id FIFONode4
+set_global_assignment -name LL_ENABLED ON -section_id FIFONode5
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id FIFONode5
+set_global_assignment -name LL_STATE LOCKED -section_id FIFONode5
+set_global_assignment -name LL_RESERVED OFF -section_id FIFONode5
+set_global_assignment -name LL_CORE_ONLY OFF -section_id FIFONode5
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id FIFONode5
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id FIFONode5
+set_global_assignment -name LL_PR_REGION OFF -section_id FIFONode5
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id FIFONode5
+set_global_assignment -name LL_WIDTH 13 -section_id FIFONode5
+set_global_assignment -name LL_HEIGHT 6 -section_id FIFONode5
+set_global_assignment -name LL_ORIGIN X53_Y31 -section_id FIFONode5
+set_global_assignment -name LL_ENABLED ON -section_id FIFONode6
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id FIFONode6
+set_global_assignment -name LL_STATE LOCKED -section_id FIFONode6
+set_global_assignment -name LL_RESERVED OFF -section_id FIFONode6
+set_global_assignment -name LL_CORE_ONLY OFF -section_id FIFONode6
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id FIFONode6
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id FIFONode6
+set_global_assignment -name LL_PR_REGION OFF -section_id FIFONode6
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id FIFONode6
+set_global_assignment -name LL_WIDTH 13 -section_id FIFONode6
+set_global_assignment -name LL_HEIGHT 6 -section_id FIFONode6
+set_global_assignment -name LL_ORIGIN X32_Y31 -section_id FIFONode6
+set_global_assignment -name LL_ENABLED ON -section_id FIFONode7
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id FIFONode7
+set_global_assignment -name LL_STATE LOCKED -section_id FIFONode7
+set_global_assignment -name LL_RESERVED OFF -section_id FIFONode7
+set_global_assignment -name LL_CORE_ONLY OFF -section_id FIFONode7
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id FIFONode7
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id FIFONode7
+set_global_assignment -name LL_PR_REGION OFF -section_id FIFONode7
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id FIFONode7
+set_global_assignment -name LL_WIDTH 13 -section_id FIFONode7
+set_global_assignment -name LL_HEIGHT 6 -section_id FIFONode7
+set_global_assignment -name LL_ORIGIN X160_Y66 -section_id FIFONode7
+set_instance_assignment -name LL_MEMBER_OF FIFONode0 -to "in_fifo_network:innet|in_node_fifo:genloop[0].innode" -section_id FIFONode0
+set_instance_assignment -name LL_MEMBER_OF FIFONode0 -to "out_fifo_network:outnet|out_node_fifo:genloop[0].fi" -section_id FIFONode0
+#set_instance_assignment -name LL_MEMBER_OF FIFONode7 -to "in_fifo_network:innet|in_node_fifo:genloop[7].innode" -section_id FIFONode7
+#set_instance_assignment -name LL_MEMBER_OF FIFONode7 -to "out_fifo_network:outnet|out_node_fifo:genloop[7].fi" -section_id FIFONode7
+set_instance_assignment -name LL_MEMBER_OF FIFONode1 -to "in_fifo_network:innet|in_node_fifo:genloop[1].innode" -section_id FIFONode1
+set_instance_assignment -name LL_MEMBER_OF FIFONode1 -to "out_fifo_network:outnet|out_node_fifo:genloop[1].fi" -section_id FIFONode1
+set_instance_assignment -name LL_MEMBER_OF FIFONode2 -to "in_fifo_network:innet|in_node_fifo:genloop[2].innode" -section_id FIFONode2
+set_instance_assignment -name LL_MEMBER_OF FIFONode2 -to "out_fifo_network:outnet|out_node_fifo:genloop[2].fi" -section_id FIFONode2
+set_instance_assignment -name LL_MEMBER_OF FIFONode3 -to "in_fifo_network:innet|in_node_fifo:genloop[3].innode" -section_id FIFONode3
+set_instance_assignment -name LL_MEMBER_OF FIFONode3 -to "out_fifo_network:outnet|out_node_fifo:genloop[3].fi" -section_id FIFONode3
+set_instance_assignment -name LL_MEMBER_OF FIFONode4 -to "in_fifo_network:innet|in_node_fifo:genloop[4].innode" -section_id FIFONode4
+set_instance_assignment -name LL_MEMBER_OF FIFONode4 -to "out_fifo_network:outnet|out_node_fifo:genloop[4].fi" -section_id FIFONode4
+set_instance_assignment -name LL_MEMBER_OF FIFONode5 -to "in_fifo_network:innet|in_node_fifo:genloop[5].innode" -section_id FIFONode5
+set_instance_assignment -name LL_MEMBER_OF FIFONode5 -to "out_fifo_network:outnet|out_node_fifo:genloop[5].fi" -section_id FIFONode5
+set_instance_assignment -name LL_MEMBER_OF FIFONode6 -to "in_fifo_network:innet|in_node_fifo:genloop[6].innode" -section_id FIFONode6
+set_instance_assignment -name LL_MEMBER_OF FIFONode6 -to "out_fifo_network:outnet|out_node_fifo:genloop[6].fi" -section_id FIFONode6
+set_global_assignment -name LL_ENABLED ON -section_id Packetmem0
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Packetmem0
+set_global_assignment -name LL_STATE LOCKED -section_id Packetmem0
+set_global_assignment -name LL_RESERVED OFF -section_id Packetmem0
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Packetmem0
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Packetmem0
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Packetmem0
+set_global_assignment -name LL_PR_REGION OFF -section_id Packetmem0
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Packetmem0
+set_global_assignment -name LL_WIDTH 59 -section_id Packetmem0
+set_global_assignment -name LL_HEIGHT 19 -section_id Packetmem0
+set_global_assignment -name LL_ORIGIN X152_Y36 -section_id Packetmem0
+set_global_assignment -name LL_ENABLED ON -section_id Packetmem1
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Packetmem1
+set_global_assignment -name LL_STATE LOCKED -section_id Packetmem1
+set_global_assignment -name LL_RESERVED OFF -section_id Packetmem1
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Packetmem1
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Packetmem1
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Packetmem1
+set_global_assignment -name LL_PR_REGION OFF -section_id Packetmem1
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Packetmem1
+set_global_assignment -name LL_WIDTH 59 -section_id Packetmem1
+set_global_assignment -name LL_HEIGHT 19 -section_id Packetmem1
+set_global_assignment -name LL_ORIGIN X152_Y26 -section_id Packetmem1
+set_global_assignment -name LL_ENABLED ON -section_id Packetmem2
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Packetmem2
+set_global_assignment -name LL_STATE LOCKED -section_id Packetmem2
+set_global_assignment -name LL_RESERVED OFF -section_id Packetmem2
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Packetmem2
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Packetmem2
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Packetmem2
+set_global_assignment -name LL_PR_REGION OFF -section_id Packetmem2
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Packetmem2
+set_global_assignment -name LL_WIDTH 59 -section_id Packetmem2
+set_global_assignment -name LL_HEIGHT 19 -section_id Packetmem2
+set_global_assignment -name LL_ORIGIN X152_Y16 -section_id Packetmem2
+set_global_assignment -name LL_ENABLED ON -section_id Packetmem3
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Packetmem3
+set_global_assignment -name LL_STATE LOCKED -section_id Packetmem3
+set_global_assignment -name LL_RESERVED OFF -section_id Packetmem3
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Packetmem3
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Packetmem3
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Packetmem3
+set_global_assignment -name LL_PR_REGION OFF -section_id Packetmem3
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Packetmem3
+set_global_assignment -name LL_WIDTH 59 -section_id Packetmem3
+set_global_assignment -name LL_HEIGHT 19 -section_id Packetmem3
+set_global_assignment -name LL_ORIGIN X152_Y6 -section_id Packetmem3
+set_instance_assignment -name LL_MEMBER_OF Packetmem0 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[0].outloop[0].mem" -section_id Packetmem0
+set_instance_assignment -name LL_MEMBER_OF Packetmem0 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[0].outloop[1].mem" -section_id Packetmem0
+set_instance_assignment -name LL_MEMBER_OF Packetmem0 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[0].outloop[2].mem" -section_id Packetmem0
+set_instance_assignment -name LL_MEMBER_OF Packetmem0 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[0].outloop[3].mem" -section_id Packetmem0
+set_instance_assignment -name LL_MEMBER_OF Packetmem1 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[1].outloop[0].mem" -section_id Packetmem1
+set_instance_assignment -name LL_MEMBER_OF Packetmem1 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[1].outloop[1].mem" -section_id Packetmem1
+set_instance_assignment -name LL_MEMBER_OF Packetmem1 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[1].outloop[2].mem" -section_id Packetmem1
+set_instance_assignment -name LL_MEMBER_OF Packetmem1 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[1].outloop[3].mem" -section_id Packetmem1
+set_instance_assignment -name LL_MEMBER_OF Packetmem2 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[2].outloop[0].mem" -section_id Packetmem2
+set_instance_assignment -name LL_MEMBER_OF Packetmem2 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[2].outloop[1].mem" -section_id Packetmem2
+set_instance_assignment -name LL_MEMBER_OF Packetmem2 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[2].outloop[2].mem" -section_id Packetmem2
+set_instance_assignment -name LL_MEMBER_OF Packetmem2 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[2].outloop[3].mem" -section_id Packetmem2
+set_instance_assignment -name LL_MEMBER_OF Packetmem3 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[3].outloop[0].mem" -section_id Packetmem3
+set_instance_assignment -name LL_MEMBER_OF Packetmem3 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[3].outloop[1].mem" -section_id Packetmem3
+set_instance_assignment -name LL_MEMBER_OF Packetmem3 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[3].outloop[2].mem" -section_id Packetmem3
+set_instance_assignment -name LL_MEMBER_OF Packetmem3 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[3].outloop[3].mem" -section_id Packetmem3
+#set_instance_assignment -name PARTITION_HIERARCHY pnode_50d41 -to "matchblock_wrapper:pnode_gen[7].mb" -section_id "matchblock_wrapper:pnode_gen_7__mb"
+set_global_assignment -name VERILOG_FILE hardblockfifo.v
+set_global_assignment -name SDC_FILE "eth4to1-false.sdc"
+set_global_assignment -name QIP_FILE memout_fifo/synthesis/memout_fifo.qip
+set_global_assignment -name VERILOG_FILE si570/si570_controller/si570_controller.v
+set_global_assignment -name VERILOG_FILE si570/si570_controller/initial_config.v
+set_global_assignment -name VERILOG_FILE si570/si570_controller/i2c_reg_controller.v
+set_global_assignment -name VERILOG_FILE si570/si570_controller/i2c_controller.v
+set_global_assignment -name VERILOG_FILE si570/si570_controller/i2c_bus_controller.v
+set_global_assignment -name VERILOG_FILE si570/si570_controller/edge_detector.v
+set_global_assignment -name VERILOG_FILE si570/si570_controller/clock_divider.v
+set_global_assignment -name QIP_FILE si570/mgmt_pll/mgmt_pll_0002.qip -library mgmt_pll
+set_global_assignment -name QIP_FILE si570/mgmt_pll.qip
 set_global_assignment -name QIP_FILE eth4to1/synthesis/eth4to1.qip
 set_global_assignment -name SDC_FILE eth4to1.out.sdc
 set_global_assignment -name QIP_FILE mac10g.qip
@@ -1603,56 +1993,30 @@ set_global_assignment -name SYSTEMVERILOG_FILE hardmatchblock.sv
 set_global_assignment -name QIP_FILE packetmem2.qip
 set_global_assignment -name QIP_FILE output_cmdq.qip
 set_global_assignment -name QIP_FILE sopeopFIFO.qip
-set_global_assignment -name LL_ENABLED ON -section_id Region_0
-set_global_assignment -name LL_AUTO_SIZE OFF -section_id Region_0
-set_global_assignment -name LL_STATE LOCKED -section_id Region_0
-set_global_assignment -name LL_RESERVED OFF -section_id Region_0
-set_global_assignment -name LL_CORE_ONLY OFF -section_id Region_0
-set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Region_0
-set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Region_0
-set_global_assignment -name LL_PR_REGION OFF -section_id Region_0
-set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Region_0
-set_global_assignment -name LL_WIDTH 32 -section_id Region_0
-set_global_assignment -name LL_HEIGHT 11 -section_id Region_0
-set_global_assignment -name LL_ORIGIN X179_Y41 -section_id Region_0
-set_global_assignment -name LL_ENABLED ON -section_id Region_1
-set_global_assignment -name LL_AUTO_SIZE OFF -section_id Region_1
-set_global_assignment -name LL_STATE LOCKED -section_id Region_1
-set_global_assignment -name LL_RESERVED OFF -section_id Region_1
-set_global_assignment -name LL_CORE_ONLY OFF -section_id Region_1
-set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Region_1
-set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Region_1
-set_global_assignment -name LL_PR_REGION OFF -section_id Region_1
-set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Region_1
-set_global_assignment -name LL_WIDTH 32 -section_id Region_1
-set_global_assignment -name LL_HEIGHT 11 -section_id Region_1
-set_global_assignment -name LL_ORIGIN X179_Y30 -section_id Region_1
-set_global_assignment -name LL_ENABLED ON -section_id Region_2
-set_global_assignment -name LL_AUTO_SIZE OFF -section_id Region_2
-set_global_assignment -name LL_STATE LOCKED -section_id Region_2
-set_global_assignment -name LL_RESERVED OFF -section_id Region_2
-set_global_assignment -name LL_CORE_ONLY OFF -section_id Region_2
-set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Region_2
-set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Region_2
-set_global_assignment -name LL_PR_REGION OFF -section_id Region_2
-set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Region_2
-set_global_assignment -name LL_WIDTH 32 -section_id Region_2
-set_global_assignment -name LL_HEIGHT 11 -section_id Region_2
-set_global_assignment -name LL_ORIGIN X179_Y19 -section_id Region_2
-set_global_assignment -name LL_ENABLED ON -section_id Region_3
-set_global_assignment -name LL_AUTO_SIZE OFF -section_id Region_3
-set_global_assignment -name LL_STATE LOCKED -section_id Region_3
-set_global_assignment -name LL_RESERVED OFF -section_id Region_3
-set_global_assignment -name LL_CORE_ONLY OFF -section_id Region_3
-set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Region_3
-set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Region_3
-set_global_assignment -name LL_PR_REGION OFF -section_id Region_3
-set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Region_3
-set_global_assignment -name LL_WIDTH 32 -section_id Region_3
-set_global_assignment -name LL_HEIGHT 11 -section_id Region_3
-set_global_assignment -name LL_ORIGIN X179_Y8 -section_id Region_3
-set_instance_assignment -name LL_MEMBER_OF Region_0 -to "eth4to1:u0|eth4to1_mac_0:mac_0" -section_id Region_0
-set_instance_assignment -name LL_MEMBER_OF Region_1 -to "eth4to1:u0|eth4to1_mac_1:mac_1" -section_id Region_1
-set_instance_assignment -name LL_MEMBER_OF Region_2 -to "eth4to1:u0|eth4to1_mac_2:mac_2" -section_id Region_2
-set_instance_assignment -name LL_MEMBER_OF Region_3 -to "eth4to1:u0|eth4to1_mac_3:mac_3" -section_id Region_3
+set_global_assignment -name QIP_FILE eth_rcfg.qip
+set_global_assignment -name SIP_FILE eth_rcfg.sip
+set_global_assignment -name SYSTEMVERILOG_FILE matchblock_wrapper.sv
+set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/sorterunit_v2.sv
+set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/sorterblock_v2.sv
+set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/rulemem.sv
+set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/newrulefifo.sv
+set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/mmbfsm.sv
+set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/memorymatchblock.sv
+set_global_assignment -name VERILOG_FILE memorymatchblock/mem.v
+set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/linearsearch.sv
+set_global_assignment -name VERILOG_FILE memorymatchblock/hardblockfifo.v
+set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/binarysearch.sv
+set_global_assignment -name SYSTEMVERILOG_FILE memory_match.sv
+set_instance_assignment -name LL_MEMBER_OF Match7 -to "matchblock_wrapper:pnode_gen[7].mb" -section_id Match7
+set_instance_assignment -name LL_MEMBER_OF FIFONode7 -to "in_fifo_network:innet|in_node_fifo:genloop[7].innode" -section_id FIFONode7
+set_instance_assignment -name LL_MEMBER_OF FIFONode7 -to "out_fifo_network:outnet|out_node_fifo:genloop[7].fi" -section_id FIFONode7
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_instance_assignment -name PARTITION_HIERARCHY pnode_72021 -to "matchblock_wrapper:pnode_gen[0].mb" -section_id "matchblock_wrapper:pnode_gen_0__mb"
+set_instance_assignment -name PARTITION_HIERARCHY pnode_25cc1 -to "matchblock_wrapper:pnode_gen[1].mb" -section_id "matchblock_wrapper:pnode_gen_1__mb"
+set_instance_assignment -name PARTITION_HIERARCHY pnode_a0b11 -to "matchblock_wrapper:pnode_gen[2].mb" -section_id "matchblock_wrapper:pnode_gen_2__mb"
+set_instance_assignment -name PARTITION_HIERARCHY pnode_02be1 -to "matchblock_wrapper:pnode_gen[3].mb" -section_id "matchblock_wrapper:pnode_gen_3__mb"
+set_instance_assignment -name PARTITION_HIERARCHY pnode_ca3d1 -to "matchblock_wrapper:pnode_gen[4].mb" -section_id "matchblock_wrapper:pnode_gen_4__mb"
+set_instance_assignment -name PARTITION_HIERARCHY pnode_ca831 -to "matchblock_wrapper:pnode_gen[5].mb" -section_id "matchblock_wrapper:pnode_gen_5__mb"
+set_instance_assignment -name PARTITION_HIERARCHY pnode_e6ad1 -to "matchblock_wrapper:pnode_gen[6].mb" -section_id "matchblock_wrapper:pnode_gen_6__mb"
+set_instance_assignment -name PARTITION_HIERARCHY pnode_50d41 -to "matchblock_wrapper:pnode_gen[7].mb" -section_id "matchblock_wrapper:pnode_gen_7__mb"
+set_global_assignment -name SIGNALTAP_FILE stp1.stp
