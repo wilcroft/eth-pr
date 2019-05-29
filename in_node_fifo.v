@@ -43,6 +43,7 @@ module in_node_fifo (
 	rdreq,
 	sclr,
 	wrreq,
+	almost_full,
 	empty,
 	full,
 	q);
@@ -52,16 +53,19 @@ module in_node_fifo (
 	input	  rdreq;
 	input	  sclr;
 	input	  wrreq;
+	output	  almost_full;
 	output	  empty;
 	output	  full;
 	output	[143:0]  q;
 
 	wire  sub_wire0;
 	wire  sub_wire1;
-	wire [143:0] sub_wire2;
-	wire  empty = sub_wire0;
-	wire  full = sub_wire1;
-	wire [143:0] q = sub_wire2[143:0];
+	wire  sub_wire2;
+	wire [143:0] sub_wire3;
+	wire  almost_full = sub_wire0;
+	wire  empty = sub_wire1;
+	wire  full = sub_wire2;
+	wire [143:0] q = sub_wire3[143:0];
 
 	scfifo	scfifo_component (
 				.clock (clock),
@@ -69,22 +73,23 @@ module in_node_fifo (
 				.rdreq (rdreq),
 				.sclr (sclr),
 				.wrreq (wrreq),
-				.empty (sub_wire0),
-				.full (sub_wire1),
-				.q (sub_wire2),
+				.almost_full (sub_wire0),
+				.empty (sub_wire1),
+				.full (sub_wire2),
+				.q (sub_wire3),
 				.aclr (),
 				.almost_empty (),
-				.almost_full (),
 				.eccstatus (),
 				.usedw ());
 	defparam
 		scfifo_component.add_ram_output_register = "ON",
+		scfifo_component.almost_full_value = 64,
 		scfifo_component.intended_device_family = "Stratix V",
-		scfifo_component.lpm_numwords = 512,
+		scfifo_component.lpm_numwords = 128,
 		scfifo_component.lpm_showahead = "OFF",
 		scfifo_component.lpm_type = "scfifo",
 		scfifo_component.lpm_width = 144,
-		scfifo_component.lpm_widthu = 9,
+		scfifo_component.lpm_widthu = 7,
 		scfifo_component.overflow_checking = "OFF",
 		scfifo_component.underflow_checking = "OFF",
 		scfifo_component.use_eab = "ON";
@@ -97,11 +102,11 @@ endmodule
 // ============================================================
 // Retrieval info: PRIVATE: AlmostEmpty NUMERIC "0"
 // Retrieval info: PRIVATE: AlmostEmptyThr NUMERIC "-1"
-// Retrieval info: PRIVATE: AlmostFull NUMERIC "0"
-// Retrieval info: PRIVATE: AlmostFullThr NUMERIC "-1"
+// Retrieval info: PRIVATE: AlmostFull NUMERIC "1"
+// Retrieval info: PRIVATE: AlmostFullThr NUMERIC "64"
 // Retrieval info: PRIVATE: CLOCKS_ARE_SYNCHRONIZED NUMERIC "1"
 // Retrieval info: PRIVATE: Clock NUMERIC "0"
-// Retrieval info: PRIVATE: Depth NUMERIC "512"
+// Retrieval info: PRIVATE: Depth NUMERIC "128"
 // Retrieval info: PRIVATE: Empty NUMERIC "1"
 // Retrieval info: PRIVATE: Full NUMERIC "1"
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Stratix V"
@@ -129,15 +134,17 @@ endmodule
 // Retrieval info: PRIVATE: wsUsedW NUMERIC "0"
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 // Retrieval info: CONSTANT: ADD_RAM_OUTPUT_REGISTER STRING "ON"
+// Retrieval info: CONSTANT: ALMOST_FULL_VALUE NUMERIC "64"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Stratix V"
-// Retrieval info: CONSTANT: LPM_NUMWORDS NUMERIC "512"
+// Retrieval info: CONSTANT: LPM_NUMWORDS NUMERIC "128"
 // Retrieval info: CONSTANT: LPM_SHOWAHEAD STRING "OFF"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "scfifo"
 // Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "144"
-// Retrieval info: CONSTANT: LPM_WIDTHU NUMERIC "9"
+// Retrieval info: CONSTANT: LPM_WIDTHU NUMERIC "7"
 // Retrieval info: CONSTANT: OVERFLOW_CHECKING STRING "OFF"
 // Retrieval info: CONSTANT: UNDERFLOW_CHECKING STRING "OFF"
 // Retrieval info: CONSTANT: USE_EAB STRING "ON"
+// Retrieval info: USED_PORT: almost_full 0 0 0 0 OUTPUT NODEFVAL "almost_full"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
 // Retrieval info: USED_PORT: data 0 0 144 0 INPUT NODEFVAL "data[143..0]"
 // Retrieval info: USED_PORT: empty 0 0 0 0 OUTPUT NODEFVAL "empty"
@@ -151,6 +158,7 @@ endmodule
 // Retrieval info: CONNECT: @rdreq 0 0 0 0 rdreq 0 0 0 0
 // Retrieval info: CONNECT: @sclr 0 0 0 0 sclr 0 0 0 0
 // Retrieval info: CONNECT: @wrreq 0 0 0 0 wrreq 0 0 0 0
+// Retrieval info: CONNECT: almost_full 0 0 0 0 @almost_full 0 0 0 0
 // Retrieval info: CONNECT: empty 0 0 0 0 @empty 0 0 0 0
 // Retrieval info: CONNECT: full 0 0 0 0 @full 0 0 0 0
 // Retrieval info: CONNECT: q 0 0 144 0 @q 0 0 144 0

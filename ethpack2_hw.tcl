@@ -39,14 +39,14 @@ add_fileset QUARTUS_SYNTH QUARTUS_SYNTH "" ""
 set_fileset_property QUARTUS_SYNTH TOP_LEVEL pmem_group_wrap
 set_fileset_property QUARTUS_SYNTH ENABLE_RELATIVE_INCLUDE_PATHS false
 set_fileset_property QUARTUS_SYNTH ENABLE_FILE_OVERWRITE_MODE false
-add_fileset_file pmem_group.sv SYSTEM_VERILOG PATH pmem_group.sv 
+add_fileset_file pmem_group_v2.sv SYSTEM_VERILOG PATH pmem_group.sv 
 add_fileset_file pmem_group_wrap.sv SYSTEM_VERILOG PATH pmem_group_wrap.sv TOP_LEVEL_FILE
 
 add_fileset SIM_VERILOG SIM_VERILOG "" ""
 set_fileset_property SIM_VERILOG TOP_LEVEL pmem_group_wrap
 set_fileset_property SIM_VERILOG ENABLE_RELATIVE_INCLUDE_PATHS false
 set_fileset_property SIM_VERILOG ENABLE_FILE_OVERWRITE_MODE false
-add_fileset_file pmem_group.sv SYSTEM_VERILOG PATH pmem_group.sv
+add_fileset_file pmem_group_v2.sv SYSTEM_VERILOG PATH pmem_group.sv
 add_fileset_file pmem_group_wrap.sv SYSTEM_VERILOG PATH pmem_group_wrap.sv
 
 
@@ -112,7 +112,7 @@ add_interface_port packetin0 packetin_0_sop startofpacket Input 1
 add_interface_port packetin0 packetin_0_eop endofpacket Input 1
 add_interface_port packetin0 packetin_0_valid valid Input 1
 add_interface_port packetin0 packetin_0_ready ready Output 1
-add_interface_port packetin1 packetin_0_empty empty Input 3
+add_interface_port packetin0 packetin_0_empty empty Input 3
 
 # 
 # connection point packetin1
@@ -162,7 +162,7 @@ add_interface_port packetin2 packetin_2_sop startofpacket Input 1
 add_interface_port packetin2 packetin_2_eop endofpacket Input 1
 add_interface_port packetin2 packetin_2_valid valid Input 1
 add_interface_port packetin2 packetin_2_ready ready Output 1
-add_interface_port packetin1 packetin_2_empty empty Input 3
+add_interface_port packetin2 packetin_2_empty empty Input 3
 
 # 
 # connection point packetin3
@@ -187,7 +187,7 @@ add_interface_port packetin3 packetin_3_sop startofpacket Input 1
 add_interface_port packetin3 packetin_3_eop endofpacket Input 1
 add_interface_port packetin3 packetin_3_valid valid Input 1
 add_interface_port packetin3 packetin_3_ready ready Output 1
-add_interface_port packetin1 packetin_3_empty empty Input 3
+add_interface_port packetin3 packetin_3_empty empty Input 3
 
 
 
@@ -201,7 +201,7 @@ set_interface_property packetout0 dataBitsPerSymbol 8
 set_interface_property packetout0 symbolsPerBeat 8
 set_interface_property packetout0 errorDescriptor ""
 set_interface_property packetout0 firstSymbolInHighOrderBits true
-set_interface_property packetout0 maxChannel 63
+set_interface_property packetout0 maxChannel 1023
 set_interface_property packetout0 readyLatency 0
 set_interface_property packetout0 ENABLED true
 set_interface_property packetout0 EXPORT_OF ""
@@ -212,7 +212,7 @@ set_interface_property packetout0 SVD_ADDRESS_GROUP ""
 add_interface_port packetout0 packetout_0_sop startofpacket Output 1
 add_interface_port packetout0 packetout_0_eop endofpacket Output 1
 add_interface_port packetout0 packetout_0_data data Output 64
-add_interface_port packetout0 packetout_0_channel channel Output 6
+add_interface_port packetout0 packetout_0_channel channel Output 10
 add_interface_port packetout0 packetout_0_valid valid Output 1
 add_interface_port packetout0 packetout_0_ready ready Input 1
 
@@ -227,7 +227,7 @@ set_interface_property packetout1 dataBitsPerSymbol 8
 set_interface_property packetout1 symbolsPerBeat 8
 set_interface_property packetout1 errorDescriptor ""
 set_interface_property packetout1 firstSymbolInHighOrderBits true
-set_interface_property packetout1 maxChannel 63
+set_interface_property packetout1 maxChannel 1023
 set_interface_property packetout1 readyLatency 0
 set_interface_property packetout1 ENABLED true
 set_interface_property packetout1 EXPORT_OF ""
@@ -238,7 +238,7 @@ set_interface_property packetout1 SVD_ADDRESS_GROUP ""
 add_interface_port packetout1 packetout_1_sop startofpacket Output 1
 add_interface_port packetout1 packetout_1_eop endofpacket Output 1
 add_interface_port packetout1 packetout_1_data data Output 64
-add_interface_port packetout1 packetout_1_channel channel Output 6
+add_interface_port packetout1 packetout_1_channel channel Output 10
 add_interface_port packetout1 packetout_1_valid valid Output 1
 add_interface_port packetout1 packetout_1_ready ready Input 1
 
@@ -253,7 +253,7 @@ set_interface_property packetout2 dataBitsPerSymbol 8
 set_interface_property packetout2 symbolsPerBeat 8
 set_interface_property packetout2 errorDescriptor ""
 set_interface_property packetout2 firstSymbolInHighOrderBits true
-set_interface_property packetout2 maxChannel 63
+set_interface_property packetout2 maxChannel 1023
 set_interface_property packetout2 readyLatency 0
 set_interface_property packetout2 ENABLED true
 set_interface_property packetout2 EXPORT_OF ""
@@ -264,7 +264,7 @@ set_interface_property packetout2 SVD_ADDRESS_GROUP ""
 add_interface_port packetout2 packetout_2_sop startofpacket Output 1
 add_interface_port packetout2 packetout_2_eop endofpacket Output 1
 add_interface_port packetout2 packetout_2_data data Output 64
-add_interface_port packetout2 packetout_2_channel channel Output 6
+add_interface_port packetout2 packetout_2_channel channel Output 10
 add_interface_port packetout2 packetout_2_valid valid Output 1
 add_interface_port packetout2 packetout_2_ready ready Input 1
 
@@ -279,7 +279,7 @@ set_interface_property packetout3 dataBitsPerSymbol 8
 set_interface_property packetout3 symbolsPerBeat 8
 set_interface_property packetout3 errorDescriptor ""
 set_interface_property packetout3 firstSymbolInHighOrderBits true
-set_interface_property packetout3 maxChannel 63
+set_interface_property packetout3 maxChannel 1023
 set_interface_property packetout3 readyLatency 0
 set_interface_property packetout3 ENABLED true
 set_interface_property packetout3 EXPORT_OF ""
@@ -290,7 +290,7 @@ set_interface_property packetout3 SVD_ADDRESS_GROUP ""
 add_interface_port packetout3 packetout_3_sop startofpacket Output 1
 add_interface_port packetout3 packetout_3_eop endofpacket Output 1
 add_interface_port packetout3 packetout_3_data data Output 64
-add_interface_port packetout3 packetout_3_channel channel Output 6
+add_interface_port packetout3 packetout_3_channel channel Output 10
 add_interface_port packetout3 packetout_3_valid valid Output 1
 add_interface_port packetout3 packetout_3_ready ready Input 1
 
@@ -301,7 +301,7 @@ add_interface_port packetout3 packetout_3_ready ready Input 1
 add_interface tagin avalon_streaming end
 set_interface_property tagin associatedClock clock
 set_interface_property tagin associatedReset reset
-set_interface_property tagin dataBitsPerSymbol 10
+set_interface_property tagin dataBitsPerSymbol 14
 set_interface_property tagin errorDescriptor ""
 set_interface_property tagin firstSymbolInHighOrderBits false
 set_interface_property tagin maxChannel 0
@@ -312,7 +312,7 @@ set_interface_property tagin PORT_NAME_MAP ""
 set_interface_property tagin CMSIS_SVD_VARIABLES ""
 set_interface_property tagin SVD_ADDRESS_GROUP ""
 
-add_interface_port tagin tagin_data data Input 10
+add_interface_port tagin tagin_data data Input 14
 add_interface_port tagin tagin_valid valid Input 1
 add_interface_port tagin tagin_ready ready Output 1
 
@@ -365,7 +365,7 @@ add_interface_port transmitout1 transmitout_1_valid valid Output 1
 add_interface_port transmitout1 transmitout_1_ready ready Input 1
 add_interface_port transmitout1 transmitout_1_sop startofpacket Output 1
 add_interface_port transmitout1 transmitout_1_eop endofpacket Output 1
-add_interface_port transmitout0 transmitout_1_empty empty Output 3
+add_interface_port transmitout1 transmitout_1_empty empty Output 3
 
 # 
 # connection point transmitout2
@@ -390,7 +390,7 @@ add_interface_port transmitout2 transmitout_2_valid valid Output 1
 add_interface_port transmitout2 transmitout_2_ready ready Input 1
 add_interface_port transmitout2 transmitout_2_sop startofpacket Output 1
 add_interface_port transmitout2 transmitout_2_eop endofpacket Output 1
-add_interface_port transmitout0 transmitout_2_empty empty Output 3
+add_interface_port transmitout2 transmitout_2_empty empty Output 3
 
 # 
 # connection point transmitout3
@@ -415,4 +415,4 @@ add_interface_port transmitout3 transmitout_3_valid valid Output 1
 add_interface_port transmitout3 transmitout_3_ready ready Input 1
 add_interface_port transmitout3 transmitout_3_sop startofpacket Output 1
 add_interface_port transmitout3 transmitout_3_eop endofpacket Output 1
-add_interface_port transmitout0 transmitout_3_empty empty Output 3
+add_interface_port transmitout3 transmitout_3_empty empty Output 3

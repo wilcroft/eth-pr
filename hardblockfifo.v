@@ -47,19 +47,19 @@ module hardblockfifo (
 	q);
 
 	input	  clock;
-	input	[9:0]  data;
+	input	[13:0]  data;
 	input	  rdreq;
 	input	  wrreq;
 	output	  empty;
 	output	  full;
-	output	[9:0]  q;
+	output	[13:0]  q;
 
 	wire  sub_wire0;
 	wire  sub_wire1;
-	wire [9:0] sub_wire2;
+	wire [13:0] sub_wire2;
 	wire  empty = sub_wire0;
 	wire  full = sub_wire1;
-	wire [9:0] q = sub_wire2[9:0];
+	wire [13:0] q = sub_wire2[13:0];
 
 	scfifo	scfifo_component (
 				.clock (clock),
@@ -82,7 +82,7 @@ module hardblockfifo (
 		scfifo_component.lpm_numwords = 16,
 		scfifo_component.lpm_showahead = "ON",
 		scfifo_component.lpm_type = "scfifo",
-		scfifo_component.lpm_width = 10,
+		scfifo_component.lpm_width = 14,
 		scfifo_component.lpm_widthu = 4,
 		scfifo_component.overflow_checking = "OFF",
 		scfifo_component.underflow_checking = "OFF",

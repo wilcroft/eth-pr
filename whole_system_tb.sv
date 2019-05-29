@@ -4,6 +4,7 @@ module whole_system_tb();
 
 	wire global_freeze;
 	wire [7:0] local_enable, local_freeze;
+	wire xoff;
 
 	assign global_freeze = 0;
 	assign local_enable = 1;
@@ -24,14 +25,14 @@ module whole_system_tb();
 	wire packetout_sop [3:0];
 	wire packetout_eop [3:0];
 	wire packetout_ready [3:0];
-	wire [5:0] packetout_channel [3:0];
+	wire [9:0] packetout_channel [3:0];
 	
 	wire [127:0] doubleout_data [3:0];
 	wire doubleout_valid [3:0];
 	wire doubleout_sop [3:0];
 	wire doubleout_eop [3:0];
 	wire doubleout_ready [3:0];
-	wire [5:0] doubleout_channel [3:0];
+	wire [9:0] doubleout_channel [3:0];
 		
 	wire [63:0] transmitout_data [3:0];
 	wire transmitout_valid [3:0];
@@ -46,7 +47,7 @@ module whole_system_tb();
 	
 	wire [127:0] stream_data;
 	wire stream_valid, stream_sop, stream_eop;
-	wire [7:0] stream_channel;
+	wire [11:0] stream_channel;
 	wire stream_ready;
 	
 	wire pnode_ready [ncount-1:0];
@@ -173,8 +174,12 @@ module whole_system_tb();
 	
 	reg [31:0] incount;
 	reg [31:0] outcount;
+	reg [31:0] diffcount;
 	reg [3:0] pktcount;
 	reg [4:0] rng;
+	
+	reg [9:0] offcount;
+	reg xoff_old;
 	
 	reg [5:0] tagold;
 	reg [5:0] stream_channel_check;
@@ -198,9 +203,11 @@ module whole_system_tb();
 			transmitout_ready[x] = 0;
 		end
 		reset = 0;
+		offcount = 0;
 		pktcount = 0;
 		incount = 0;
 		outcount = 0;
+		diffcount = 0;
 		tagold = 0;
 		stream_channel_check = 0;
 		pnodeout_check = 0;
@@ -209,6 +216,15 @@ module whole_system_tb();
 	//	#10 packetin_valid[0] = packetin_ready[0];
 	end
 
+	always@(posedge clock) begin
+		xoff_old <= xoff;
+		if (xoff && !xoff_old && offcount != 0)
+			;//$stop;
+		else if (xoff && !xoff_old)
+			offcount <= 10'h3FF;
+		else if (offcount !=0)
+			offcount <= offcount - 1;
+	end
 	
 	always@(posedge clock) begin
 		rng <= $random;
@@ -246,10 +262,13 @@ module whole_system_tb();
 	*/
 	always@(*)
 		if (incount < 10000)
-			packetin_valid[0] = packetin_ready[0];
+			packetin_valid[0] = !(pktcount==0 && offcount != 0);//packetin_ready[0];
 		else
 			packetin_valid[0] = 0;
 			
+	always@(posedge clock)
+		if (diffcount < incount - outcount)
+			diffcount <= incount - outcount;
 	
 	always@(posedge clock)
 	if (outcount >= 10000)
@@ -302,5 +321,31 @@ module whole_system_tb();
 		// else
 		if (!checkvarinc(pnodeout[0], pnodeout_check, pnodeout_valid[0]&&pnodeout_ack[0]))
 			$stop; */
+	
+	reg [63:0] datacheck [8191:0];
+	reg [12:0] wridx, rdidx;
+	
+	initial begin
+		wridx = 0;
+		rdidx = 0;
+	end
+	
+	always@(posedge clock) begin
+		if (packetin_ready[0] & packetin_valid[0]) begin
+			wridx <= wridx + 1;
+			datacheck[wridx] <= packetin_data[0];
+		end
+		if (transmitout_ready[0] & transmitout_valid[0]) begin
+			rdidx <= rdidx + 1;
+			if (datacheck[rdidx] != transmitout_data[0]) begin
+				for (x=0; x<8192; x=x+1)
+					if (datacheck[x] == transmitout_data[0])
+						$display("Got element %d instead of element %d!", x, rdidx);
+				$stop;
+			end
+		end
+	end
+	
+	wire [63:0] currread = datacheck[rdidx];
 	
 endmodule

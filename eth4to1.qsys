@@ -120,6 +120,30 @@
          type = "String";
       }
    }
+   element eth4to1
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Stratix V";
+         type = "String";
+      }
+   }
+   element eth4to1
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Stratix V";
+         type = "String";
+      }
+   }
+   element eth4to1
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Stratix V";
+         type = "String";
+      }
+   }
    element eth_in_mux
    {
       datum _sortIndex
@@ -443,10 +467,10 @@
    version="16.1"
    enabled="1">
   <parameter name="inBitsPerSymbol" value="8" />
-  <parameter name="inChannelWidth" value="6" />
+  <parameter name="inChannelWidth" value="10" />
   <parameter name="inErrorDescriptor" value="" />
   <parameter name="inErrorWidth" value="0" />
-  <parameter name="inMaxChannel" value="63" />
+  <parameter name="inMaxChannel" value="1023" />
   <parameter name="inReadyLatency" value="0" />
   <parameter name="inSymbolsPerBeat" value="8" />
   <parameter name="inUseEmpty" value="false" />
@@ -462,10 +486,10 @@
    version="16.1"
    enabled="1">
   <parameter name="inBitsPerSymbol" value="8" />
-  <parameter name="inChannelWidth" value="6" />
+  <parameter name="inChannelWidth" value="10" />
   <parameter name="inErrorDescriptor" value="" />
   <parameter name="inErrorWidth" value="0" />
-  <parameter name="inMaxChannel" value="63" />
+  <parameter name="inMaxChannel" value="1023" />
   <parameter name="inReadyLatency" value="0" />
   <parameter name="inSymbolsPerBeat" value="8" />
   <parameter name="inUseEmpty" value="false" />
@@ -481,10 +505,10 @@
    version="16.1"
    enabled="1">
   <parameter name="inBitsPerSymbol" value="8" />
-  <parameter name="inChannelWidth" value="6" />
+  <parameter name="inChannelWidth" value="10" />
   <parameter name="inErrorDescriptor" value="" />
   <parameter name="inErrorWidth" value="0" />
-  <parameter name="inMaxChannel" value="63" />
+  <parameter name="inMaxChannel" value="1023" />
   <parameter name="inReadyLatency" value="0" />
   <parameter name="inSymbolsPerBeat" value="8" />
   <parameter name="inUseEmpty" value="false" />
@@ -500,10 +524,10 @@
    version="16.1"
    enabled="1">
   <parameter name="inBitsPerSymbol" value="8" />
-  <parameter name="inChannelWidth" value="6" />
+  <parameter name="inChannelWidth" value="10" />
   <parameter name="inErrorDescriptor" value="" />
   <parameter name="inErrorWidth" value="0" />
-  <parameter name="inMaxChannel" value="63" />
+  <parameter name="inMaxChannel" value="1023" />
   <parameter name="inReadyLatency" value="0" />
   <parameter name="inSymbolsPerBeat" value="8" />
   <parameter name="inUseEmpty" value="false" />
@@ -517,14 +541,14 @@
   <parameter name="bitsPerSymbol" value="8" />
   <parameter name="errorWidth" value="0" />
   <parameter name="numInputInterfaces" value="4" />
-  <parameter name="outChannelWidth" value="8" />
+  <parameter name="outChannelWidth" value="12" />
   <parameter name="packetScheduling" value="true" />
   <parameter name="schedulingSize" value="2" />
   <parameter name="symbolsPerBeat" value="16" />
   <parameter name="useHighBitsOfChannel" value="true" />
   <parameter name="usePackets" value="true" />
  </module>
- <module name="ethpack" kind="ethpack2" version="1.0" enabled="1" />
+ <module name="ethpack" kind="ethpack2" version="1.1" enabled="1" />
  <module
    name="ethpack_control"
    kind="ethpack_control"

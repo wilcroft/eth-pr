@@ -18,7 +18,7 @@ module pmem_group_v2(
 		output packetout_sop [3:0],
 		output packetout_eop [3:0],
 		input packetout_ready [3:0],
-		output reg [5:0] packetout_channel [3:0],
+		output reg [9:0] packetout_channel [3:0],
 		
 		// Output data
 		output reg [63:0] transmitout_data [3:0],
@@ -29,7 +29,7 @@ module pmem_group_v2(
 		input transmitout_ready [3:0],
 		
 		// Match results
-		input [9:0] tagin_data,
+		input [13:0] tagin_data,
 		input tagin_valid,
 		output reg tagin_ready
 	);
@@ -43,7 +43,7 @@ module pmem_group_v2(
 	
 	reg [17:0] pt_data [3:0];
 	wire [17:0] pt_q [3:0];
-	reg [5:0] tag [3:0];
+	reg [9:0] tag [3:0];
 	reg [5:0] plength [3:0];
 	
 	reg tagin_valid_pipe[0:0];
@@ -113,7 +113,7 @@ module pmem_group_v2(
 			packettable PT (
 				.clock(clock),
 				.data(pt_data[i]),
-				.rdaddress(tagin_data[5:0]),
+				.rdaddress(tagin_data[9:0]),
 				.wraddress(tag[i]),
 				.wren(packetin_eop[i]),
 				.q(pt_q[i])
@@ -124,7 +124,7 @@ module pmem_group_v2(
 			packetmem_empty PME (
 				.clock,
 				.data(packetin_empty[i]),
-				.rdaddress(tagin_data[5:0]),
+				.rdaddress(tagin_data[9:0]),
 				.wraddress(tag[i]),
 				.wren(packetin_eop[i]),
 				.q(packetmem_emptyq[i])
@@ -198,8 +198,8 @@ module pmem_group_v2(
 	//generate the per-interface tag
 	always@(posedge clock)
 		for (x=0; x<4; x=x+1)
-			if (reset) tag[x] <= 6'b0;
-			else if (packetin_eop[x] && packetin_ready[x] && packetin_valid[x]) tag[x] <= tag[x] + 6'b1;
+			if (reset) tag[x] <= 10'b0;
+			else if (packetin_eop[x] && packetin_ready[x] && packetin_valid[x]) tag[x] <= tag[x] + 10'b1;
 	
 	// Calculate the per-interface packet length
 	always@(posedge clock)
@@ -231,7 +231,7 @@ module pmem_group_v2(
 	// some pipelined signals
 	always@(posedge clock) begin
 		tagin_valid_pipe[0] <= tagin_valid;
-		tagin_iface_pipe[0] <= tagin_data [9:6];
+		tagin_iface_pipe[0] <= tagin_data [13:10];//[9:6];
 	end
 	
 	always@* begin

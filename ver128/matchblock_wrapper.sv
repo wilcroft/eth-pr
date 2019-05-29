@@ -29,11 +29,11 @@ module matchblock_wrapper #(parameter blocktype=0) (
 	output reg [31:0] avs_update_readdata,
 	input [0:0] avs_update_address,*/
 	
-	wire [9:0] data_out;
+	wire [13:0] data_out;
 	wire data_valid;
 	reg data_ack;
 	wire pnode_ready;
-	reg [137:0]pnode_data;
+	reg [141:0]pnode_data;
 	reg pnode_valid;
 	
 	always@* begin
@@ -41,7 +41,7 @@ module matchblock_wrapper #(parameter blocktype=0) (
 			mask_data_out = 10'b0;
 			mask_pnode_ready = 1'b1;
 			mask_data_valid = 1'b0;
-			pnode_data = 138'b0;
+			pnode_data = 142'b0;
 			data_ack = 1'b0;
 			pnode_valid = 1'b0;
 		end
@@ -57,7 +57,7 @@ module matchblock_wrapper #(parameter blocktype=0) (
 			mask_data_out = 10'b0;
 			mask_pnode_ready = 1'b1;
 			mask_data_valid = 1'b0;
-			pnode_data = 138'b0;
+			pnode_data = 142'b0;
 			data_ack = 1'b0;
 			pnode_valid = 1'b0;
 		end

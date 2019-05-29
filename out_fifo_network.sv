@@ -1,23 +1,23 @@
 module out_fifo_network #(parameter ncount = 8)(
 	input clock,
 	input sclr,
-	output [9:0] tag_data,
+	output [13:0] tag_data,
 	output reg tag_valid,
 	input tag_ready,
 	
 	//outputs from matchers
-	input [9:0] dataout [ncount-1:0],
+	input [13:0] dataout [ncount-1:0],
 	input data_valid [ncount-1:0],
 	output reg data_ack [ncount-1:0]
 );
 
 //fifo ports
-reg [9:0] fin [ncount-1:0];
+reg [13:0] fin [ncount-1:0];
 reg fin_rdreq [ncount-1:0];
 reg fin_wrreq [ncount-1:0];
 wire fin_empty [ncount-1:0];
 wire fin_full [ncount-1:0];
-wire [9:0] fin_q [ncount-1:0];
+wire [13:0] fin_q [ncount-1:0];
 
 
 
