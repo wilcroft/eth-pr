@@ -47,7 +47,7 @@ module hardmatchblock_128 #(parameter CHOUT=0)(
 	
 	always@(posedge clock) begin
 		if (cap_valid && cap_eop)
-			tag_capture <= pnode_data [141-:8];
+			tag_capture <= pnode_data [141-:12];
 		if (concat_rdreq&&!concat_empty)
 			tag_in <= concat_out [CONCAT_WIDTH +: 12];
 		if ((!fifo_full)||~z0_valid)
@@ -98,7 +98,7 @@ module hardmatchblock_128 #(parameter CHOUT=0)(
 	
 	hardblockfifo matchfifo (
 		.clock,
-		.data({tag_out[7:6],tag_out}),
+		.data({tag_out[11:10],tag_out}),
 		.rdreq(data_ack),
 		.wrreq(z0_valid & z0_out & !fifo_full),
 		.empty(fifo_empty),

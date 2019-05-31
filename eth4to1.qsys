@@ -144,6 +144,14 @@
          type = "String";
       }
    }
+   element eth4to1
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Stratix V";
+         type = "String";
+      }
+   }
    element eth_in_mux
    {
       datum _sortIndex
@@ -466,17 +474,17 @@
    kind="data_format_adapter"
    version="16.1"
    enabled="1">
-  <parameter name="inBitsPerSymbol" value="8" />
-  <parameter name="inChannelWidth" value="10" />
+  <parameter name="inBitsPerSymbol" value="74" />
+  <parameter name="inChannelWidth" value="0" />
   <parameter name="inErrorDescriptor" value="" />
   <parameter name="inErrorWidth" value="0" />
-  <parameter name="inMaxChannel" value="1023" />
+  <parameter name="inMaxChannel" value="0" />
   <parameter name="inReadyLatency" value="0" />
-  <parameter name="inSymbolsPerBeat" value="8" />
+  <parameter name="inSymbolsPerBeat" value="1" />
   <parameter name="inUseEmpty" value="false" />
   <parameter name="inUseEmptyPort" value="AUTO" />
   <parameter name="inUsePackets" value="true" />
-  <parameter name="outSymbolsPerBeat" value="16" />
+  <parameter name="outSymbolsPerBeat" value="2" />
   <parameter name="outUseEmpty" value="false" />
   <parameter name="outUseEmptyPort" value="AUTO" />
  </module>
@@ -485,17 +493,17 @@
    kind="data_format_adapter"
    version="16.1"
    enabled="1">
-  <parameter name="inBitsPerSymbol" value="8" />
-  <parameter name="inChannelWidth" value="10" />
+  <parameter name="inBitsPerSymbol" value="74" />
+  <parameter name="inChannelWidth" value="0" />
   <parameter name="inErrorDescriptor" value="" />
   <parameter name="inErrorWidth" value="0" />
-  <parameter name="inMaxChannel" value="1023" />
+  <parameter name="inMaxChannel" value="0" />
   <parameter name="inReadyLatency" value="0" />
-  <parameter name="inSymbolsPerBeat" value="8" />
+  <parameter name="inSymbolsPerBeat" value="1" />
   <parameter name="inUseEmpty" value="false" />
   <parameter name="inUseEmptyPort" value="AUTO" />
   <parameter name="inUsePackets" value="true" />
-  <parameter name="outSymbolsPerBeat" value="16" />
+  <parameter name="outSymbolsPerBeat" value="2" />
   <parameter name="outUseEmpty" value="false" />
   <parameter name="outUseEmptyPort" value="AUTO" />
  </module>
@@ -504,17 +512,17 @@
    kind="data_format_adapter"
    version="16.1"
    enabled="1">
-  <parameter name="inBitsPerSymbol" value="8" />
-  <parameter name="inChannelWidth" value="10" />
+  <parameter name="inBitsPerSymbol" value="74" />
+  <parameter name="inChannelWidth" value="0" />
   <parameter name="inErrorDescriptor" value="" />
   <parameter name="inErrorWidth" value="0" />
-  <parameter name="inMaxChannel" value="1023" />
+  <parameter name="inMaxChannel" value="0" />
   <parameter name="inReadyLatency" value="0" />
-  <parameter name="inSymbolsPerBeat" value="8" />
+  <parameter name="inSymbolsPerBeat" value="1" />
   <parameter name="inUseEmpty" value="false" />
   <parameter name="inUseEmptyPort" value="AUTO" />
   <parameter name="inUsePackets" value="true" />
-  <parameter name="outSymbolsPerBeat" value="16" />
+  <parameter name="outSymbolsPerBeat" value="2" />
   <parameter name="outUseEmpty" value="false" />
   <parameter name="outUseEmptyPort" value="AUTO" />
  </module>
@@ -523,28 +531,28 @@
    kind="data_format_adapter"
    version="16.1"
    enabled="1">
-  <parameter name="inBitsPerSymbol" value="8" />
-  <parameter name="inChannelWidth" value="10" />
+  <parameter name="inBitsPerSymbol" value="74" />
+  <parameter name="inChannelWidth" value="0" />
   <parameter name="inErrorDescriptor" value="" />
   <parameter name="inErrorWidth" value="0" />
-  <parameter name="inMaxChannel" value="1023" />
+  <parameter name="inMaxChannel" value="0" />
   <parameter name="inReadyLatency" value="0" />
-  <parameter name="inSymbolsPerBeat" value="8" />
+  <parameter name="inSymbolsPerBeat" value="1" />
   <parameter name="inUseEmpty" value="false" />
   <parameter name="inUseEmptyPort" value="AUTO" />
   <parameter name="inUsePackets" value="true" />
-  <parameter name="outSymbolsPerBeat" value="16" />
+  <parameter name="outSymbolsPerBeat" value="2" />
   <parameter name="outUseEmpty" value="false" />
   <parameter name="outUseEmptyPort" value="AUTO" />
  </module>
  <module name="eth_in_mux" kind="multiplexer" version="16.1" enabled="1">
-  <parameter name="bitsPerSymbol" value="8" />
+  <parameter name="bitsPerSymbol" value="74" />
   <parameter name="errorWidth" value="0" />
   <parameter name="numInputInterfaces" value="4" />
-  <parameter name="outChannelWidth" value="12" />
+  <parameter name="outChannelWidth" value="2" />
   <parameter name="packetScheduling" value="true" />
   <parameter name="schedulingSize" value="2" />
-  <parameter name="symbolsPerBeat" value="16" />
+  <parameter name="symbolsPerBeat" value="2" />
   <parameter name="useHighBitsOfChannel" value="true" />
   <parameter name="usePackets" value="true" />
  </module>

@@ -1,10 +1,10 @@
 module in_fifo_network #(parameter ncount = 8) (
 input clock,
 input sclr,
-input [127:0] st_data,
+input [147:0] st_data,
 input st_sop, st_eop,
 input st_valid,
-input [11:0] st_channel,
+input [1:0] st_channel,
 output reg st_ready,
 
 input pnode_ready [ncount-1:0],
@@ -50,7 +50,7 @@ endgenerate
 always@* begin
 	wrreq[0] = st_valid && !full[0];
 	st_ready = !full[0];
-	data[0] = {st_channel, st_sop, st_eop, st_data};
+	data[0] = {st_channel, st_data[64+:10], st_sop, st_eop, st_data[74+:64], st_data[0 +:64]};
 	for (x = 1; x < ncount; x = x + 1) begin
 		wrreq[x] = rdtowrbuf[x-1];// rdreq[x-1]; //
 		data[x] = q[x-1];

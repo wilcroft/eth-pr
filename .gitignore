@@ -12,7 +12,6 @@ manypr/*
 *.BAK.qsys
 simulation/*
 eth4to1/simulation/*
-eth4to1/synthesis/*
 dse*
 eth-4to1-sim/*
 .qsys_edit/*

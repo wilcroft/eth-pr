@@ -20,19 +20,20 @@ module whole_system_tb();
 	wire packetin_ready [3:0];
 	reg [2:0] packetin_empty [3:0];
 		
-	wire [63:0] packetout_data [3:0];
+	wire [73:0] packetout_data [3:0];
 	wire packetout_valid [3:0];
 	wire packetout_sop [3:0];
 	wire packetout_eop [3:0];
 	wire packetout_ready [3:0];
-	wire [9:0] packetout_channel [3:0];
+	//wire [9:0] packetout_channel [3:0];
 	
-	wire [127:0] doubleout_data [3:0];
+	wire [147:0] doubleout_data [3:0];
 	wire doubleout_valid [3:0];
 	wire doubleout_sop [3:0];
 	wire doubleout_eop [3:0];
 	wire doubleout_ready [3:0];
-	wire [9:0] doubleout_channel [3:0];
+	wire doubleout_empty [3:0];
+	//wire [9:0] doubleout_channel [3:0];
 		
 	wire [63:0] transmitout_data [3:0];
 	wire transmitout_valid [3:0];
@@ -41,20 +42,20 @@ module whole_system_tb();
 	reg transmitout_ready [3:0];
 	wire [2:0] transmitout_empty [3:0];
 		
-	wire [9:0] tagin_data;
+	wire [13:0] tagin_data;
 	wire tagin_valid;
 	wire tagin_ready;
 	
-	wire [127:0] stream_data;
+	wire [147:0] stream_data;
 	wire stream_valid, stream_sop, stream_eop;
-	wire [11:0] stream_channel;
+	wire [1:0] stream_channel;
 	wire stream_ready;
 	
 	wire pnode_ready [ncount-1:0];
 	wire pnode_valid [ncount-1:0];
-	wire [137:0] pnode_data [ncount-1:0];
+	wire [141:0] pnode_data [ncount-1:0];
 
-	wire [9:0] pnodeout [ncount-1:0];
+	wire [13:0] pnodeout [ncount-1:0];
 	wire pnodeout_valid [ncount-1:0];
 	wire pnodeout_ack [ncount-1:0];
 
@@ -69,17 +70,17 @@ module whole_system_tb();
 			.in_ready(packetout_ready[i]),
 			.in_valid(packetout_valid[i]),
 			.in_data(packetout_data[i]),
-			.in_channel(packetout_channel[i]),
+			//.in_channel(packetout_channel[i]),
 			.in_startofpacket(packetout_sop[i]),
 			.in_endofpacket(packetout_eop[i]),
-			.in_empty(3'b0),
+			//.in_empty(3'b0),
 			.out_ready(doubleout_ready[i]),
 			.out_valid(doubleout_valid[i]),
 			.out_data(doubleout_data[i]),
-			.out_channel(doubleout_channel[i]),
+			//.out_channel(doubleout_channel[i]),
 			.out_startofpacket(doubleout_sop[i]),
 			.out_endofpacket(doubleout_eop[i]),
-			.out_empty(),
+			.out_empty(doubleout_empty[i]),
 			.clk(clock),
 			.reset_n(reset)
 		);
@@ -142,34 +143,34 @@ module whole_system_tb();
 		.out_startofpacket(stream_sop),
 		.out_endofpacket(stream_eop),
 		.out_empty(),
-		.in0_channel(doubleout_channel[0]),
+		//.in0_channel(doubleout_channel[0]),
 		.in0_valid(doubleout_valid[0]),
 		.in0_ready(doubleout_ready[0]),
 		.in0_data(doubleout_data[0]),
 		.in0_startofpacket(doubleout_sop[0]),
 		.in0_endofpacket(doubleout_eop[0]), 
-		.in0_empty(4'd0),
-		.in1_channel(doubleout_channel[1]),
+		.in0_empty(doubleout_empty[0]),
+		//.in1_channel(doubleout_channel[1]),
 		.in1_valid(doubleout_valid[1]),
 		.in1_ready(doubleout_ready[1]),
 		.in1_data(doubleout_data[1]),
 		.in1_startofpacket(doubleout_sop[1]),
 		.in1_endofpacket(doubleout_eop[1]), 
-		.in1_empty(4'd0),
-		.in2_channel(doubleout_channel[2]),
+		.in1_empty(doubleout_empty[1]),
+		//.in2_channel(doubleout_channel[2]),
 		.in2_valid(doubleout_valid[2]),
 		.in2_ready(doubleout_ready[2]),
 		.in2_data(doubleout_data[2]),
 		.in2_startofpacket(doubleout_sop[2]),
 		.in2_endofpacket(doubleout_eop[2]), 
-		.in2_empty(4'd0),
-		.in3_channel(doubleout_channel[3]),
+		.in2_empty(doubleout_empty[2]),
+		//.in3_channel(doubleout_channel[3]),
 		.in3_valid(doubleout_valid[3]),
 		.in3_ready(doubleout_ready[3]),
 		.in3_data(doubleout_data[3]),
 		.in3_startofpacket(doubleout_sop[3]),
 		.in3_endofpacket(doubleout_eop[3]), 
-		.in3_empty(4'd0)
+		.in3_empty(doubleout_empty[3])
 	);
 	
 	reg [31:0] incount;
@@ -181,10 +182,10 @@ module whole_system_tb();
 	reg [9:0] offcount;
 	reg xoff_old;
 	
-	reg [5:0] tagold;
-	reg [5:0] stream_channel_check;
-	reg [5:0] pnodeout_check;
-	reg [5:0] pnodein_check;
+	reg [9:0] tagold;
+	reg [9:0] stream_channel_check;
+	reg [9:0] pnodeout_check;
+	reg [9:0] pnodein_check;
 	
 	initial begin
 		clock = 0;
@@ -228,6 +229,7 @@ module whole_system_tb();
 	
 	always@(posedge clock) begin
 		rng <= $random;
+		if (reset) begin
 		//transmitout_ready[0] <= $random & $random & transmitout_valid[0];
 		if (packetin_eop[0] & packetin_ready[0] & packetin_valid[0])
 			pktcount <= 0;
@@ -237,6 +239,7 @@ module whole_system_tb();
 			incount <= incount + 1;
 		if (transmitout_eop[0] & transmitout_ready[0] & transmitout_valid[0])
 			outcount <= outcount + 1;
+		end
 	end
 
 	always@* begin
@@ -262,7 +265,7 @@ module whole_system_tb();
 	*/
 	always@(*)
 		if (incount < 10000)
-			packetin_valid[0] = !(pktcount==0 && offcount != 0);//packetin_ready[0];
+			packetin_valid[0] = !(pktcount==0 && offcount != 0 && reset);//packetin_ready[0];
 		else
 			packetin_valid[0] = 0;
 			
@@ -280,17 +283,17 @@ module whole_system_tb();
 	
 	always@(posedge clock)
 		if (tagin_ready && tagin_valid)
-			if (tagold != (tagin_data[5:0]))
+			if (tagold != (tagin_data[9:0]))
 				$stop;
 			else
 				tagold <= tagold + 1;
 				
-	always@(posedge clock)
-		if (stream_eop & stream_ready & stream_valid)
-			if (stream_channel != stream_channel_check)
-				$stop;
-			else 
-				stream_channel_check <= stream_channel_check + 1;
+//	always@(posedge clock)
+//		if (stream_eop & stream_ready & stream_valid)
+//			if (stream_channel != stream_channel_check)
+//				$stop;
+//			else 
+//				stream_channel_check <= stream_channel_check + 1;
 	
 /* 	function logic checkvarinc (input int current, expected, input logic valid);
 		if (valid) begin
@@ -309,7 +312,7 @@ module whole_system_tb();
 				
 	always@(posedge clock)
 		if (pnode_valid[0]/*&&pnode_ready[0]*/&&pnode_data[0][128]) 
-			if (pnode_data[0][135:130] != pnodein_check)
+			if (pnode_data[0][130 +: 12] != pnodein_check)
 				$stop;
 			else 
 				pnodein_check <= pnodein_check + 1;
@@ -331,17 +334,19 @@ module whole_system_tb();
 	end
 	
 	always@(posedge clock) begin
-		if (packetin_ready[0] & packetin_valid[0]) begin
-			wridx <= wridx + 1;
-			datacheck[wridx] <= packetin_data[0];
-		end
-		if (transmitout_ready[0] & transmitout_valid[0]) begin
-			rdidx <= rdidx + 1;
-			if (datacheck[rdidx] != transmitout_data[0]) begin
-				for (x=0; x<8192; x=x+1)
-					if (datacheck[x] == transmitout_data[0])
-						$display("Got element %d instead of element %d!", x, rdidx);
-				$stop;
+		if(reset) begin
+			if (packetin_ready[0] & packetin_valid[0]) begin
+				wridx <= wridx + 1;
+				datacheck[wridx] <= packetin_data[0];
+			end
+			if (transmitout_ready[0] & transmitout_valid[0]) begin
+				rdidx <= rdidx + 1;
+				if (datacheck[rdidx] != transmitout_data[0]) begin
+					for (x=0; x<8192; x=x+1)
+						if (datacheck[x] == transmitout_data[0])
+							$display("Got element %d instead of element %d!", x, rdidx);
+					$stop;
+				end
 			end
 		end
 	end

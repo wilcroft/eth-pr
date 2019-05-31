@@ -11,13 +11,13 @@ module matchblock_wrapper #(parameter blocktype=0) (
 	input coe_globalfreeze,
 	input coe_enable,	
 	
-	output reg [9:0] mask_data_out,
+	output reg [13:0] mask_data_out,
 	output reg mask_data_valid,
 	input mask_data_ack,
 	
 	output reg mask_pnode_ready,
 	//input [73:0]mask_pnode_data,
-	input [137:0]mask_pnode_data,
+	input [141:0]mask_pnode_data,
 	input mask_pnode_valid
 	
 );

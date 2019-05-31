@@ -13,12 +13,12 @@ module pmem_group_v2(
 		input [2:0] packetin_empty [3:0],
 		
 		// Passthrough of packetin, but with tag information
-		output [63:0] packetout_data [3:0],
+		output reg [73:0] packetout_data [3:0],
 		output packetout_valid [3:0],
 		output packetout_sop [3:0],
 		output packetout_eop [3:0],
 		input packetout_ready [3:0],
-		output reg [9:0] packetout_channel [3:0],
+		//output reg [9:0] packetout_channel [3:0],
 		
 		// Output data
 		output reg [63:0] transmitout_data [3:0],
@@ -63,7 +63,7 @@ module pmem_group_v2(
 	
 	assign packetin_ready = packetout_ready;
 	assign packetout_valid = packetin_valid;
-	assign packetout_data = packetin_data;
+	//assign packetout_data[][63:0] = packetin_data;
 	assign packetout_sop = packetin_sop;
 	assign packetout_eop = packetin_eop;
 		
@@ -225,7 +225,8 @@ module pmem_group_v2(
 	always@* 
 		for (x=0; x<4; x=x+1) begin
 			pt_data[x] = {wraddr_start[x],plength[x]};
-			packetout_channel[x] = tag [x];
+			//packetout_channel[x] = tag [x];
+			packetout_data[x] = {tag[x], packetin_data[x]};
 		end
 	
 	// some pipelined signals
