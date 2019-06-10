@@ -2333,4 +2333,5 @@ set_global_assignment -name VERILOG_FILE memorymatchblock/hardblockfifo.v
 set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/binarysearch.sv
 set_global_assignment -name SIGNALTAP_FILE stp1.stp
 set_global_assignment -name QIP_FILE packetmem_empty.qip
+set_global_assignment -name QIP_FILE vectormem.qip
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp

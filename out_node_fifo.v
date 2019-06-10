@@ -80,11 +80,11 @@ module out_node_fifo (
 	defparam
 		scfifo_component.add_ram_output_register = "OFF",
 		scfifo_component.intended_device_family = "Stratix V",
-		scfifo_component.lpm_numwords = 32,
+		scfifo_component.lpm_numwords = 16,
 		scfifo_component.lpm_showahead = "ON",
 		scfifo_component.lpm_type = "scfifo",
 		scfifo_component.lpm_width = 14,
-		scfifo_component.lpm_widthu = 5,
+		scfifo_component.lpm_widthu = 4,
 		scfifo_component.overflow_checking = "ON",
 		scfifo_component.underflow_checking = "ON",
 		scfifo_component.use_eab = "ON";
@@ -101,7 +101,7 @@ endmodule
 // Retrieval info: PRIVATE: AlmostFullThr NUMERIC "-1"
 // Retrieval info: PRIVATE: CLOCKS_ARE_SYNCHRONIZED NUMERIC "1"
 // Retrieval info: PRIVATE: Clock NUMERIC "0"
-// Retrieval info: PRIVATE: Depth NUMERIC "32"
+// Retrieval info: PRIVATE: Depth NUMERIC "16"
 // Retrieval info: PRIVATE: Empty NUMERIC "1"
 // Retrieval info: PRIVATE: Full NUMERIC "1"
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Stratix V"
@@ -130,11 +130,11 @@ endmodule
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 // Retrieval info: CONSTANT: ADD_RAM_OUTPUT_REGISTER STRING "OFF"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Stratix V"
-// Retrieval info: CONSTANT: LPM_NUMWORDS NUMERIC "32"
+// Retrieval info: CONSTANT: LPM_NUMWORDS NUMERIC "16"
 // Retrieval info: CONSTANT: LPM_SHOWAHEAD STRING "ON"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "scfifo"
 // Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "14"
-// Retrieval info: CONSTANT: LPM_WIDTHU NUMERIC "5"
+// Retrieval info: CONSTANT: LPM_WIDTHU NUMERIC "4"
 // Retrieval info: CONSTANT: OVERFLOW_CHECKING STRING "ON"
 // Retrieval info: CONSTANT: UNDERFLOW_CHECKING STRING "ON"
 // Retrieval info: CONSTANT: USE_EAB STRING "ON"

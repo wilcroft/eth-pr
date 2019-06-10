@@ -34,7 +34,7 @@ module hardmatchblock_128 #(parameter CHOUT=0)(
 //	assign data_valid = z0_valid &&z0_out;
 	assign data_valid = !fifo_empty;
 	
-	assign concat_ready = !concat_almost;
+	assign concat_ready = !concat_full;//!concat_almost;
 	
 	//assign data_out = tag_out;
 	

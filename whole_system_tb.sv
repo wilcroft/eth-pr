@@ -1,6 +1,7 @@
 `timescale 1ns/1ns
 module whole_system_tb();
 	localparam ncount = 8;
+	localparam PACKETSIZE = 190;
 
 	wire global_freeze;
 	wire [7:0] local_enable, local_freeze;
@@ -176,7 +177,7 @@ module whole_system_tb();
 	reg [31:0] incount;
 	reg [31:0] outcount;
 	reg [31:0] diffcount;
-	reg [3:0] pktcount;
+	reg [$clog2(PACKETSIZE)-1:0] pktcount;
 	reg [4:0] rng;
 	
 	reg [9:0] offcount;
@@ -244,9 +245,9 @@ module whole_system_tb();
 
 	always@* begin
 		transmitout_ready[0] = (|rng) & transmitout_valid[0];
-		packetin_eop[0] = pktcount == 5;
+		packetin_eop[0] = pktcount == PACKETSIZE-1;
 		packetin_sop[0] = pktcount == 0;
-		packetin_empty[0] = incount[2:0];
+		packetin_empty[0] = 0;//incount[2:0];
 	end
 
 /*	always @(posedge clock)
@@ -277,9 +278,9 @@ module whole_system_tb();
 	if (outcount >= 10000)
 		#200 $stop;
 		
-	always@(posedge clock)
-	if (transmitout_eop[0] & transmitout_ready[0] & transmitout_valid[0] & transmitout_empty[0] != outcount[2:0])
-		$stop;
+	//always@(posedge clock)
+	//if (transmitout_eop[0] & transmitout_ready[0] & transmitout_valid[0] & transmitout_empty[0] != outcount[2:0])
+	//	$stop;
 	
 	always@(posedge clock)
 		if (tagin_ready && tagin_valid)
@@ -338,6 +339,8 @@ module whole_system_tb();
 			if (packetin_ready[0] & packetin_valid[0]) begin
 				wridx <= wridx + 1;
 				datacheck[wridx] <= packetin_data[0];
+				if (wridx == rdidx - 1 && (!transmitout_ready[0] & transmitout_valid[0]))
+					$stop; //overwrote buffer!
 			end
 			if (transmitout_ready[0] & transmitout_valid[0]) begin
 				rdidx <= rdidx + 1;
@@ -352,5 +355,7 @@ module whole_system_tb();
 	end
 	
 	wire [63:0] currread = datacheck[rdidx];
+	
+	
 	
 endmodule

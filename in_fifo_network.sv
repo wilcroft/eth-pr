@@ -50,7 +50,7 @@ endgenerate
 always@* begin
 	wrreq[0] = st_valid && !full[0];
 	st_ready = !full[0];
-	data[0] = {st_channel, st_data[64+:10], st_sop, st_eop, st_data[74+:64], st_data[0 +:64]};
+	data[0] = {st_channel, st_data[138+:10], st_sop, st_eop, st_data[74+:64], st_data[0 +:64]};
 	for (x = 1; x < ncount; x = x + 1) begin
 		wrreq[x] = rdtowrbuf[x-1];// rdreq[x-1]; //
 		data[x] = q[x-1];

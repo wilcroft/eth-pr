@@ -12,12 +12,12 @@ module memorymatchblock_128 (
 	output reg [31:0] avs_update_readdata,
 	input [0:0] avs_update_address,
 	
-	output reg [9:0] match_data_out,
+	output reg [13:0] match_data_out,
 	output reg match_data_valid,
 	input match_data_ack,
 	
 	output reg pnode_ready,
-	input [137:0]pnode_data,
+	input [141:0]pnode_data,
 	
 	input pnode_valid
 	
@@ -33,8 +33,8 @@ module memorymatchblock_128 (
 	
 	//wire match_flush;
 
-	reg [7:0] tag_in;
-	reg [7:0] tag_out;
+	reg [11:0] tag_in;
+	reg [11:0] tag_out;
 	
 	assign {cap_sop, cap_eop, cap_data} = pnode_data[129:0];
 	//assign match_flush = z0_valid && !z0_out; 
@@ -45,7 +45,7 @@ module memorymatchblock_128 (
 	
 	always@(posedge clock) begin
 		if (cap_eop)
-			tag_in <= pnode_data [137-:8];
+			tag_in <= pnode_data [130+:12];
 		if (concat_ready&&concat_valid)
 			tag_out <= tag_in;
 	end
@@ -243,7 +243,7 @@ module memorymatchblock_128 (
 	
 	hardblockfifo matchfifo (
 		.clock,
-		.data({tag_out[7:6],tag_out}),
+		.data({tag_out[11:10],tag_out}),
 		.rdreq(match_data_ack),
 		.wrreq(matchack),
 		.empty(fifo_empty),
