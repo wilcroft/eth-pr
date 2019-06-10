@@ -41,10 +41,10 @@ module pmem_group_v2(
 	wire [63:0] memout [3:0] [3:0];
 	reg wren [3:0];
 	
-	reg [17:0] pt_data [3:0];
-	wire [17:0] pt_q [3:0];
+	reg [19:0] pt_data [3:0];
+	wire [19:0] pt_q [3:0];
 	reg [9:0] tag [3:0];
-	reg [5:0] plength [3:0];
+	reg [7:0] plength [3:0];
 	
 	reg tagin_valid_pipe[0:0];
 	reg [3:0] tagin_iface_pipe[0:0];
@@ -52,12 +52,12 @@ module pmem_group_v2(
 	reg [1:0] match_in_iface;
 	reg [1:0] match_out_iface;
 	
-	reg [22:0] cmdq_datain [3:0];
+	reg [24:0] cmdq_datain [3:0];
 	reg cmdq_rdreq [3:0];
 	reg cmdq_wrreq [3:0];
 	wire cmdq_full [3:0];
 	wire cmdq_empty [3:0];
-	wire [22:0] cmdq_dataout [3:0];
+	wire [24:0] cmdq_dataout [3:0];
 	
 	wire [2:0] packetmem_emptyq [3:0];
 	
@@ -247,7 +247,7 @@ module pmem_group_v2(
 	end
 	
 	// cmdq processing
-	reg [5:0] cmdq_length [3:0];
+	reg [7:0] cmdq_length [3:0];
 	reg [13:0] cmdq_addr [3:0];
 	reg [2:0] cmdq_pkt_empty [3:0];
 	reg cmdq_valid [3:0];
@@ -323,7 +323,7 @@ module pmem_group_v2(
 				if ( cmdq_ready[x]) // !cmdq_empty[x] && transmitout_ready[x] &&
 					{cmdq_pkt_empty[x], cmdq_addr[x], cmdq_length[x]} <= cmdq_dataout [x];
 				else if (!premerge_stall[cmdq_addr[x][13:12]][x] && cmdq_length[x] != 0) begin
-					cmdq_length[x] <= cmdq_length[x]-6'd1;
+					cmdq_length[x] <= cmdq_length[x]-8'd1;
 					if (cmdq_addr[x][11:0]==12'hfff) cmdq_addr[x][11:0] <= 12'h0;
 					else cmdq_addr[x] <= cmdq_addr[x]+14'd1;
 				end
