@@ -80,9 +80,9 @@ module hardmatchblock_128 #(parameter CHOUT=0)(
 	);
 	defparam concatfifo.add_ram_output_register = "OFF",
 		concatfifo.lpm_width = CONCAT_WIDTH+12,
-		concatfifo.lpm_widthu = 4,
-		concatfifo.lpm_numwords = 16,
-		concatfifo.almost_full_value = 14,
+		concatfifo.lpm_widthu = 2,
+		concatfifo.lpm_numwords = 4,
+		concatfifo.almost_full_value = 2,
 		concatfifo.lpm_showahead = "ON";
 	
 	allrules match (

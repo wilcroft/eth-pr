@@ -1,7 +1,7 @@
 `timescale 1ns/1ns
 module whole_system_tb();
 	localparam ncount = 8;
-	localparam PACKETSIZE = 190;
+	localparam PACKETSIZE = 90;
 
 	wire global_freeze;
 	wire [7:0] local_enable, local_freeze;
