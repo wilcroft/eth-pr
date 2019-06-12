@@ -266,7 +266,7 @@ module whole_system_tb();
 	*/
 	always@(*)
 		if (incount < 10000)
-			packetin_valid[0] = !(pktcount==0 && offcount != 0 && reset);//packetin_ready[0];
+			packetin_valid[0] = !(pktcount==0 && offcount != 0 || !reset);//packetin_ready[0];
 		else
 			packetin_valid[0] = 0;
 			

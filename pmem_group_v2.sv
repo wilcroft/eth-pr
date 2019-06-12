@@ -34,15 +34,15 @@ module pmem_group_v2(
 		output reg tagin_ready
 	);
 	
-	reg [11:0] rdaddr [3:0];
-	reg [11:0] wraddr [3:0];
-	reg [11:0] wraddr_start [3:0];
+	reg [13:0] rdaddr [3:0];
+	reg [13:0] wraddr [3:0];
+	reg [13:0] wraddr_start [3:0];
 	
-	wire [63:0] memout [3:0] [3:0];
+	wire [63:0] memout [3:0] [3:0] [3:0];
 	reg wren [3:0];
 	
-	reg [19:0] pt_data [3:0];
-	wire [19:0] pt_q [3:0];
+	reg [24:0] pt_data [3:0];
+	wire [24:0] pt_q [3:0];
 	reg [9:0] tag [3:0];
 	reg [7:0] plength [3:0];
 	
@@ -52,12 +52,12 @@ module pmem_group_v2(
 	reg [1:0] match_in_iface;
 	reg [1:0] match_out_iface;
 	
-	reg [24:0] cmdq_datain [3:0];
+	reg [26:0] cmdq_datain [3:0];
 	reg cmdq_rdreq [3:0];
 	reg cmdq_wrreq [3:0];
 	wire cmdq_full [3:0];
 	wire cmdq_empty [3:0];
-	wire [24:0] cmdq_dataout [3:0];
+	wire [26:0] cmdq_dataout [3:0];
 	
 	wire [2:0] packetmem_emptyq [3:0];
 	
@@ -67,7 +67,7 @@ module pmem_group_v2(
 	assign packetout_sop = packetin_sop;
 	assign packetout_eop = packetin_eop;
 		
-	genvar i, j;
+	genvar i, j, k;
 	integer x, y;
 	
 	wire [63:0]transmitout_data_pipe[3:0][3:0];
@@ -97,15 +97,16 @@ module pmem_group_v2(
 			for (j=0; j<4; j=j+1) begin:outloop //j=output
 				//We need 16 packet memories, to fully multiplex
 				//between the 4 outputs
+				for (k=0; k<4; k=k+1) begin:largememloop
 				packetmem2 mem (
 					.clock(clock),
 					.data(packetin_data[i]),
-					.rdaddress(rdaddr[j]),
-					.wraddress(wraddr[i]),
-					.wren(wren[i]),
-					.q(memout[i][j])		
+					.rdaddress(rdaddr[j][11:0]),
+					.wraddress(wraddr[i][11:0]),
+					.wren(wren[i]&&wraddr[i][13:12]==k),
+					.q(memout[i][j][k])		
 				);
-				
+				end
 			end
 			// We need four lookup tables, one per input.
 			// Since output arrives serially before dispatching,
@@ -121,14 +122,14 @@ module pmem_group_v2(
 			
 			// We also need to store the "empty" values, as not every packet
 			// is modulo 8 bytes.
-			packetmem_empty PME (
+		/*	packetmem_empty PME (
 				.clock,
 				.data(packetin_empty[i]),
 				.rdaddress(tagin_data[9:0]),
 				.wraddress(tag[i]),
 				.wren(packetin_eop[i]),
 				.q(packetmem_emptyq[i])
-			);
+			);*/
 			
 			// One command queue per interface to not bottleneck the lookup tables
 			output_cmdq CMDQ (
@@ -224,7 +225,7 @@ module pmem_group_v2(
 	// Set the PT lookup inputs, assign tags to channels
 	always@* 
 		for (x=0; x<4; x=x+1) begin
-			pt_data[x] = {wraddr_start[x],plength[x]};
+			pt_data[x] = {packetin_empty[x], wraddr_start[x],plength[x]};
 			//packetout_channel[x] = tag [x];
 			packetout_data[x] = {tag[x], packetin_data[x]};
 		end
@@ -233,6 +234,7 @@ module pmem_group_v2(
 	always@(posedge clock) begin
 		tagin_valid_pipe[0] <= tagin_valid;
 		tagin_iface_pipe[0] <= tagin_data [13:10];//[9:6];
+		
 	end
 	
 	always@* begin
@@ -248,7 +250,7 @@ module pmem_group_v2(
 	
 	// cmdq processing
 	reg [7:0] cmdq_length [3:0];
-	reg [13:0] cmdq_addr [3:0];
+	reg [15:0] cmdq_addr [3:0];
 	reg [2:0] cmdq_pkt_empty [3:0];
 	reg cmdq_valid [3:0];
 	reg cmdq_ready [3:0];
@@ -269,11 +271,12 @@ module pmem_group_v2(
 
 	reg [5:0] cmdq_length_pipe [3:0];
 	reg cmdq_ready_pipe2 [3:0];
+	reg [1:0] cmdq_addr_prev [3:0];
 	
 	always@(posedge clock) begin
 		for (x=0; x<4; x=x+1)
 			for (y=0;y<4;y=y+1) begin
-				premerge_valid[x][y] <= cmdq_length[y] !=0 && x==cmdq_addr[y][13:12] && !premerge_stall[x][y];
+				premerge_valid[x][y] <= cmdq_length[y] !=0 && x==cmdq_addr[y][15:14] && !premerge_stall[x][y];
 				premerge_eop[x][y] <=  cmdq_length[y] ==1 && !premerge_stall[x][y];
 //				if (memout_fifo_in_sop[x][y])
 //					memout_fifo_in_sop[x][y] <= !(memout_fifo_in_valid[x][y] && memout_fifo_in_ready[x][y]);
@@ -308,7 +311,7 @@ module pmem_group_v2(
 		//	transmitout_eop[x] = transmitout_eop_pipe[cmdq_addr[x][13:12]][x];
 			for (y=0; y<4; y=y+1) begin
 				transmitout_ready_pipe[x][y] = transmitout_ready[y];
-				premerge_data[x][y] = memout[x][y];
+				premerge_data[x][y] = memout[x][y][cmdq_addr_prev[x]];
 			end
 		end
 	
@@ -322,10 +325,11 @@ module pmem_group_v2(
 			else begin
 				if ( cmdq_ready[x]) // !cmdq_empty[x] && transmitout_ready[x] &&
 					{cmdq_pkt_empty[x], cmdq_addr[x], cmdq_length[x]} <= cmdq_dataout [x];
-				else if (!premerge_stall[cmdq_addr[x][13:12]][x] && cmdq_length[x] != 0) begin
+				else if (!premerge_stall[cmdq_addr[x][15:14]][x] && cmdq_length[x] != 0) begin
 					cmdq_length[x] <= cmdq_length[x]-8'd1;
-					if (cmdq_addr[x][11:0]==12'hfff) cmdq_addr[x][11:0] <= 12'h0;
-					else cmdq_addr[x] <= cmdq_addr[x]+14'd1;
+					cmdq_addr_prev[x] <= cmdq_addr[x][13:12];
+					if (cmdq_addr[x][13:0]==14'h3fff) cmdq_addr[x][13:0] <= 14'h0;
+					else cmdq_addr[x] <= cmdq_addr[x]+16'd1;
 				end
 			end
 		end
@@ -334,7 +338,7 @@ module pmem_group_v2(
 		for (x=0;x<4;x=x+1) begin
 			//cmdq_rdreq[x] = cmdq_length[x] == 0 && !cmdq_ready[x] && !cmdq_empty[x] && (!transmitout_valid[x] || transmitout_eop[x] && transmitout_valid[x] && transmitout_ready[x]);
 			cmdq_rdreq[x] = cmdq_length[x] == 0 && !cmdq_ready[x] && !cmdq_empty[x];
-			cmdq_datain[x] = {packetmem_emptyq[match_in_iface],match_in_iface,pt_q[match_in_iface]};
+			cmdq_datain[x] = {pt_q[match_in_iface][24:22],match_in_iface,pt_q[match_in_iface][21:0]};
 		end
 	
 	always@* begin

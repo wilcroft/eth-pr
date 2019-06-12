@@ -46,11 +46,11 @@ module packettable (
 	q);
 
 	input	  clock;
-	input	[19:0]  data;
+	input	[24:0]  data;
 	input	[9:0]  rdaddress;
 	input	[9:0]  wraddress;
 	input	  wren;
-	output	[19:0]  q;
+	output	[24:0]  q;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
@@ -60,8 +60,8 @@ module packettable (
 // synopsys translate_on
 `endif
 
-	wire [19:0] sub_wire0;
-	wire [19:0] q = sub_wire0[19:0];
+	wire [24:0] sub_wire0;
+	wire [24:0] q = sub_wire0[24:0];
 
 	altsyncram	altsyncram_component (
 				.address_a (wraddress),
@@ -81,7 +81,7 @@ module packettable (
 				.clocken1 (1'b1),
 				.clocken2 (1'b1),
 				.clocken3 (1'b1),
-				.data_b ({20{1'b1}}),
+				.data_b ({25{1'b1}}),
 				.eccstatus (),
 				.q_a (),
 				.rden_a (1'b1),
@@ -104,8 +104,8 @@ module packettable (
 		altsyncram_component.read_during_write_mode_mixed_ports = "DONT_CARE",
 		altsyncram_component.widthad_a = 10,
 		altsyncram_component.widthad_b = 10,
-		altsyncram_component.width_a = 20,
-		altsyncram_component.width_b = 20,
+		altsyncram_component.width_a = 25,
+		altsyncram_component.width_b = 25,
 		altsyncram_component.width_byteena_a = 1;
 
 
@@ -144,7 +144,7 @@ endmodule
 // Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "0"
 // Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
-// Retrieval info: PRIVATE: MEMSIZE NUMERIC "20480"
+// Retrieval info: PRIVATE: MEMSIZE NUMERIC "25600"
 // Retrieval info: PRIVATE: MEM_IN_BITS NUMERIC "0"
 // Retrieval info: PRIVATE: MIFfilename STRING ""
 // Retrieval info: PRIVATE: OPERATION_MODE NUMERIC "2"
@@ -164,10 +164,10 @@ endmodule
 // Retrieval info: PRIVATE: USE_DIFF_CLKEN NUMERIC "0"
 // Retrieval info: PRIVATE: UseDPRAM NUMERIC "1"
 // Retrieval info: PRIVATE: VarWidth NUMERIC "0"
-// Retrieval info: PRIVATE: WIDTH_READ_A NUMERIC "20"
-// Retrieval info: PRIVATE: WIDTH_READ_B NUMERIC "20"
-// Retrieval info: PRIVATE: WIDTH_WRITE_A NUMERIC "20"
-// Retrieval info: PRIVATE: WIDTH_WRITE_B NUMERIC "20"
+// Retrieval info: PRIVATE: WIDTH_READ_A NUMERIC "25"
+// Retrieval info: PRIVATE: WIDTH_READ_B NUMERIC "25"
+// Retrieval info: PRIVATE: WIDTH_WRITE_A NUMERIC "25"
+// Retrieval info: PRIVATE: WIDTH_WRITE_B NUMERIC "25"
 // Retrieval info: PRIVATE: WRADDR_ACLR_B NUMERIC "0"
 // Retrieval info: PRIVATE: WRADDR_REG_B NUMERIC "0"
 // Retrieval info: PRIVATE: WRCTRL_ACLR_B NUMERIC "0"
@@ -190,21 +190,21 @@ endmodule
 // Retrieval info: CONSTANT: READ_DURING_WRITE_MODE_MIXED_PORTS STRING "DONT_CARE"
 // Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "10"
 // Retrieval info: CONSTANT: WIDTHAD_B NUMERIC "10"
-// Retrieval info: CONSTANT: WIDTH_A NUMERIC "20"
-// Retrieval info: CONSTANT: WIDTH_B NUMERIC "20"
+// Retrieval info: CONSTANT: WIDTH_A NUMERIC "25"
+// Retrieval info: CONSTANT: WIDTH_B NUMERIC "25"
 // Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "1"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT VCC "clock"
-// Retrieval info: USED_PORT: data 0 0 20 0 INPUT NODEFVAL "data[19..0]"
-// Retrieval info: USED_PORT: q 0 0 20 0 OUTPUT NODEFVAL "q[19..0]"
+// Retrieval info: USED_PORT: data 0 0 25 0 INPUT NODEFVAL "data[24..0]"
+// Retrieval info: USED_PORT: q 0 0 25 0 OUTPUT NODEFVAL "q[24..0]"
 // Retrieval info: USED_PORT: rdaddress 0 0 10 0 INPUT NODEFVAL "rdaddress[9..0]"
 // Retrieval info: USED_PORT: wraddress 0 0 10 0 INPUT NODEFVAL "wraddress[9..0]"
 // Retrieval info: USED_PORT: wren 0 0 0 0 INPUT GND "wren"
 // Retrieval info: CONNECT: @address_a 0 0 10 0 wraddress 0 0 10 0
 // Retrieval info: CONNECT: @address_b 0 0 10 0 rdaddress 0 0 10 0
 // Retrieval info: CONNECT: @clock0 0 0 0 0 clock 0 0 0 0
-// Retrieval info: CONNECT: @data_a 0 0 20 0 data 0 0 20 0
+// Retrieval info: CONNECT: @data_a 0 0 25 0 data 0 0 25 0
 // Retrieval info: CONNECT: @wren_a 0 0 0 0 wren 0 0 0 0
-// Retrieval info: CONNECT: q 0 0 20 0 @q_b 0 0 20 0
+// Retrieval info: CONNECT: q 0 0 25 0 @q_b 0 0 25 0
 // Retrieval info: GEN_FILE: TYPE_NORMAL packettable.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL packettable.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL packettable.cmp FALSE

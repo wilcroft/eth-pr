@@ -6,7 +6,7 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element clk_0
@@ -71,7 +71,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName" value="eth4to1.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -133,7 +133,7 @@
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
   <parameter name="ERROR_WIDTH" value="0" />
   <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
-  <parameter name="FIFO_DEPTH" value="16" />
+  <parameter name="FIFO_DEPTH" value="4" />
   <parameter name="SYMBOLS_PER_BEAT" value="8" />
   <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
   <parameter name="USE_ALMOST_FULL_IF" value="1" />
@@ -149,7 +149,7 @@
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
   <parameter name="ERROR_WIDTH" value="0" />
   <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
-  <parameter name="FIFO_DEPTH" value="16" />
+  <parameter name="FIFO_DEPTH" value="4" />
   <parameter name="SYMBOLS_PER_BEAT" value="8" />
   <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
   <parameter name="USE_ALMOST_FULL_IF" value="1" />
@@ -165,7 +165,7 @@
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
   <parameter name="ERROR_WIDTH" value="0" />
   <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
-  <parameter name="FIFO_DEPTH" value="16" />
+  <parameter name="FIFO_DEPTH" value="4" />
   <parameter name="SYMBOLS_PER_BEAT" value="8" />
   <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
   <parameter name="USE_ALMOST_FULL_IF" value="1" />
@@ -181,7 +181,7 @@
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
   <parameter name="ERROR_WIDTH" value="0" />
   <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
-  <parameter name="FIFO_DEPTH" value="16" />
+  <parameter name="FIFO_DEPTH" value="4" />
   <parameter name="SYMBOLS_PER_BEAT" value="8" />
   <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
   <parameter name="USE_ALMOST_FULL_IF" value="1" />
