@@ -185,7 +185,7 @@ mac10g mac10g_inst(
 	
 	wire pnode_ready [ncount-1:0];
 	//wire [73:0] pnode_data [ncount-1:0];
-	wire [137:0] pnode_data [ncount-1:0];
+	wire [141:0] pnode_data [ncount-1:0];
 	wire pnode_valid [ncount-1:0];
 
 	wire [9:0] pnodeout [ncount-1:0];

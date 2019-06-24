@@ -1962,6 +1962,25 @@ set_instance_assignment -name LL_MEMBER_OF Packetmem3 -to "eth4to1:u0|pmem_group
 set_instance_assignment -name LL_MEMBER_OF Packetmem3 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[3].outloop[2].mem" -section_id Packetmem3
 set_instance_assignment -name LL_MEMBER_OF Packetmem3 -to "eth4to1:u0|pmem_group_wrap:ethpack|pmem_group:U0|packetmem2:inloop[3].outloop[3].mem" -section_id Packetmem3
 #set_instance_assignment -name PARTITION_HIERARCHY pnode_50d41 -to "matchblock_wrapper:pnode_gen[7].mb" -section_id "matchblock_wrapper:pnode_gen_7__mb"
+set_instance_assignment -name LL_MEMBER_OF Match7 -to "matchblock_wrapper:pnode_gen[7].mb" -section_id Match7
+set_instance_assignment -name LL_MEMBER_OF FIFONode7 -to "in_fifo_network:innet|in_node_fifo:genloop[7].innode" -section_id FIFONode7
+set_instance_assignment -name LL_MEMBER_OF FIFONode7 -to "out_fifo_network:outnet|out_node_fifo:genloop[7].fi" -section_id FIFONode7
+set_global_assignment -name LL_ENABLED ON -section_id Region_0
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Region_0
+set_global_assignment -name LL_STATE LOCKED -section_id Region_0
+set_global_assignment -name LL_RESERVED OFF -section_id Region_0
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Region_0
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Region_0
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Region_0
+set_global_assignment -name LL_PR_REGION OFF -section_id Region_0
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Region_0
+set_global_assignment -name LL_WIDTH 55 -section_id Region_0
+set_global_assignment -name LL_HEIGHT 128 -section_id Region_0
+set_global_assignment -name LL_ORIGIN X155_Y1 -section_id Region_0
+set_global_assignment -name SYSTEMVERILOG_FILE headercap_128.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ver128/memorymatchblock_128.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ver128/matchblock_wrapper.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ver128/hardmatchblock_128.sv
 set_global_assignment -name VERILOG_FILE hardblockfifo.v
 set_global_assignment -name SDC_FILE "eth4to1-false.sdc"
 set_global_assignment -name QIP_FILE memout_fifo/synthesis/memout_fifo.qip
@@ -1995,7 +2014,6 @@ set_global_assignment -name QIP_FILE output_cmdq.qip
 set_global_assignment -name QIP_FILE sopeopFIFO.qip
 set_global_assignment -name QIP_FILE eth_rcfg.qip
 set_global_assignment -name SIP_FILE eth_rcfg.sip
-set_global_assignment -name SYSTEMVERILOG_FILE matchblock_wrapper.sv
 set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/sorterunit_v2.sv
 set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/sorterblock_v2.sv
 set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/rulemem.sv
@@ -2004,12 +2022,9 @@ set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/mmbfsm.sv
 set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/memorymatchblock.sv
 set_global_assignment -name VERILOG_FILE memorymatchblock/mem.v
 set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/linearsearch.sv
-set_global_assignment -name VERILOG_FILE memorymatchblock/hardblockfifo.v
 set_global_assignment -name SYSTEMVERILOG_FILE memorymatchblock/binarysearch.sv
 set_global_assignment -name SYSTEMVERILOG_FILE memory_match.sv
-set_instance_assignment -name LL_MEMBER_OF Match7 -to "matchblock_wrapper:pnode_gen[7].mb" -section_id Match7
-set_instance_assignment -name LL_MEMBER_OF FIFONode7 -to "in_fifo_network:innet|in_node_fifo:genloop[7].innode" -section_id FIFONode7
-set_instance_assignment -name LL_MEMBER_OF FIFONode7 -to "out_fifo_network:outnet|out_node_fifo:genloop[7].fi" -section_id FIFONode7
+set_global_assignment -name SIGNALTAP_FILE stp1.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY pnode_72021 -to "matchblock_wrapper:pnode_gen[0].mb" -section_id "matchblock_wrapper:pnode_gen_0__mb"
 set_instance_assignment -name PARTITION_HIERARCHY pnode_25cc1 -to "matchblock_wrapper:pnode_gen[1].mb" -section_id "matchblock_wrapper:pnode_gen_1__mb"
@@ -2019,4 +2034,3 @@ set_instance_assignment -name PARTITION_HIERARCHY pnode_ca3d1 -to "matchblock_wr
 set_instance_assignment -name PARTITION_HIERARCHY pnode_ca831 -to "matchblock_wrapper:pnode_gen[5].mb" -section_id "matchblock_wrapper:pnode_gen_5__mb"
 set_instance_assignment -name PARTITION_HIERARCHY pnode_e6ad1 -to "matchblock_wrapper:pnode_gen[6].mb" -section_id "matchblock_wrapper:pnode_gen_6__mb"
 set_instance_assignment -name PARTITION_HIERARCHY pnode_50d41 -to "matchblock_wrapper:pnode_gen[7].mb" -section_id "matchblock_wrapper:pnode_gen_7__mb"
-set_global_assignment -name SIGNALTAP_FILE stp1.stp

@@ -38,7 +38,7 @@ module pmem_group_v2(
 	reg [13:0] wraddr [3:0];
 	reg [13:0] wraddr_start [3:0];
 	
-	wire [63:0] memout [3:0] [3:0] [3:0];
+	wire [63:0] memout [3:0] [3:0] [2:0];
 	reg wren [3:0];
 	
 	reg [24:0] pt_data [3:0];
@@ -97,7 +97,7 @@ module pmem_group_v2(
 			for (j=0; j<4; j=j+1) begin:outloop //j=output
 				//We need 16 packet memories, to fully multiplex
 				//between the 4 outputs
-				for (k=0; k<4; k=k+1) begin:largememloop
+				for (k=0; k<3; k=k+1) begin:largememloop
 				packetmem2 mem (
 					.clock(clock),
 					.data(packetin_data[i]),
@@ -328,7 +328,7 @@ module pmem_group_v2(
 				else if (!premerge_stall[cmdq_addr[x][15:14]][x] && cmdq_length[x] != 0) begin
 					cmdq_length[x] <= cmdq_length[x]-8'd1;
 					cmdq_addr_prev[x] <= cmdq_addr[x][13:12];
-					if (cmdq_addr[x][13:0]==14'h3fff) cmdq_addr[x][13:0] <= 14'h0;
+					if (cmdq_addr[x][13:0]==14'h2fff) cmdq_addr[x][13:0] <= 14'h0;
 					else cmdq_addr[x] <= cmdq_addr[x]+16'd1;
 				end
 			end

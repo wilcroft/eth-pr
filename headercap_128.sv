@@ -31,6 +31,7 @@ module header_capture_128(
 		nextState = state;
 		if (avalon_st_rx_eop)
 			nextState = s0;
+		else begin
 		case (state)
 			s0: nextState = avalon_st_rx_sop?s1:state;
 			s1: nextState = s2;
@@ -41,6 +42,7 @@ module header_capture_128(
 			s6: nextState = s6;
 			default: nextState = s0;
 		endcase
+		end
 	end		
 
 	initial
