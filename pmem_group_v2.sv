@@ -14,7 +14,7 @@ module pmem_group_v2(
 		
 		// Passthrough of packetin, but with tag information
 		output reg [73:0] packetout_data [3:0],
-		output packetout_valid [3:0],
+		output reg packetout_valid [3:0],
 		output packetout_sop [3:0],
 		output packetout_eop [3:0],
 		input packetout_ready [3:0],
@@ -61,8 +61,10 @@ module pmem_group_v2(
 	
 	wire [2:0] packetmem_emptyq [3:0];
 	
+	reg [3:0] packetoutcount [3:0];
+	
 	assign packetin_ready = packetout_ready;
-	assign packetout_valid = packetin_valid;
+	//assign packetout_valid = packetin_valid;
 	//assign packetout_data[][63:0] = packetin_data;
 	assign packetout_sop = packetin_sop;
 	assign packetout_eop = packetin_eop;
@@ -221,6 +223,15 @@ module pmem_group_v2(
 			if (reset) wraddr_start[x] <= 0;
 			else if (packetin_sop[x] && packetin_valid [x] && packetin_ready [x]) wraddr_start[x] <= wraddr[x];
 	
+	always@(posedge clock)
+		for (x=0; x<4; x=x+1)
+			if (packetin_valid[x] && packetin_ready[x] && packetin_eop[x])
+				packetoutcount[x] <= 0;
+			else if (packetoutcount[x] == 4'hF)
+				packetoutcount[x] <= 4'hF;
+			else if (packetin_valid[x] && packetin_ready[x])
+				packetoutcount[x] <= packetoutcount[x] + 1;
+				
 	
 	// Set the PT lookup inputs, assign tags to channels
 	always@* 
@@ -228,6 +239,7 @@ module pmem_group_v2(
 			pt_data[x] = {packetin_empty[x], wraddr_start[x],plength[x]};
 			//packetout_channel[x] = tag [x];
 			packetout_data[x] = {tag[x], packetin_data[x]};
+			packetout_valid[x] = (packetoutcount[x]<6 || packetout_eop[x]) ? packetin_valid[x] : 0;
 		end
 	
 	// some pipelined signals
@@ -358,6 +370,7 @@ module pmem_group_v2(
 			cmdq_addr[x]=0;
 			cmdq_length[x]=0;
 			cmdq_ready[x]=0;
+			packetoutcount[x] = 0;
 		end
 	
 endmodule
