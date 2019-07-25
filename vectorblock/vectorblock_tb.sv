@@ -20,7 +20,7 @@ module vectorblock_tb();
 	reg sop, eop;
 	reg [11:0] tag;
 	
-	vectormatchblock_128 DUT (.*);
+	vectormatchblock2_128 DUT (.*);
 	
 	initial begin
 		clock = 0;
