@@ -1,7 +1,7 @@
 `timescale 1ns/1ns
 module whole_system_tb();
-	localparam ncount = 8;
-	localparam PACKETSIZE = 8;
+	localparam ncount = 6;
+	localparam PACKETSIZE = 190;//between 8 and 190
 
 	wire global_freeze;
 	wire [7:0] local_enable, local_freeze;
@@ -90,7 +90,7 @@ module whole_system_tb();
 	
 	generate 
 		for (i=0; i< ncount; i=i+1) begin : pnode_gen
-			matchblock_wrapper #(.blocktype(1)) mb (
+			matchblock_wrapper #(.blocktype(3)) mb (
 				.clock,
 				.reset(!reset),
 				.mask_data_out(pnodeout[i]),
@@ -326,8 +326,8 @@ module whole_system_tb();
 		if (!checkvarinc(pnodeout[0], pnodeout_check, pnodeout_valid[0]&&pnodeout_ack[0]))
 			$stop; */
 	
-	reg [63:0] datacheck [8191:0];
-	reg [12:0] wridx, rdidx;
+	reg [63:0] datacheck [12287:0];
+	reg [14:0] wridx, rdidx;
 	
 	initial begin
 		wridx = 0;
@@ -337,15 +337,17 @@ module whole_system_tb();
 	always@(posedge clock) begin
 		if(reset) begin
 			if (packetin_ready[0] & packetin_valid[0]) begin
-				wridx <= wridx + 1;
+				if (wridx==14'h2FFF) wridx <= 0;
+				else wridx <= wridx + 1;
 				datacheck[wridx] <= packetin_data[0];
 				if (wridx == rdidx - 1 && (!transmitout_ready[0] & transmitout_valid[0]))
 					$stop; //overwrote buffer!
 			end
 			if (transmitout_ready[0] & transmitout_valid[0]) begin
-				rdidx <= rdidx + 1;
+				if (rdidx==14'h2FFF) rdidx <= 0;
+				else rdidx <= rdidx + 1;
 				if (datacheck[rdidx] != transmitout_data[0]) begin
-					for (x=0; x<8192; x=x+1)
+					for (x=0; x<12288; x=x+1)
 						if (datacheck[x] == transmitout_data[0])
 							$display("Got element %d instead of element %d!", x, rdidx);
 					$stop;

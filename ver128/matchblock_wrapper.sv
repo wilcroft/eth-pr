@@ -77,6 +77,14 @@ module matchblock_wrapper #(parameter blocktype=0) (
 				.*
 			);
 		end
+		else if (blocktype==3) begin
+			vectormatchblock2_128 block_mem (
+				.match_data_out(data_out),
+				.match_data_valid(data_valid),
+				.match_data_ack(data_ack),
+				.*
+			);
+		end
 	endgenerate
 
 

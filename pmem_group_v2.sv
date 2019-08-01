@@ -214,8 +214,11 @@ module pmem_group_v2(
 	// Calculate per-interface packet write addresses
 	always@(posedge clock)
 		for (x=0; x<4; x=x+1)
-			if (reset) wraddr[x] <= 12'd0;
-			else if (packetin_ready[x] && packetin_valid[x]) wraddr[x] <= wraddr[x] + 12'd1;
+			if (reset) wraddr[x] <= 14'd0;
+			else if (packetin_ready[x] && packetin_valid[x]) begin
+				if (wraddr[x]==14'h2fff) wraddr[x] <= 0;
+				else wraddr[x] <= wraddr[x] + 12'd1;
+			end
 	
 	// Get the first address for the packet (for writing to table), per interface
 	always@(posedge clock)

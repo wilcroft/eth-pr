@@ -204,10 +204,14 @@ assign write = !newrulein_empty;
 		rulebits[1][1] = {CONCAT_WIDTH/2{1'b1}};
 		rulebits[2][1] = {CONCAT_WIDTH/2{1'b0}};
 		rulebits[3][1] = {CONCAT_WIDTH/2{1'b0}};
+		rulebits[0][2] = {CONCAT_WIDTH/2{1'b1}};
+		rulebits[1][2] = {CONCAT_WIDTH/2{1'b1}};
+		rulebits[2][2] = {CONCAT_WIDTH/2{1'b1}};
+		rulebits[3][2] = {CONCAT_WIDTH/2{1'b1}};
 	//	rulebits[1][2] = 120'hd609b1f0566312153523c089b1f081;
 	//	rulebits[0][2] = 120'h29f64e0fa99cedeacadc3f764e0f7e;
 		
-		for (i=2; i<RCOUNT; i=i+1) begin
+		for (i=3; i<RCOUNT; i=i+1) begin
 			rulebits[0][i] = {CONCAT_WIDTH/2{1'b0}};
 			rulebits[1][i] = {CONCAT_WIDTH/2{1'b0}};
 			rulebits[2][i] = {CONCAT_WIDTH/2{1'b0}};
