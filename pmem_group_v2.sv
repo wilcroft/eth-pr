@@ -375,6 +375,19 @@ module pmem_group_v2(
 			cmdq_ready[x]=0;
 			packetoutcount[x] = 0;
 		end
+			
+		(* noprune *)reg [39:0] incount, outcount, diffcount;
 	
+	initial begin
+		incount = 40'd0;
+		outcount = 40'd0;
+		diffcount = 40'd0;
+	end
+	
+	always@(posedge clock) begin
+		if (packetin_valid[0] && packetin_ready[0] && packetin_eop[0]) incount <= incount + 1;
+		if (transmitout_valid[0] && transmitout_ready[0] && transmitout_eop[0]) outcount <= outcount + 1;
+		if ((incount-outcount) > diffcount) diffcount <= incount-outcount;
+	end
 endmodule
 
